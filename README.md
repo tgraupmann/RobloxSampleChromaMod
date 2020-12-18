@@ -4,15 +4,23 @@ Sample Chroma RGB Mod for Roblox
 
 **Screenshot**
 
+**Roblox**
+
 ![image_1](images/image_1.png)
 
-##Quick Start##
+**WPF_RobloxChromaMod**
+
+![image_3](images/image_3.png)
+
+## Quick Start ##
 
 1. Open [RobloxSampleChromaMod.rbxl](RobloxSampleChromaMod.rbxl)
 
 2. Hit Play!
 
-##Scripts##
+3. Launch `WPF_RobloxChromaMod` which monitors the game log and plays `Chroma RGB` for the various game events.
+
+## Scripts ##
 
 Notice that `LocalScript` is a child of the `TextButton` at: [StarterGui\ChromaGui\Frame\BtnEffect1\LocalScript.lua](StarterGui\ChromaGui\Frame\BtnEffect1\LocalScript.lua)
 
