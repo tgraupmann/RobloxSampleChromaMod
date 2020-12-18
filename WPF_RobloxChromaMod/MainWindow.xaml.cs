@@ -1,17 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Threading;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
+
 
 namespace WPF_RobloxChromaMod
 {
@@ -20,9 +10,30 @@ namespace WPF_RobloxChromaMod
     /// </summary>
     public partial class MainWindow : Window
     {
+        bool _mWaitForExit = true;
+
         public MainWindow()
         {
             InitializeComponent();
+
+            ThreadStart ts = new ThreadStart(LogWorker);
+            Thread thread = new Thread(ts);
+            thread.Start();
+
+            Closed += MainWindow_Closed;
+        }
+
+        private void MainWindow_Closed(object sender, EventArgs e)
+        {
+            _mWaitForExit = false;
+        }
+
+        private void LogWorker()
+        {
+            while (_mWaitForExit)
+            {
+                Thread.Sleep(100);
+            }
         }
     }
 }
