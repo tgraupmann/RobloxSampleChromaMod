@@ -6,13 +6,13 @@ Sample Chroma RGB Mod for Roblox
 
 ![image_1](images/image_1.png)
 
-##Quick Start##
+## Quick Start ##
 
 1. Open [RobloxSampleChromaMod.rbxl](RobloxSampleChromaMod.rbxl)
 
 2. Hit Play!
 
-##Scripts##
+## Scripts ##
 
 Notice that `LocalScript` is a child of the `TextButton` at: [StarterGui/ChromaGui/Frame/BtnEffect1/LocalScript.lua](StarterGui/ChromaGui/Frame/BtnEffect1/LocalScript.lua)
 
