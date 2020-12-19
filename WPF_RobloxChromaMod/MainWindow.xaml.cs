@@ -69,7 +69,7 @@ namespace WPF_RobloxChromaMod
                     else
                     {
                         long oldLength = sizeMap[fi.FullName];
-                        if (fi.Length > oldLength)
+                        if (fi.Length >= oldLength)
                         {
                             ReadContent(fi, oldLength);
                         }
