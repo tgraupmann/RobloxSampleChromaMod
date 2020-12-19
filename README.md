@@ -8,7 +8,7 @@ This mod uses print statements and a companion app to monitor the game log and p
 * [See Also](#see-also)
 * [Quick Start](#quick-start)
 * [Videos](#videos)
-* [Screenshot](#screenshot)
+* [Screenshots](#screenshots)
 * [Scripts](#scripts)
 
 
@@ -49,7 +49,7 @@ This mod uses print statements and a companion app to monitor the game log and p
 <a target="_blank" href="https://youtu.be/ZVX3DNW2gIM"><img src="https://img.youtube.com/vi/ZVX3DNW2gIM/0.jpg"></a>
 
 
-## Screenshot ##
+## Screenshots ##
 
 **Roblox**
 
