@@ -53,7 +53,7 @@ script.Parent.MouseButton2Click:Connect(rightClick)
 
 **Player State Script**
 
-Print player state events so that Chroma states can react to changes. [StarterPlayer/StarterCharacterScripts/LocalScript.lua](StarterPlayer/StarterCharacterScripts/LocalScript.lua)
+Print player state events so that Chroma can react to changes. [StarterPlayer/StarterCharacterScripts/LocalScript.lua](StarterPlayer/StarterCharacterScripts/LocalScript.lua)
 
 ```lua
 local character = script.Parent
