@@ -22,7 +22,7 @@ Sample Chroma RGB Mod for Roblox
 
 ## Scripts ##
 
-Notice that `LocalScript` is a child of the `TextButton` at: [StarterGui\ChromaGui\Frame\BtnEffect1\LocalScript.lua](StarterGui\ChromaGui\Frame\BtnEffect1\LocalScript.lua)
+Notice that `LocalScript` is a child of the `TextButton` at: [StarterGui/ChromaGui/Frame/BtnEffect1/LocalScript.lua](StarterGui/ChromaGui/Frame/BtnEffect1/LocalScript.lua)
 
 ![image_2](images/image_2.png)
 
