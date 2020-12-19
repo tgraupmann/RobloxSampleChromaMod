@@ -4,9 +4,16 @@ Sample Chroma RGB Mod for Roblox
 
 ## Videos ##
 
+
 **Chroma RGB in Roblox (Overview)**
 
 <a target="_blank" href="https://youtu.be/AI5I4I07aW8"><img src="https://img.youtube.com/vi/AI5I4I07aW8/0.jpg"></a>
+
+
+**Create Chroma Animations with the [Web Chroma Editor](https://chroma.razer.com/ChromaEditor/)**
+
+<a target="_blank" href="https://youtu.be/ZVX3DNW2gIM"><img src="https://img.youtube.com/vi/ZVX3DNW2gIM/0.jpg"></a>
+
 
 **Screenshot**
 
@@ -18,6 +25,7 @@ Sample Chroma RGB Mod for Roblox
 
 ![image_3](images/image_3.png)
 
+
 ## Quick Start ##
 
 1. Open [RobloxSampleChromaMod.rbxl](RobloxSampleChromaMod.rbxl)
@@ -25,6 +33,7 @@ Sample Chroma RGB Mod for Roblox
 2. Hit Play!
 
 3. Launch `WPF_RobloxChromaMod` which monitors the game log and plays `Chroma RGB` for the various game events.
+
 
 ## Scripts ##
 
