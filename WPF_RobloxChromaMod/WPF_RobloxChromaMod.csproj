@@ -106,6 +106,21 @@
     <None Include="Animations\BlackAndWhiteRainbow_Mousepad.chroma">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <None Include="Animations\Blank_ChromaLink.chroma">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Animations\Blank_Headset.chroma">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Animations\Blank_Keyboard.chroma">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Animations\Blank_Keypad.chroma">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Animations\Blank_Mouse.chroma">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="Animations\Effect10_ChromaLink.chroma">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
