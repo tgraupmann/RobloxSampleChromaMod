@@ -3,6 +3,30 @@
 This mod uses print statements and a companion app to monitor the game log and play Chroma RGB effects.
 
 
+## Table of Contents
+
+* [See Also](#see-also)
+* [Quick Start](#quick-start)
+* [Videos](#videos)
+* [Screenshot](#screenshot)
+* [Scripts](#scripts)
+
+
+## See Also
+
+**Docs:**
+
+- [Chroma Animation Guide](http://chroma.razer.com/ChromaGuide/) - Visual examples of the Chroma Animation API methods
+
+**Mods:**
+
+- [MinecraftChromaMod](https://github.com/tgraupmann/MinecraftChromaMod) - Minecraft Chroma RGB Mod
+
+- [RobloxSampleChromaMod](https://github.com/tgraupmann/RobloxSampleChromaMod) - Roblox Sample Chroma RGB Mod
+
+- [Cpp_RustChromaModClient](https://github.com/tgraupmann/Cpp_RustChromaModClient) - Rust Chroma RGB Mod Client
+
+
 ## Quick Start ##
 
 1. Open [RobloxSampleChromaMod.rbxl](RobloxSampleChromaMod.rbxl)
@@ -25,7 +49,7 @@ This mod uses print statements and a companion app to monitor the game log and p
 <a target="_blank" href="https://youtu.be/ZVX3DNW2gIM"><img src="https://img.youtube.com/vi/ZVX3DNW2gIM/0.jpg"></a>
 
 
-**Screenshot**
+## Screenshot ##
 
 **Roblox**
 
