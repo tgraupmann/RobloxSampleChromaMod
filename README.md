@@ -83,3 +83,7 @@ humanoid.StateChanged:Connect(function(oldState, newState)
 	end
 end)
 ```
+
+## Support
+
+Contact `Tim Graupmann#0611` on Discord for support.
