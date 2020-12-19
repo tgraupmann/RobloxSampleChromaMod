@@ -89,6 +89,8 @@ script.Parent.MouseButton2Click:Connect(rightClick)
 
 Print player state events so that Chroma can react to changes. [StarterPlayer/StarterCharacterScripts/LocalScript.lua](StarterPlayer/StarterCharacterScripts/LocalScript.lua)
 
+![image_4](images/image_4.png)
+
 ```lua
 local character = script.Parent
 
@@ -101,7 +103,7 @@ humanoid.StateChanged:Connect(function(oldState, newState)
 	if (newState ~= nil and oldState ~= newState and newState ~= Enum.HumanoidStateType.None) then
 		local state = tostring(newState);
 		if (string.len(state) > tokenLength) then
-			local strState = string.sub(state, tokenLength)
+			local strState = string.sub(state, tokenLength + 1)
 			print ("ChromaRGB:", "Player_", strState);
 		end
 	end

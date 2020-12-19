@@ -2,9 +2,10 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Text;
 using System.Threading;
 using System.Windows;
-
+using System.Windows.Threading;
 
 namespace WPF_RobloxChromaMod
 {
@@ -15,36 +16,61 @@ namespace WPF_RobloxChromaMod
     {
         bool _mWaitForExit = true;
 
+        StringBuilder _mStringBuilder = null;
+
+        DispatcherTimer _mTimer = null;
+
         public MainWindow()
         {
             InitializeComponent();
+
+            _mStringBuilder = new StringBuilder();
 
             int _mResult = ChromaAnimationAPI.Init();
             switch (_mResult)
             {
                 case RazerErrors.RZRESULT_DLL_NOT_FOUND:
-                    Console.Error.WriteLine("Chroma DLL is not found! {0}", RazerErrors.GetResultString(_mResult));
+                    _mTextStatus.Text = string.Format("Chroma DLL is not found! {0}", RazerErrors.GetResultString(_mResult));
                     return;
                 case RazerErrors.RZRESULT_DLL_INVALID_SIGNATURE:
-                    Console.Error.WriteLine("Chroma DLL has an invalid signature! {0}", RazerErrors.GetResultString(_mResult));
+                    _mTextStatus.Text = string.Format("Chroma DLL has an invalid signature! {0}", RazerErrors.GetResultString(_mResult));
                     return;
                 case RazerErrors.RZRESULT_SUCCESS:
+                    _mStringBuilder.AppendLine("Chroma RGB Initialized.");
                     break;
                 default:
-                    Console.Error.WriteLine("Failed to initialize Chroma! {0}", RazerErrors.GetResultString(_mResult));
+                    _mTextStatus.Text = string.Format("Failed to initialize Chroma! {0}", RazerErrors.GetResultString(_mResult));
                     return;
             }
+
+            _mTextStatus.Text = _mStringBuilder.ToString();
 
             ThreadStart ts = new ThreadStart(LogWorker);
             Thread thread = new Thread(ts);
             thread.Start();
 
+            _mTimer = new DispatcherTimer();
+            _mTimer.Interval = TimeSpan.FromSeconds(1);
+            _mTimer.Tick += Timer_Tick;
+            _mTimer.Start();
+
+
             Closed += MainWindow_Closed;
+        }
+
+        private void Timer_Tick(object sender, EventArgs e)
+        {
+            if (_mStringBuilder.Length > 512)
+            {
+                _mStringBuilder.Remove(0, 512);
+            }
+            _mTextStatus.Text = _mStringBuilder.ToString();
         }
 
         private void MainWindow_Closed(object sender, EventArgs e)
         {
             _mWaitForExit = false;
+            _mTimer.Tick -= Timer_Tick;
         }
 
         private void LogWorker()
@@ -124,6 +150,7 @@ namespace WPF_RobloxChromaMod
             {
                 return;
             }
+            _mStringBuilder.AppendLine(effect);
             switch (effect)
             {
                 case "BtnEffect1":

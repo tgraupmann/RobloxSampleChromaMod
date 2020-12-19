@@ -8,5 +8,6 @@
         Title="Roblox Chroma RGB Mod" Height="450" Width="800">
     <StackPanel Background="#000">
         <Label FontSize="32" Background="#008" Foreground="#FFF">Status: Listening for Chroma RGB game events...</Label>
+        <TextBlock Name="_mTextStatus" TextWrapping="Wrap" FontSize="12" Foreground="#FF0"></TextBlock>
     </StackPanel>
 </Window>
