@@ -10,6 +10,7 @@ This mod uses print statements and a companion app to monitor the game log and p
 * [Videos](#videos)
 * [Screenshots](#screenshots)
 * [Scripts](#scripts)
+* [Support](#support)
 
 
 ## See Also
