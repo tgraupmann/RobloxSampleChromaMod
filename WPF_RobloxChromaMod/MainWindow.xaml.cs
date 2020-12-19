@@ -79,15 +79,12 @@ namespace WPF_RobloxChromaMod
                             {
                                 break;
                             }
-                            const string TOKEN = "ChromaRGB: BtnEffect";
+                            const string TOKEN = "ChromaRGB: ";
                             int index = content.IndexOf(TOKEN);
                             if (index >= 0)
                             {
                                 string effect = content.Substring(index + TOKEN.Length);
-                                if (true)
-                                {
-
-                                }
+                                ProcessEffect(effect);
                             }
                         }
                         while (true);
@@ -97,6 +94,47 @@ namespace WPF_RobloxChromaMod
             catch
             {
                 Thread.Sleep(3000);
+            }
+        }
+
+        void ProcessEffect(string effect)
+        {
+            if (string.IsNullOrEmpty(effect))
+            {
+                return;
+            }
+            switch (effect)
+            {
+                case "BtnEffect1":
+                    break;
+                case "BtnEffect2":
+                    break;
+                case "BtnEffect3":
+                    break;
+                case "BtnEffect4":
+                    break;
+                case "BtnEffect5":
+                    break;
+                case "BtnEffect6":
+                    break;
+                case "BtnEffect7":
+                    break;
+                case "BtnEffect8":
+                    break;
+                case "BtnEffect9":
+                    break;
+                case "BtnEffect10":
+                    break;
+                case "BtnEffect11":
+                    break;
+                case "BtnEffect12":
+                    break;
+                case "BtnEffect13":
+                    break;
+                case "BtnEffect14":
+                    break;
+                case "BtnEffect15":
+                    break;
             }
         }
     }
