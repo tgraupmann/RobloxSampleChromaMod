@@ -1,6 +1,16 @@
-# RobloxSampleChromaMod
+# Roblox Sample Chroma RGB Mod
 
-Sample Chroma RGB Mod for Roblox
+This mod uses print statements and a companion app to monitor the game log and play Chroma RGB effects.
+
+
+## Quick Start ##
+
+1. Open [RobloxSampleChromaMod.rbxl](RobloxSampleChromaMod.rbxl)
+
+2. Hit Play!
+
+3. Launch `WPF_RobloxChromaMod` which monitors the game log and plays `Chroma RGB` for the various game events.
+
 
 ## Videos ##
 
@@ -24,15 +34,6 @@ Sample Chroma RGB Mod for Roblox
 **WPF_RobloxChromaMod**
 
 ![image_3](images/image_3.png)
-
-
-## Quick Start ##
-
-1. Open [RobloxSampleChromaMod.rbxl](RobloxSampleChromaMod.rbxl)
-
-2. Hit Play!
-
-3. Launch `WPF_RobloxChromaMod` which monitors the game log and plays `Chroma RGB` for the various game events.
 
 
 ## Scripts ##
