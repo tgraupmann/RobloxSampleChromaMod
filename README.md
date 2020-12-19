@@ -2,6 +2,12 @@
 
 Sample Chroma RGB Mod for Roblox
 
+## Videos ##
+
+**Chroma RGB in Roblox (Overview)**
+
+<a target="_blank" href="https://youtu.be/AI5I4I07aW8"><img src="https://img.youtube.com/vi/AI5I4I07aW8/0.jpg"></a>
+
 **Screenshot**
 
 **Roblox**
