@@ -110,6 +110,14 @@ humanoid.StateChanged:Connect(function(oldState, newState)
 end)
 ```
 
+
+**WPF_RobloxChromaMod**
+
+1. Open [WPF_RobloxChromaMod/WPF_RobloxChromaMod.sln](WPF_RobloxChromaMod/WPF_RobloxChromaMod.sln) with Visual Studio
+
+2. [WPF_RobloxChromaMod/MainWindow.xaml.cs](WPF_RobloxChromaMod/MainWindow.xaml.cs) monitors the Roblox game logs and plays Chroma RGB effects for the game events
+
+
 ## Support
 
 Contact `Tim Graupmann#0611` on Discord for support.
