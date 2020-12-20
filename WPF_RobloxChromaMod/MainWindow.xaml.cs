@@ -326,12 +326,12 @@ namespace WPF_RobloxChromaMod
 
                 //events
                 case "Player_Climbing":
-                    ShowEffect2ChromaLink();
-                    ShowEffect2Headset();
-                    ShowEffect2Keyboard();
-                    ShowEffect2Keypad();
-                    ShowEffect2Mousepad();
-                    ShowEffect2Mouse();
+                    ShowClimbingChromaLink();
+                    ShowClimbingHeadset();
+                    ShowClimbingKeyboard();
+                    ShowClimbingKeypad();
+                    ShowClimbingMousepad();
+                    ShowClimbingMouse();
                     break;
                 case "Player_Dead":
                     ShowEffect5ChromaLink();
@@ -1291,5 +1291,64 @@ namespace WPF_RobloxChromaMod
             SetupEvent(baseLayer, 15);
         }
         #endregion
+
+
+        void ShowClimbingKeyboard()
+        {
+            string baseLayer = "Animations/Climbing_Keyboard.chroma";
+            ChromaAnimationAPI.CloseAnimationName(baseLayer);
+            ChromaAnimationAPI.GetAnimation(baseLayer);
+            ChromaAnimationAPI.ReduceFramesName(baseLayer, 2);
+            SetupHotkeys(baseLayer);
+            ChromaAnimationAPI.SetChromaCustomFlagName(baseLayer, true);
+            ChromaAnimationAPI.SetChromaCustomColorAllFramesName(baseLayer);
+            ChromaAnimationAPI.OverrideFrameDurationName(baseLayer, 0.033f);
+            SetupEvent(baseLayer, 9);
+        }
+        void ShowClimbingChromaLink()
+        {
+            string baseLayer = "Animations/Climbing_ChromaLink.chroma";
+            ChromaAnimationAPI.CloseAnimationName(baseLayer);
+            ChromaAnimationAPI.GetAnimation(baseLayer);
+            ChromaAnimationAPI.ReduceFramesName(baseLayer, 2);
+            ChromaAnimationAPI.OverrideFrameDurationName(baseLayer, 0.033f);
+            SetupEvent(baseLayer, 9);
+        }
+        void ShowClimbingHeadset()
+        {
+            string baseLayer = "Animations/Climbing_Headset.chroma";
+            ChromaAnimationAPI.CloseAnimationName(baseLayer);
+            ChromaAnimationAPI.GetAnimation(baseLayer);
+            ChromaAnimationAPI.ReduceFramesName(baseLayer, 2);
+            ChromaAnimationAPI.OverrideFrameDurationName(baseLayer, 0.033f);
+            SetupEvent(baseLayer, 9);
+        }
+        void ShowClimbingMousepad()
+        {
+            string baseLayer = "Animations/Climbing_Mousepad.chroma";
+            ChromaAnimationAPI.CloseAnimationName(baseLayer);
+            ChromaAnimationAPI.GetAnimation(baseLayer);
+            ChromaAnimationAPI.ReduceFramesName(baseLayer, 2);
+            ChromaAnimationAPI.OverrideFrameDurationName(baseLayer, 0.033f);
+            SetupEvent(baseLayer, 9);
+        }
+        void ShowClimbingMouse()
+        {
+            string baseLayer = "Animations/Climbing_Mouse.chroma";
+            ChromaAnimationAPI.CloseAnimationName(baseLayer);
+            ChromaAnimationAPI.GetAnimation(baseLayer);
+            ChromaAnimationAPI.ReduceFramesName(baseLayer, 2);
+            ChromaAnimationAPI.OverrideFrameDurationName(baseLayer, 0.033f);
+            SetupEvent(baseLayer, 9);
+        }
+        void ShowClimbingKeypad()
+        {
+            string baseLayer = "Animations/Climbing_Keypad.chroma";
+            ChromaAnimationAPI.CloseAnimationName(baseLayer);
+            ChromaAnimationAPI.GetAnimation(baseLayer);
+            ChromaAnimationAPI.ReduceFramesName(baseLayer, 2);
+            ChromaAnimationAPI.OverrideFrameDurationName(baseLayer, 0.033f);
+            SetupEvent(baseLayer, 9);
+        }
     }
 }
