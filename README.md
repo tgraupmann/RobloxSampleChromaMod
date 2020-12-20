@@ -46,6 +46,8 @@ This mod uses print statements and a companion app to monitor the game log and p
 
 * Flying Effect
 
+* Jumping Effect
+
 * Running Effect
 
 * Seated Effect
