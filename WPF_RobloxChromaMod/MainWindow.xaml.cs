@@ -348,6 +348,7 @@ namespace WPF_RobloxChromaMod
 
                 //events
                 case "Player_Climbing":
+                    SetPlayerState("Running", false);
                     ShowClimbingChromaLink();
                     ShowClimbingHeadset();
                     ShowClimbingKeyboard();
@@ -356,6 +357,7 @@ namespace WPF_RobloxChromaMod
                     ShowClimbingMouse();
                     break;
                 case "Player_Dead":
+                    SetPlayerState("Running", false);
                     ShowEffect5ChromaLink();
                     ShowEffect5Headset();
                     ShowEffect5Keyboard();
@@ -364,6 +366,7 @@ namespace WPF_RobloxChromaMod
                     ShowEffect5Mousepad();
                     break;
                 case "Player_Flying":
+                    SetPlayerState("Running", false);
                     ShowEffect7ChromaLink();
                     ShowEffect7Headset();
                     ShowEffect7Keyboard();
@@ -372,6 +375,7 @@ namespace WPF_RobloxChromaMod
                     ShowEffect7Mousepad();
                     break;
                 case "Player_Jumping":
+                    SetPlayerState("Running", false);
                     if (!GetPlayerState("Jumping"))
                     {
                         SetPlayerState("Jumping", true);
@@ -386,17 +390,20 @@ namespace WPF_RobloxChromaMod
                 case "Player_Landed":
                     SetPlayerState("Jumping", false);
                     break;
-                case "Player_Running":
-                    /*
-                    ShowEffect11ChromaLink();
-                    ShowEffect11Headset();
-                    ShowEffect11Keyboard();
-                    ShowEffect11Keypad();
-                    ShowEffect11Mouse();
-                    ShowEffect11Mousepad();
-                    */
+                case "Player_WASD": //was Player_Running
+                    if (!GetPlayerState("Running"))
+                    {
+                        SetPlayerState("Running", true);
+                        ShowEffect11ChromaLink();
+                        ShowEffect11Headset();
+                        ShowEffect11Keyboard();
+                        ShowEffect11Keypad();
+                        ShowEffect11Mouse();
+                        ShowEffect11Mousepad();
+                    }
                     break;
                 case "Player_Seated":
+                    SetPlayerState("Running", false);
                     ShowEffect3ChromaLink();
                     ShowEffect3Headset();
                     ShowEffect3Keyboard();
@@ -405,6 +412,7 @@ namespace WPF_RobloxChromaMod
                     ShowEffect3Mousepad();
                     break;
                 case "Player_Swimming":
+                    SetPlayerState("Running", false);
                     ShowEffect4ChromaLink();
                     ShowEffect4Headset();
                     ShowEffect4Keyboard();
