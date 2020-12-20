@@ -194,6 +194,28 @@ namespace WPF_RobloxChromaMod
             }
         }
 
+
+        #region Player State
+
+        private Dictionary<string, bool> _mPlayerState = new Dictionary<string, bool>();
+
+        private bool GetPlayerState(string state)
+        {
+            if (!_mPlayerState.ContainsKey(state))
+            {
+                return false;
+            }
+            return _mPlayerState[state];
+        }
+
+        private void SetPlayerState(string state, bool flag)
+        {
+            _mPlayerState[state] = flag;
+        }
+
+        #endregion
+
+
         void ProcessEffect(string effect)
         {
             if (string.IsNullOrEmpty(effect))
@@ -350,20 +372,29 @@ namespace WPF_RobloxChromaMod
                     ShowEffect7Mousepad();
                     break;
                 case "Player_Jumping":
-                    ShowEffect2ChromaLink();
-                    ShowEffect2Headset();
-                    ShowEffect2Keyboard();
-                    ShowEffect2Keypad();
-                    ShowEffect2Mouse();
-                    ShowEffect2Mousepad();
+                    if (!GetPlayerState("Jumping"))
+                    {
+                        SetPlayerState("Jumping", true);
+                        ShowJumpingChromaLink();
+                        ShowJumpingHeadset();
+                        ShowJumpingKeyboard();
+                        ShowJumpingKeypad();
+                        ShowJumpingMousepad();
+                        ShowJumpingMouse();
+                    }
+                    break;
+                case "Player_Landed":
+                    SetPlayerState("Jumping", false);
                     break;
                 case "Player_Running":
+                    /*
                     ShowEffect11ChromaLink();
                     ShowEffect11Headset();
                     ShowEffect11Keyboard();
                     ShowEffect11Keypad();
                     ShowEffect11Mouse();
                     ShowEffect11Mousepad();
+                    */
                     break;
                 case "Player_Seated":
                     ShowEffect3ChromaLink();
@@ -1293,6 +1324,8 @@ namespace WPF_RobloxChromaMod
         #endregion
 
 
+        #region Climbing
+
         void ShowClimbingKeyboard()
         {
             string baseLayer = "Animations/Climbing_Keyboard.chroma";
@@ -1350,5 +1383,76 @@ namespace WPF_RobloxChromaMod
             ChromaAnimationAPI.OverrideFrameDurationName(baseLayer, 0.033f);
             SetupEvent(baseLayer, 9);
         }
+
+        #endregion
+
+
+        #region Jumping
+
+        void ShowJumpingKeyboard()
+        {
+            string baseLayer = "Animations/Jumping_Keyboard.chroma";
+            ChromaAnimationAPI.CloseAnimationName(baseLayer);
+            ChromaAnimationAPI.GetAnimation(baseLayer);
+            ChromaAnimationAPI.TrimStartFramesName(baseLayer, 50);
+            ChromaAnimationAPI.ReduceFramesName(baseLayer, 2);
+            SetupHotkeys(baseLayer);
+            ChromaAnimationAPI.SetChromaCustomFlagName(baseLayer, true);
+            ChromaAnimationAPI.SetChromaCustomColorAllFramesName(baseLayer);
+            ChromaAnimationAPI.OverrideFrameDurationName(baseLayer, 0.033f);
+            SetupEvent(baseLayer, 9);
+        }
+        void ShowJumpingChromaLink()
+        {
+            string baseLayer = "Animations/Jumping_ChromaLink.chroma";
+            ChromaAnimationAPI.CloseAnimationName(baseLayer);
+            ChromaAnimationAPI.GetAnimation(baseLayer);
+            ChromaAnimationAPI.TrimStartFramesName(baseLayer, 50);
+            ChromaAnimationAPI.ReduceFramesName(baseLayer, 2);
+            ChromaAnimationAPI.OverrideFrameDurationName(baseLayer, 0.033f);
+            SetupEvent(baseLayer, 9);
+        }
+        void ShowJumpingHeadset()
+        {
+            string baseLayer = "Animations/Jumping_Headset.chroma";
+            ChromaAnimationAPI.CloseAnimationName(baseLayer);
+            ChromaAnimationAPI.GetAnimation(baseLayer);
+            ChromaAnimationAPI.TrimStartFramesName(baseLayer, 50);
+            ChromaAnimationAPI.ReduceFramesName(baseLayer, 2);
+            ChromaAnimationAPI.OverrideFrameDurationName(baseLayer, 0.033f);
+            SetupEvent(baseLayer, 9);
+        }
+        void ShowJumpingMousepad()
+        {
+            string baseLayer = "Animations/Jumping_Mousepad.chroma";
+            ChromaAnimationAPI.CloseAnimationName(baseLayer);
+            ChromaAnimationAPI.GetAnimation(baseLayer);
+            ChromaAnimationAPI.TrimStartFramesName(baseLayer, 50);
+            ChromaAnimationAPI.ReduceFramesName(baseLayer, 2);
+            ChromaAnimationAPI.OverrideFrameDurationName(baseLayer, 0.033f);
+            SetupEvent(baseLayer, 9);
+        }
+        void ShowJumpingMouse()
+        {
+            string baseLayer = "Animations/Jumping_Mouse.chroma";
+            ChromaAnimationAPI.CloseAnimationName(baseLayer);
+            ChromaAnimationAPI.GetAnimation(baseLayer);
+            ChromaAnimationAPI.TrimStartFramesName(baseLayer, 50);
+            ChromaAnimationAPI.ReduceFramesName(baseLayer, 2);
+            ChromaAnimationAPI.OverrideFrameDurationName(baseLayer, 0.033f);
+            SetupEvent(baseLayer, 9);
+        }
+        void ShowJumpingKeypad()
+        {
+            string baseLayer = "Animations/Jumping_Keypad.chroma";
+            ChromaAnimationAPI.CloseAnimationName(baseLayer);
+            ChromaAnimationAPI.GetAnimation(baseLayer);
+            ChromaAnimationAPI.TrimStartFramesName(baseLayer, 50);
+            ChromaAnimationAPI.ReduceFramesName(baseLayer, 2);
+            ChromaAnimationAPI.OverrideFrameDurationName(baseLayer, 0.033f);
+            SetupEvent(baseLayer, 9);
+        }
+
+        #endregion
     }
 }
