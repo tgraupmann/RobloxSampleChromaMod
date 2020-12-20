@@ -220,17 +220,27 @@ namespace ChromaSDK
             MAX = 3,
         }
 
+		public enum Devices
+		{
+			ChromaLink = 0,
+			Headset = 1,
+			Keyboard = 2,
+			Keypad = 3,
+			Mouse = 4,
+			Mousepad = 5,
+		}
 
-#endregion
 
-#region Helpers (handle path conversions)
+		#endregion
 
-        /// <summary>
-        /// Helper to convert string to IntPtr
-        /// </summary>
-        /// <param name="path"></param>
-        /// <returns></returns>
-        private static IntPtr GetIntPtr(string path)
+		#region Helpers (handle path conversions)
+
+		/// <summary>
+		/// Helper to convert string to IntPtr
+		/// </summary>
+		/// <param name="path"></param>
+		/// <returns></returns>
+		private static IntPtr GetIntPtr(string path)
         {
             if (string.IsNullOrEmpty(path))
             {

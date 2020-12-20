@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading;
 using System.Windows;
 using System.Windows.Threading;
+using static ChromaSDK.ChromaAnimationAPI;
 
 namespace WPF_RobloxChromaMod
 {
@@ -37,6 +38,8 @@ namespace WPF_RobloxChromaMod
                     return;
                 case RazerErrors.RZRESULT_SUCCESS:
                     _mStringBuilder.AppendLine("Chroma RGB Initialized.");
+                    Thread.Sleep(100);
+                    SetupIdleAnimation();
                     break;
                 default:
                     _mTextStatus.Text = string.Format("Failed to initialize Chroma! {0}", RazerErrors.GetResultString(_mResult));
@@ -56,6 +59,25 @@ namespace WPF_RobloxChromaMod
 
 
             Closed += MainWindow_Closed;
+        }
+
+
+        private void SetupIdleAnimation()
+        {
+            // Enable Idle Animation
+            ChromaAnimationAPI.UseIdleAnimation((int)Devices.ChromaLink, true);
+            ChromaAnimationAPI.UseIdleAnimation((int)Devices.Headset, true);
+            ChromaAnimationAPI.UseIdleAnimation((int)Devices.Keyboard, true);
+            ChromaAnimationAPI.UseIdleAnimation((int)Devices.Keypad, true);
+            ChromaAnimationAPI.UseIdleAnimation((int)Devices.Mouse, true);
+            ChromaAnimationAPI.UseIdleAnimation((int)Devices.Mousepad, true);
+
+            ChromaAnimationAPI.SetIdleAnimationName("Animations/Idle_ChromaLink.chroma");
+            ChromaAnimationAPI.SetIdleAnimationName("Animations/Idle_Headset.chroma");
+            ChromaAnimationAPI.SetIdleAnimationName("Animations/Idle_Keyboard.chroma");
+            ChromaAnimationAPI.SetIdleAnimationName("Animations/Idle_Keypad.chroma");
+            ChromaAnimationAPI.SetIdleAnimationName("Animations/Idle_Mouse.chroma");
+            ChromaAnimationAPI.SetIdleAnimationName("Animations/Idle_Mousepad.chroma");
         }
 
         private void Timer_Tick(object sender, EventArgs e)
@@ -104,6 +126,14 @@ namespace WPF_RobloxChromaMod
                 }
                 Thread.Sleep(100);
             }
+
+            // Disable Idle Animation
+            ChromaAnimationAPI.UseIdleAnimation((int)Devices.ChromaLink, false);
+            ChromaAnimationAPI.UseIdleAnimation((int)Devices.Headset, false);
+            ChromaAnimationAPI.UseIdleAnimation((int)Devices.Keyboard, false);
+            ChromaAnimationAPI.UseIdleAnimation((int)Devices.Keypad, false);
+            ChromaAnimationAPI.UseIdleAnimation((int)Devices.Mouse, false);
+            ChromaAnimationAPI.UseIdleAnimation((int)Devices.Mousepad, false);
 
             ChromaAnimationAPI.StopAll();
             ChromaAnimationAPI.CloseAll();
