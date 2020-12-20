@@ -349,14 +349,19 @@ namespace WPF_RobloxChromaMod
                 //events
                 case "Player_Climbing":
                     SetPlayerState("Running", false);
-                    ShowClimbingChromaLink();
-                    ShowClimbingHeadset();
-                    ShowClimbingKeyboard();
-                    ShowClimbingKeypad();
-                    ShowClimbingMousepad();
-                    ShowClimbingMouse();
+                    if (!GetPlayerState("Climbing"))
+                    {
+                        SetPlayerState("Climbing", true);
+                        ShowClimbingChromaLink();
+                        ShowClimbingHeadset();
+                        ShowClimbingKeyboard();
+                        ShowClimbingKeypad();
+                        ShowClimbingMousepad();
+                        ShowClimbingMouse();
+                    }
                     break;
                 case "Player_Dead":
+                    SetPlayerState("Climbing", false);
                     SetPlayerState("Running", false);
                     ShowEffect5ChromaLink();
                     ShowEffect5Headset();
@@ -366,6 +371,7 @@ namespace WPF_RobloxChromaMod
                     ShowEffect5Mousepad();
                     break;
                 case "Player_Flying":
+                    SetPlayerState("Climbing", false);
                     SetPlayerState("Running", false);
                     ShowEffect7ChromaLink();
                     ShowEffect7Headset();
@@ -375,6 +381,7 @@ namespace WPF_RobloxChromaMod
                     ShowEffect7Mousepad();
                     break;
                 case "Player_Jumping":
+                    SetPlayerState("Climbing", false);
                     SetPlayerState("Running", false);
                     if (!GetPlayerState("Jumping"))
                     {
@@ -388,10 +395,15 @@ namespace WPF_RobloxChromaMod
                     }
                     break;
                 case "Player_Landed":
+                    SetPlayerState("Climbing", false);
                     SetPlayerState("Jumping", false);
                     break;
-                case "Player_WASD": //was Player_Running
-                    if (!GetPlayerState("Running"))
+                case "Player_Running":
+                    SetPlayerState("Climbing", false);
+                    break;
+                case "Player_WASD":
+                    if (!GetPlayerState("Running") &&
+                        !GetPlayerState("Climbing"))
                     {
                         SetPlayerState("Running", true);
                         ShowEffect11ChromaLink();
@@ -403,6 +415,7 @@ namespace WPF_RobloxChromaMod
                     }
                     break;
                 case "Player_Seated":
+                    SetPlayerState("Climbing", false);
                     SetPlayerState("Running", false);
                     ShowEffect3ChromaLink();
                     ShowEffect3Headset();
@@ -412,6 +425,7 @@ namespace WPF_RobloxChromaMod
                     ShowEffect3Mousepad();
                     break;
                 case "Player_Swimming":
+                    SetPlayerState("Climbing", false);
                     SetPlayerState("Running", false);
                     ShowEffect4ChromaLink();
                     ShowEffect4Headset();
