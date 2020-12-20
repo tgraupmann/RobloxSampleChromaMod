@@ -51,6 +51,8 @@ This mod uses print statements and a companion app to monitor the game log and p
 
 * Flying Effect
 
+* Keyboard Hotkeys
+
 * Idle Effect
 
 * Jumping Effect

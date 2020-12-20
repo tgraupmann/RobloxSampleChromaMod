@@ -39,7 +39,7 @@ namespace WPF_RobloxChromaMod
                 case RazerErrors.RZRESULT_SUCCESS:
                     _mStringBuilder.AppendLine("Chroma RGB Initialized.");
                     Thread.Sleep(100);
-                    SetupIdleAnimation();
+                    SetupIdleAnimations();
                     break;
                 default:
                     _mTextStatus.Text = string.Format("Failed to initialize Chroma! {0}", RazerErrors.GetResultString(_mResult));
@@ -62,9 +62,29 @@ namespace WPF_RobloxChromaMod
         }
 
 
-        private void SetupIdleAnimation()
+        void SetupHotkeys(string layer)
         {
-            // Enable Idle Animation
+            int[] keys = {
+                (int)Keyboard.RZKEY.RZKEY_W,
+                (int)Keyboard.RZKEY.RZKEY_A,
+                (int)Keyboard.RZKEY.RZKEY_S,
+                (int)Keyboard.RZKEY.RZKEY_D,
+                (int)Keyboard.RZKEY.RZKEY_SPACE,
+                };
+            int color = ChromaAnimationAPI.GetRGB(0, 255, 0);
+            ChromaAnimationAPI.SetKeysColorAllFramesName(layer, keys, keys.Length, color);
+        }
+
+
+        private void SetupIdleAnimation(string layer)
+        {
+            SetupHotkeys(layer);
+            ChromaAnimationAPI.SetIdleAnimationName(layer);
+        }
+
+        private void SetupIdleAnimations()
+        {
+            // Enable Idle Animations
             ChromaAnimationAPI.UseIdleAnimation((int)Devices.ChromaLink, true);
             ChromaAnimationAPI.UseIdleAnimation((int)Devices.Headset, true);
             ChromaAnimationAPI.UseIdleAnimation((int)Devices.Keyboard, true);
@@ -72,12 +92,12 @@ namespace WPF_RobloxChromaMod
             ChromaAnimationAPI.UseIdleAnimation((int)Devices.Mouse, true);
             ChromaAnimationAPI.UseIdleAnimation((int)Devices.Mousepad, true);
 
-            ChromaAnimationAPI.SetIdleAnimationName("Animations/Idle_ChromaLink.chroma");
-            ChromaAnimationAPI.SetIdleAnimationName("Animations/Idle_Headset.chroma");
-            ChromaAnimationAPI.SetIdleAnimationName("Animations/Idle_Keyboard.chroma");
-            ChromaAnimationAPI.SetIdleAnimationName("Animations/Idle_Keypad.chroma");
-            ChromaAnimationAPI.SetIdleAnimationName("Animations/Idle_Mouse.chroma");
-            ChromaAnimationAPI.SetIdleAnimationName("Animations/Idle_Mousepad.chroma");
+            SetupIdleAnimation("Animations/Idle_ChromaLink.chroma");
+            SetupIdleAnimation("Animations/Idle_Headset.chroma");
+            SetupIdleAnimation("Animations/Idle_Keyboard.chroma");
+            SetupIdleAnimation("Animations/Idle_Keypad.chroma");
+            SetupIdleAnimation("Animations/Idle_Mouse.chroma");
+            SetupIdleAnimation("Animations/Idle_Mousepad.chroma");
         }
 
         private void Timer_Tick(object sender, EventArgs e)
@@ -127,7 +147,7 @@ namespace WPF_RobloxChromaMod
                 Thread.Sleep(100);
             }
 
-            // Disable Idle Animation
+            // Disable Idle Animations
             ChromaAnimationAPI.UseIdleAnimation((int)Devices.ChromaLink, false);
             ChromaAnimationAPI.UseIdleAnimation((int)Devices.Headset, false);
             ChromaAnimationAPI.UseIdleAnimation((int)Devices.Keyboard, false);
@@ -389,14 +409,7 @@ namespace WPF_RobloxChromaMod
             ChromaAnimationAPI.MultiplyTargetColorLerpAllFramesName(layer3, color1, color2);
             ChromaAnimationAPI.CopyNonZeroTargetAllKeysAllFramesName(layer3, layer2);
             ChromaAnimationAPI.CopyNonZeroAllKeysAllFramesName(layer2, baseLayer);
-            int[] keys = {
-(int)Keyboard.RZKEY.RZKEY_W,
-(int)Keyboard.RZKEY.RZKEY_A,
-(int)Keyboard.RZKEY.RZKEY_S,
-(int)Keyboard.RZKEY.RZKEY_D,
-};
-            int color = ChromaAnimationAPI.GetRGB(255, 255, 0);
-            ChromaAnimationAPI.SetKeysColorAllFramesName(baseLayer, keys, keys.Length, color);
+            SetupHotkeys(baseLayer);
             ChromaAnimationAPI.FillZeroColorAllFramesRGBName(baseLayer, 32, 0, 32);
             ChromaAnimationAPI.SetChromaCustomFlagName(baseLayer, true);
             ChromaAnimationAPI.SetChromaCustomColorAllFramesName(baseLayer);
@@ -474,6 +487,7 @@ namespace WPF_RobloxChromaMod
             ChromaAnimationAPI.CloseAnimationName(baseLayer);
             ChromaAnimationAPI.GetAnimation(baseLayer);
             ChromaAnimationAPI.ReduceFramesName(baseLayer, 2);
+            SetupHotkeys(baseLayer);
             ChromaAnimationAPI.SetChromaCustomFlagName(baseLayer, true);
             ChromaAnimationAPI.SetChromaCustomColorAllFramesName(baseLayer);
             ChromaAnimationAPI.OverrideFrameDurationName(baseLayer, 0.033f);
@@ -530,6 +544,7 @@ namespace WPF_RobloxChromaMod
             ChromaAnimationAPI.CloseAnimationName(baseLayer);
             ChromaAnimationAPI.GetAnimation(baseLayer);
             ChromaAnimationAPI.ReduceFramesName(baseLayer, 2);
+            SetupHotkeys(baseLayer);
             ChromaAnimationAPI.SetChromaCustomFlagName(baseLayer, true);
             ChromaAnimationAPI.SetChromaCustomColorAllFramesName(baseLayer);
             ChromaAnimationAPI.OverrideFrameDurationName(baseLayer, 0.033f);
@@ -585,6 +600,7 @@ namespace WPF_RobloxChromaMod
             string baseLayer = "Animations/Effect4_Keyboard.chroma";
             ChromaAnimationAPI.CloseAnimationName(baseLayer);
             ChromaAnimationAPI.GetAnimation(baseLayer);
+            SetupHotkeys(baseLayer);
             ChromaAnimationAPI.SetChromaCustomFlagName(baseLayer, true);
             ChromaAnimationAPI.SetChromaCustomColorAllFramesName(baseLayer);
             ChromaAnimationAPI.OverrideFrameDurationName(baseLayer, 0.033f);
@@ -636,6 +652,7 @@ namespace WPF_RobloxChromaMod
             ChromaAnimationAPI.CloseAnimationName(baseLayer);
             ChromaAnimationAPI.GetAnimation(baseLayer);
             ChromaAnimationAPI.ReduceFramesName(baseLayer, 2);
+            SetupHotkeys(baseLayer);
             ChromaAnimationAPI.SetChromaCustomFlagName(baseLayer, true);
             ChromaAnimationAPI.SetChromaCustomColorAllFramesName(baseLayer);
             ChromaAnimationAPI.OverrideFrameDurationName(baseLayer, 0.033f);
@@ -694,6 +711,7 @@ namespace WPF_RobloxChromaMod
             ChromaAnimationAPI.ReduceFramesName(baseLayer, 2);
             int color = ChromaAnimationAPI.GetRGB(182, 133, 255);
             ChromaAnimationAPI.MultiplyIntensityColorAllFramesName(baseLayer, color);
+            SetupHotkeys(baseLayer);
             ChromaAnimationAPI.SetChromaCustomFlagName(baseLayer, true);
             ChromaAnimationAPI.SetChromaCustomColorAllFramesName(baseLayer);
             ChromaAnimationAPI.OverrideFrameDurationName(baseLayer, 0.033f);
@@ -761,6 +779,7 @@ namespace WPF_RobloxChromaMod
             ChromaAnimationAPI.GetAnimation(baseLayer);
             ChromaAnimationAPI.ReduceFramesName(baseLayer, 2);
             ChromaAnimationAPI.ReduceFramesName(baseLayer, 2);
+            SetupHotkeys(baseLayer);
             ChromaAnimationAPI.SetChromaCustomFlagName(baseLayer, true);
             ChromaAnimationAPI.SetChromaCustomColorAllFramesName(baseLayer);
             ChromaAnimationAPI.OverrideFrameDurationName(baseLayer, 0.033f);
@@ -821,6 +840,7 @@ namespace WPF_RobloxChromaMod
             string baseLayer = "Animations/Effect8_Keyboard.chroma";
             ChromaAnimationAPI.CloseAnimationName(baseLayer);
             ChromaAnimationAPI.GetAnimation(baseLayer);
+            SetupHotkeys(baseLayer);
             ChromaAnimationAPI.SetChromaCustomFlagName(baseLayer, true);
             ChromaAnimationAPI.SetChromaCustomColorAllFramesName(baseLayer);
             ChromaAnimationAPI.OverrideFrameDurationName(baseLayer, 0.033f);
@@ -870,6 +890,7 @@ namespace WPF_RobloxChromaMod
             string baseLayer = "Animations/Effect9_Keyboard.chroma";
             ChromaAnimationAPI.CloseAnimationName(baseLayer);
             ChromaAnimationAPI.GetAnimation(baseLayer);
+            SetupHotkeys(baseLayer);
             ChromaAnimationAPI.SetChromaCustomFlagName(baseLayer, true);
             ChromaAnimationAPI.SetChromaCustomColorAllFramesName(baseLayer);
             ChromaAnimationAPI.OverrideFrameDurationName(baseLayer, 0.033f);
@@ -920,6 +941,7 @@ namespace WPF_RobloxChromaMod
             string baseLayer = "Animations/Effect10_Keyboard.chroma";
             ChromaAnimationAPI.CloseAnimationName(baseLayer);
             ChromaAnimationAPI.GetAnimation(baseLayer);
+            SetupHotkeys(baseLayer);
             ChromaAnimationAPI.SetChromaCustomFlagName(baseLayer, true);
             ChromaAnimationAPI.SetChromaCustomColorAllFramesName(baseLayer);
             ChromaAnimationAPI.OverrideFrameDurationName(baseLayer, 0.033f);
@@ -974,6 +996,7 @@ namespace WPF_RobloxChromaMod
             int color1 = ChromaAnimationAPI.GetRGB(69, 12, 69);
             int color2 = ChromaAnimationAPI.GetRGB(255, 255, 0);
             ChromaAnimationAPI.MultiplyTargetColorLerpAllFramesName(baseLayer, color1, color2);
+            SetupHotkeys(baseLayer);
             ChromaAnimationAPI.SetChromaCustomFlagName(baseLayer, true);
             ChromaAnimationAPI.SetChromaCustomColorAllFramesName(baseLayer);
             ChromaAnimationAPI.OverrideFrameDurationName(baseLayer, 0.033f);
@@ -1044,6 +1067,7 @@ namespace WPF_RobloxChromaMod
             string baseLayer = "Animations/Effect12_Keyboard.chroma";
             ChromaAnimationAPI.CloseAnimationName(baseLayer);
             ChromaAnimationAPI.GetAnimation(baseLayer);
+            SetupHotkeys(baseLayer);
             ChromaAnimationAPI.SetChromaCustomFlagName(baseLayer, true);
             ChromaAnimationAPI.SetChromaCustomColorAllFramesName(baseLayer);
             ChromaAnimationAPI.OverrideFrameDurationName(baseLayer, 0.033f);
@@ -1098,6 +1122,7 @@ namespace WPF_RobloxChromaMod
             int color1 = ChromaAnimationAPI.GetRGB(0, 0, 0);
             int color2 = ChromaAnimationAPI.GetRGB(204, 204, 0);
             ChromaAnimationAPI.MultiplyTargetColorLerpAllFramesName(baseLayer, color1, color2);
+            SetupHotkeys(baseLayer);
             ChromaAnimationAPI.SetChromaCustomFlagName(baseLayer, true);
             ChromaAnimationAPI.SetChromaCustomColorAllFramesName(baseLayer);
             ChromaAnimationAPI.OverrideFrameDurationName(baseLayer, 0.033f);
@@ -1168,6 +1193,7 @@ namespace WPF_RobloxChromaMod
             string baseLayer = "Animations/Effect14_Keyboard.chroma";
             ChromaAnimationAPI.CloseAnimationName(baseLayer);
             ChromaAnimationAPI.GetAnimation(baseLayer);
+            SetupHotkeys(baseLayer);
             ChromaAnimationAPI.SetChromaCustomFlagName(baseLayer, true);
             ChromaAnimationAPI.SetChromaCustomColorAllFramesName(baseLayer);
             ChromaAnimationAPI.OverrideFrameDurationName(baseLayer, 0.033f);
@@ -1218,6 +1244,7 @@ namespace WPF_RobloxChromaMod
             string baseLayer = "Animations/Effect15_Keyboard.chroma";
             ChromaAnimationAPI.CloseAnimationName(baseLayer);
             ChromaAnimationAPI.GetAnimation(baseLayer);
+            SetupHotkeys(baseLayer);
             ChromaAnimationAPI.SetChromaCustomFlagName(baseLayer, true);
             ChromaAnimationAPI.SetChromaCustomColorAllFramesName(baseLayer);
             ChromaAnimationAPI.OverrideFrameDurationName(baseLayer, 0.033f);
