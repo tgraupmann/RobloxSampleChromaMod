@@ -72,6 +72,11 @@ This mod uses print statements and a companion app to monitor the game log and p
 <a target="_blank" href="https://youtu.be/AI5I4I07aW8"><img src="https://img.youtube.com/vi/AI5I4I07aW8/0.jpg"></a>
 
 
+**Chroma RGB – Player State**
+
+<a target="_blank" href="https://youtu.be/JkeKgwhZWbQ"><img src="https://img.youtube.com/vi/JkeKgwhZWbQ/0.jpg"></a>
+
+
 **Create Chroma Animations with the [Web Chroma Editor](https://chroma.razer.com/ChromaEditor/)**
 
 <a target="_blank" href="https://youtu.be/ZVX3DNW2gIM"><img src="https://img.youtube.com/vi/ZVX3DNW2gIM/0.jpg"></a>
