@@ -273,6 +273,64 @@ namespace WPF_RobloxChromaMod
                     ShowEffect15Mousepad();
                     ShowEffect15Mouse();
                     break;
+
+                //events
+                case "Player_Climbing":
+                    ShowEffect2ChromaLink();
+                    ShowEffect2Headset();
+                    ShowEffect2Keyboard();
+                    ShowEffect2Keypad();
+                    ShowEffect2Mousepad();
+                    ShowEffect2Mouse();
+                    break;
+                case "Player_Dead":
+                    ShowEffect5ChromaLink();
+                    ShowEffect5Headset();
+                    ShowEffect5Keyboard();
+                    ShowEffect5Keypad();
+                    ShowEffect5Mouse();
+                    ShowEffect5Mousepad();
+                    break;
+                case "Player_Flying":
+                    ShowEffect7ChromaLink();
+                    ShowEffect7Headset();
+                    ShowEffect7Keyboard();
+                    ShowEffect7Keypad();
+                    ShowEffect7Mouse();
+                    ShowEffect7Mousepad();
+                    break;
+                case "Player_Jumping":
+                    ShowEffect2ChromaLink();
+                    ShowEffect2Headset();
+                    ShowEffect2Keyboard();
+                    ShowEffect2Keypad();
+                    ShowEffect2Mouse();
+                    ShowEffect2Mousepad();
+                    break;
+                case "Player_Running":
+                    ShowEffect11ChromaLink();
+                    ShowEffect11Headset();
+                    ShowEffect11Keyboard();
+                    ShowEffect11Keypad();
+                    ShowEffect11Mouse();
+                    ShowEffect11Mousepad();
+                    break;
+                case "Player_Seated":
+                    ShowEffect3ChromaLink();
+                    ShowEffect3Headset();
+                    ShowEffect3Keyboard();
+                    ShowEffect3Keypad();
+                    ShowEffect3Mouse();
+                    ShowEffect3Mousepad();
+                    break;
+                case "Player_Swimming":
+                    ShowEffect4ChromaLink();
+                    ShowEffect4Headset();
+                    ShowEffect4Keyboard();
+                    ShowEffect4Keypad();
+                    ShowEffect4Mouse();
+                    ShowEffect4Mousepad();
+                    break;
             }
         }
 

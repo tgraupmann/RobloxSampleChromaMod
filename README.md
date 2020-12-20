@@ -105,7 +105,7 @@ humanoid.StateChanged:Connect(function(oldState, newState)
 		local state = tostring(newState);
 		if (string.len(state) > tokenLength) then
 			local strState = string.sub(state, tokenLength + 1)
-			print ("ChromaRGB:", "Player_", strState);
+			print ("ChromaRGB:", string.format("Player_%s", strState));
 		end
 	end
 end)
