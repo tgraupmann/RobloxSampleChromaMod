@@ -29,6 +29,11 @@ This mod uses print statements and a companion app to monitor the game log and p
 - [Cpp_RustChromaModClient](https://github.com/tgraupmann/Cpp_RustChromaModClient) - Rust Chroma RGB Mod Client
 
 
+**Editors::**
+
+- [Web Chroma Editor](https://chroma.razer.com/ChromaEditor/) - Create Chroma RGB Animations
+
+
 ## Quick Start ##
 
 1. Open [RobloxSampleChromaMod.rbxl](RobloxSampleChromaMod.rbxl) and edit in Chroma Studio and Hit Play!
