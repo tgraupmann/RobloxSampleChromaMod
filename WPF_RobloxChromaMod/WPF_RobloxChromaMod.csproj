@@ -427,6 +427,24 @@
     <None Include="Animations\Jumping_Mousepad.chroma">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <None Include="Animations\Running_ChromaLink.chroma">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Animations\Running_Headset.chroma">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Animations\Running_Keyboard.chroma">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Animations\Running_Keypad.chroma">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Animations\Running_Mouse.chroma">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Animations\Running_Mousepad.chroma">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="Animations\Title_Keyboard.chroma">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>

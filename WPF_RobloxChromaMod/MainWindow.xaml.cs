@@ -421,12 +421,12 @@ namespace WPF_RobloxChromaMod
                     {
                         SetPlayerState("Running", true);
                         _mTimerRun = DateTime.Now + TimeSpan.FromSeconds(1);
-                        ShowEffect11ChromaLink();
-                        ShowEffect11Headset();
-                        ShowEffect11Keyboard();
-                        ShowEffect11Keypad();
-                        ShowEffect11Mouse();
-                        ShowEffect11Mousepad();
+                        ShowRunningChromaLink();
+                        ShowRunningHeadset();
+                        ShowRunningKeyboard();
+                        ShowRunningKeypad();
+                        ShowRunningMousepad();
+                        ShowRunningMouse();
                     }
                     break;
                 case "Player_Seated":
@@ -1488,6 +1488,75 @@ namespace WPF_RobloxChromaMod
             ChromaAnimationAPI.GetAnimation(baseLayer);
             ChromaAnimationAPI.TrimStartFramesName(baseLayer, 50);
             ChromaAnimationAPI.ReduceFramesName(baseLayer, 2);
+            ChromaAnimationAPI.OverrideFrameDurationName(baseLayer, 0.033f);
+            SetupEvent(baseLayer, 9);
+        }
+
+        #endregion
+
+
+        #region Running
+
+        void ShowRunningKeyboard()
+        {
+            string baseLayer = "Animations/Running_Keyboard.chroma";
+            ChromaAnimationAPI.CloseAnimationName(baseLayer);
+            ChromaAnimationAPI.GetAnimation(baseLayer);
+            ChromaAnimationAPI.TrimStartFramesName(baseLayer, 50);
+            ChromaAnimationAPI.DuplicateFramesName(baseLayer);
+            SetupHotkeys(baseLayer);
+            ChromaAnimationAPI.SetChromaCustomFlagName(baseLayer, true);
+            ChromaAnimationAPI.SetChromaCustomColorAllFramesName(baseLayer);
+            ChromaAnimationAPI.OverrideFrameDurationName(baseLayer, 0.033f);
+            SetupEvent(baseLayer, 9);
+        }
+        void ShowRunningChromaLink()
+        {
+            string baseLayer = "Animations/Running_ChromaLink.chroma";
+            ChromaAnimationAPI.CloseAnimationName(baseLayer);
+            ChromaAnimationAPI.GetAnimation(baseLayer);
+            ChromaAnimationAPI.TrimStartFramesName(baseLayer, 50);
+            ChromaAnimationAPI.DuplicateFramesName(baseLayer);
+            ChromaAnimationAPI.OverrideFrameDurationName(baseLayer, 0.033f);
+            SetupEvent(baseLayer, 9);
+        }
+        void ShowRunningHeadset()
+        {
+            string baseLayer = "Animations/Running_Headset.chroma";
+            ChromaAnimationAPI.CloseAnimationName(baseLayer);
+            ChromaAnimationAPI.GetAnimation(baseLayer);
+            ChromaAnimationAPI.TrimStartFramesName(baseLayer, 50);
+            ChromaAnimationAPI.DuplicateFramesName(baseLayer);
+            ChromaAnimationAPI.OverrideFrameDurationName(baseLayer, 0.033f);
+            SetupEvent(baseLayer, 9);
+        }
+        void ShowRunningMousepad()
+        {
+            string baseLayer = "Animations/Running_Mousepad.chroma";
+            ChromaAnimationAPI.CloseAnimationName(baseLayer);
+            ChromaAnimationAPI.GetAnimation(baseLayer);
+            ChromaAnimationAPI.TrimStartFramesName(baseLayer, 50);
+            ChromaAnimationAPI.DuplicateFramesName(baseLayer);
+            ChromaAnimationAPI.OverrideFrameDurationName(baseLayer, 0.033f);
+            SetupEvent(baseLayer, 9);
+        }
+        void ShowRunningMouse()
+        {
+            string baseLayer = "Animations/Running_Mouse.chroma";
+            ChromaAnimationAPI.CloseAnimationName(baseLayer);
+            ChromaAnimationAPI.GetAnimation(baseLayer);
+            ChromaAnimationAPI.TrimStartFramesName(baseLayer, 50);
+            ChromaAnimationAPI.DuplicateFramesName(baseLayer);
+            ChromaAnimationAPI.OverrideFrameDurationName(baseLayer, 0.033f);
+            SetupEvent(baseLayer, 9);
+        }
+        void ShowRunningKeypad()
+        {
+            string baseLayer = "Animations/Running_Keypad.chroma";
+            ChromaAnimationAPI.CloseAnimationName(baseLayer);
+            ChromaAnimationAPI.GetAnimation(baseLayer);
+            ChromaAnimationAPI.TrimStartFramesName(baseLayer, 50);
+            ChromaAnimationAPI.DuplicateFramesName(baseLayer);
             ChromaAnimationAPI.OverrideFrameDurationName(baseLayer, 0.033f);
             SetupEvent(baseLayer, 9);
         }
