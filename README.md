@@ -82,6 +82,11 @@ This mod uses print statements and a companion app to monitor the game log and p
 <a target="_blank" href="https://youtu.be/ZVX3DNW2gIM"><img src="https://img.youtube.com/vi/ZVX3DNW2gIM/0.jpg"></a>
 
 
+**Roblox Mod - Add Running Animation**
+
+<a target="_blank" href="https://youtu.be/KymVo2Tzx1g"><img src="https://img.youtube.com/vi/KymVo2Tzx1g/0.jpg"></a>
+
+
 ## Screenshots ##
 
 **Roblox**
