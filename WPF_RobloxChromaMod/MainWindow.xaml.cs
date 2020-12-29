@@ -21,6 +21,8 @@ namespace WPF_RobloxChromaMod
 
         DispatcherTimer _mTimer = null;
 
+        DateTime _mTimerRun = DateTime.MinValue;
+
         public MainWindow()
         {
             InitializeComponent();
@@ -121,6 +123,11 @@ namespace WPF_RobloxChromaMod
 
             while (_mWaitForExit)
             {
+                if (_mTimerRun < DateTime.Now)
+                {
+                    SetPlayerState("Running", false);
+                }
+
                 DirectoryInfo di = new DirectoryInfo(Environment.GetEnvironmentVariable("LocalAppData") + @"\Roblox\logs");
                 if (!di.Exists)
                 {
@@ -413,6 +420,7 @@ namespace WPF_RobloxChromaMod
                         !GetPlayerState("Swimming"))
                     {
                         SetPlayerState("Running", true);
+                        _mTimerRun = DateTime.Now + TimeSpan.FromSeconds(1);
                         ShowEffect11ChromaLink();
                         ShowEffect11Headset();
                         ShowEffect11Keyboard();
