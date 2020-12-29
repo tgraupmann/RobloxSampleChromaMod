@@ -964,7 +964,7 @@ namespace WPF_RobloxChromaMod
             ChromaAnimationAPI.SetChromaCustomFlagName(baseLayer, true);
             ChromaAnimationAPI.SetChromaCustomColorAllFramesName(baseLayer);
             ChromaAnimationAPI.OverrideFrameDurationName(baseLayer, 0.033f);
-            SetupEvent(baseLayer, 9);
+            ChromaAnimationAPI.PlayAnimationName(baseLayer, false);
         }
         void ShowEffect9ChromaLink()
         {
@@ -972,7 +972,7 @@ namespace WPF_RobloxChromaMod
             ChromaAnimationAPI.CloseAnimationName(baseLayer);
             ChromaAnimationAPI.GetAnimation(baseLayer);
             ChromaAnimationAPI.OverrideFrameDurationName(baseLayer, 0.033f);
-            SetupEvent(baseLayer, 9);
+            ChromaAnimationAPI.PlayAnimationName(baseLayer, false);
         }
         void ShowEffect9Headset()
         {
@@ -980,7 +980,7 @@ namespace WPF_RobloxChromaMod
             ChromaAnimationAPI.CloseAnimationName(baseLayer);
             ChromaAnimationAPI.GetAnimation(baseLayer);
             ChromaAnimationAPI.OverrideFrameDurationName(baseLayer, 0.033f);
-            SetupEvent(baseLayer, 9);
+            ChromaAnimationAPI.PlayAnimationName(baseLayer, false);
         }
         void ShowEffect9Mousepad()
         {
@@ -988,7 +988,7 @@ namespace WPF_RobloxChromaMod
             ChromaAnimationAPI.CloseAnimationName(baseLayer);
             ChromaAnimationAPI.GetAnimation(baseLayer);
             ChromaAnimationAPI.OverrideFrameDurationName(baseLayer, 0.033f);
-            SetupEvent(baseLayer, 9);
+            ChromaAnimationAPI.PlayAnimationName(baseLayer, false);
         }
         void ShowEffect9Mouse()
         {
@@ -996,7 +996,7 @@ namespace WPF_RobloxChromaMod
             ChromaAnimationAPI.CloseAnimationName(baseLayer);
             ChromaAnimationAPI.GetAnimation(baseLayer);
             ChromaAnimationAPI.OverrideFrameDurationName(baseLayer, 0.033f);
-            SetupEvent(baseLayer, 9);
+            ChromaAnimationAPI.PlayAnimationName(baseLayer, false);
         }
         void ShowEffect9Keypad()
         {
@@ -1004,7 +1004,7 @@ namespace WPF_RobloxChromaMod
             ChromaAnimationAPI.CloseAnimationName(baseLayer);
             ChromaAnimationAPI.GetAnimation(baseLayer);
             ChromaAnimationAPI.OverrideFrameDurationName(baseLayer, 0.033f);
-            SetupEvent(baseLayer, 9);
+            ChromaAnimationAPI.PlayAnimationName(baseLayer, false);
         }
         void ShowEffect10Keyboard()
         {
@@ -1375,7 +1375,7 @@ namespace WPF_RobloxChromaMod
             ChromaAnimationAPI.SetChromaCustomFlagName(baseLayer, true);
             ChromaAnimationAPI.SetChromaCustomColorAllFramesName(baseLayer);
             ChromaAnimationAPI.OverrideFrameDurationName(baseLayer, 0.033f);
-            SetupEvent(baseLayer, 9);
+            ChromaAnimationAPI.PlayAnimationName(baseLayer, false);
         }
         void ShowClimbingChromaLink()
         {
@@ -1384,7 +1384,7 @@ namespace WPF_RobloxChromaMod
             ChromaAnimationAPI.GetAnimation(baseLayer);
             ChromaAnimationAPI.ReduceFramesName(baseLayer, 2);
             ChromaAnimationAPI.OverrideFrameDurationName(baseLayer, 0.033f);
-            SetupEvent(baseLayer, 9);
+            ChromaAnimationAPI.PlayAnimationName(baseLayer, false);
         }
         void ShowClimbingHeadset()
         {
@@ -1393,7 +1393,7 @@ namespace WPF_RobloxChromaMod
             ChromaAnimationAPI.GetAnimation(baseLayer);
             ChromaAnimationAPI.ReduceFramesName(baseLayer, 2);
             ChromaAnimationAPI.OverrideFrameDurationName(baseLayer, 0.033f);
-            SetupEvent(baseLayer, 9);
+            ChromaAnimationAPI.PlayAnimationName(baseLayer, false);
         }
         void ShowClimbingMousepad()
         {
@@ -1402,7 +1402,7 @@ namespace WPF_RobloxChromaMod
             ChromaAnimationAPI.GetAnimation(baseLayer);
             ChromaAnimationAPI.ReduceFramesName(baseLayer, 2);
             ChromaAnimationAPI.OverrideFrameDurationName(baseLayer, 0.033f);
-            SetupEvent(baseLayer, 9);
+            ChromaAnimationAPI.PlayAnimationName(baseLayer, false);
         }
         void ShowClimbingMouse()
         {
@@ -1411,7 +1411,7 @@ namespace WPF_RobloxChromaMod
             ChromaAnimationAPI.GetAnimation(baseLayer);
             ChromaAnimationAPI.ReduceFramesName(baseLayer, 2);
             ChromaAnimationAPI.OverrideFrameDurationName(baseLayer, 0.033f);
-            SetupEvent(baseLayer, 9);
+            ChromaAnimationAPI.PlayAnimationName(baseLayer, false);
         }
         void ShowClimbingKeypad()
         {
@@ -1420,7 +1420,7 @@ namespace WPF_RobloxChromaMod
             ChromaAnimationAPI.GetAnimation(baseLayer);
             ChromaAnimationAPI.ReduceFramesName(baseLayer, 2);
             ChromaAnimationAPI.OverrideFrameDurationName(baseLayer, 0.033f);
-            SetupEvent(baseLayer, 9);
+            ChromaAnimationAPI.PlayAnimationName(baseLayer, false);
         }
 
         #endregion
@@ -1439,7 +1439,7 @@ namespace WPF_RobloxChromaMod
             ChromaAnimationAPI.SetChromaCustomFlagName(baseLayer, true);
             ChromaAnimationAPI.SetChromaCustomColorAllFramesName(baseLayer);
             ChromaAnimationAPI.OverrideFrameDurationName(baseLayer, 0.033f);
-            SetupEvent(baseLayer, 9);
+            ChromaAnimationAPI.PlayAnimationName(baseLayer, false);
         }
         void ShowJumpingChromaLink()
         {
@@ -1449,7 +1449,7 @@ namespace WPF_RobloxChromaMod
             ChromaAnimationAPI.TrimStartFramesName(baseLayer, 50);
             ChromaAnimationAPI.ReduceFramesName(baseLayer, 2);
             ChromaAnimationAPI.OverrideFrameDurationName(baseLayer, 0.033f);
-            SetupEvent(baseLayer, 9);
+            ChromaAnimationAPI.PlayAnimationName(baseLayer, false);
         }
         void ShowJumpingHeadset()
         {
@@ -1459,7 +1459,7 @@ namespace WPF_RobloxChromaMod
             ChromaAnimationAPI.TrimStartFramesName(baseLayer, 50);
             ChromaAnimationAPI.ReduceFramesName(baseLayer, 2);
             ChromaAnimationAPI.OverrideFrameDurationName(baseLayer, 0.033f);
-            SetupEvent(baseLayer, 9);
+            ChromaAnimationAPI.PlayAnimationName(baseLayer, false);
         }
         void ShowJumpingMousepad()
         {
@@ -1469,7 +1469,7 @@ namespace WPF_RobloxChromaMod
             ChromaAnimationAPI.TrimStartFramesName(baseLayer, 50);
             ChromaAnimationAPI.ReduceFramesName(baseLayer, 2);
             ChromaAnimationAPI.OverrideFrameDurationName(baseLayer, 0.033f);
-            SetupEvent(baseLayer, 9);
+            ChromaAnimationAPI.PlayAnimationName(baseLayer, false);
         }
         void ShowJumpingMouse()
         {
@@ -1479,7 +1479,7 @@ namespace WPF_RobloxChromaMod
             ChromaAnimationAPI.TrimStartFramesName(baseLayer, 50);
             ChromaAnimationAPI.ReduceFramesName(baseLayer, 2);
             ChromaAnimationAPI.OverrideFrameDurationName(baseLayer, 0.033f);
-            SetupEvent(baseLayer, 9);
+            ChromaAnimationAPI.PlayAnimationName(baseLayer, false);
         }
         void ShowJumpingKeypad()
         {
@@ -1489,7 +1489,7 @@ namespace WPF_RobloxChromaMod
             ChromaAnimationAPI.TrimStartFramesName(baseLayer, 50);
             ChromaAnimationAPI.ReduceFramesName(baseLayer, 2);
             ChromaAnimationAPI.OverrideFrameDurationName(baseLayer, 0.033f);
-            SetupEvent(baseLayer, 9);
+            ChromaAnimationAPI.PlayAnimationName(baseLayer, false);
         }
 
         #endregion
@@ -1508,7 +1508,7 @@ namespace WPF_RobloxChromaMod
             ChromaAnimationAPI.SetChromaCustomFlagName(baseLayer, true);
             ChromaAnimationAPI.SetChromaCustomColorAllFramesName(baseLayer);
             ChromaAnimationAPI.OverrideFrameDurationName(baseLayer, 0.033f);
-            SetupEvent(baseLayer, 9);
+            ChromaAnimationAPI.PlayAnimationName(baseLayer, false);
         }
         void ShowRunningChromaLink()
         {
@@ -1518,7 +1518,7 @@ namespace WPF_RobloxChromaMod
             ChromaAnimationAPI.TrimStartFramesName(baseLayer, 50);
             ChromaAnimationAPI.DuplicateFramesName(baseLayer);
             ChromaAnimationAPI.OverrideFrameDurationName(baseLayer, 0.033f);
-            SetupEvent(baseLayer, 9);
+            ChromaAnimationAPI.PlayAnimationName(baseLayer, false);
         }
         void ShowRunningHeadset()
         {
@@ -1528,7 +1528,7 @@ namespace WPF_RobloxChromaMod
             ChromaAnimationAPI.TrimStartFramesName(baseLayer, 50);
             ChromaAnimationAPI.DuplicateFramesName(baseLayer);
             ChromaAnimationAPI.OverrideFrameDurationName(baseLayer, 0.033f);
-            SetupEvent(baseLayer, 9);
+            ChromaAnimationAPI.PlayAnimationName(baseLayer, false);
         }
         void ShowRunningMousepad()
         {
@@ -1538,7 +1538,7 @@ namespace WPF_RobloxChromaMod
             ChromaAnimationAPI.TrimStartFramesName(baseLayer, 50);
             ChromaAnimationAPI.DuplicateFramesName(baseLayer);
             ChromaAnimationAPI.OverrideFrameDurationName(baseLayer, 0.033f);
-            SetupEvent(baseLayer, 9);
+            ChromaAnimationAPI.PlayAnimationName(baseLayer, false);
         }
         void ShowRunningMouse()
         {
@@ -1548,7 +1548,7 @@ namespace WPF_RobloxChromaMod
             ChromaAnimationAPI.TrimStartFramesName(baseLayer, 50);
             ChromaAnimationAPI.DuplicateFramesName(baseLayer);
             ChromaAnimationAPI.OverrideFrameDurationName(baseLayer, 0.033f);
-            SetupEvent(baseLayer, 9);
+            ChromaAnimationAPI.PlayAnimationName(baseLayer, false);
         }
         void ShowRunningKeypad()
         {
@@ -1558,7 +1558,7 @@ namespace WPF_RobloxChromaMod
             ChromaAnimationAPI.TrimStartFramesName(baseLayer, 50);
             ChromaAnimationAPI.DuplicateFramesName(baseLayer);
             ChromaAnimationAPI.OverrideFrameDurationName(baseLayer, 0.033f);
-            SetupEvent(baseLayer, 9);
+            ChromaAnimationAPI.PlayAnimationName(baseLayer, false);
         }
 
         #endregion
