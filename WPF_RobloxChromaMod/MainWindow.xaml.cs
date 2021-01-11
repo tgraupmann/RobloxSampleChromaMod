@@ -29,7 +29,24 @@ namespace WPF_RobloxChromaMod
 
             _mStringBuilder = new StringBuilder();
 
-            int _mResult = ChromaAnimationAPI.Init();
+            ChromaSDK.APPINFOTYPE appInfo = new APPINFOTYPE();
+            appInfo.Title = "Roblox Chroma Mod";
+            appInfo.Description = "This companion app monitors the Roblox game log";
+
+            appInfo.Author_Name = "Tim Graupmann";
+            appInfo.Author_Contact = "https://github.com/tgraupmann";
+
+            //appInfo.SupportedDevice = 
+            //    0x01 | // Keyboards
+            //    0x02 | // Mice
+            //    0x04 | // Headset
+            //    0x08 | // Mousepads
+            //    0x10 | // Keypads
+            //    0x20   // ChromaLink devices
+            //    ;
+            appInfo.SupportedDevice = (0x01 | 0x02 | 0x04 | 0x08 | 0x10 | 0x20);
+            appInfo.Category = 1;
+            int _mResult = ChromaAnimationAPI.InitSDK(ref appInfo);
             switch (_mResult)
             {
                 case RazerErrors.RZRESULT_DLL_NOT_FOUND:
@@ -87,12 +104,12 @@ namespace WPF_RobloxChromaMod
         private void SetupIdleAnimations()
         {
             // Enable Idle Animations
-            ChromaAnimationAPI.UseIdleAnimation((int)Devices.ChromaLink, true);
-            ChromaAnimationAPI.UseIdleAnimation((int)Devices.Headset, true);
-            ChromaAnimationAPI.UseIdleAnimation((int)Devices.Keyboard, true);
-            ChromaAnimationAPI.UseIdleAnimation((int)Devices.Keypad, true);
-            ChromaAnimationAPI.UseIdleAnimation((int)Devices.Mouse, true);
-            ChromaAnimationAPI.UseIdleAnimation((int)Devices.Mousepad, true);
+            ChromaAnimationAPI.UseIdleAnimation((int)Device.ChromaLink, true);
+            ChromaAnimationAPI.UseIdleAnimation((int)Device.Headset, true);
+            ChromaAnimationAPI.UseIdleAnimation((int)Device.Keyboard, true);
+            ChromaAnimationAPI.UseIdleAnimation((int)Device.Keypad, true);
+            ChromaAnimationAPI.UseIdleAnimation((int)Device.Mouse, true);
+            ChromaAnimationAPI.UseIdleAnimation((int)Device.Mousepad, true);
 
             SetupIdleAnimation("Animations/Idle_ChromaLink.chroma");
             SetupIdleAnimation("Animations/Idle_Headset.chroma");
@@ -155,12 +172,12 @@ namespace WPF_RobloxChromaMod
             }
 
             // Disable Idle Animations
-            ChromaAnimationAPI.UseIdleAnimation((int)Devices.ChromaLink, false);
-            ChromaAnimationAPI.UseIdleAnimation((int)Devices.Headset, false);
-            ChromaAnimationAPI.UseIdleAnimation((int)Devices.Keyboard, false);
-            ChromaAnimationAPI.UseIdleAnimation((int)Devices.Keypad, false);
-            ChromaAnimationAPI.UseIdleAnimation((int)Devices.Mouse, false);
-            ChromaAnimationAPI.UseIdleAnimation((int)Devices.Mousepad, false);
+            ChromaAnimationAPI.UseIdleAnimation((int)Device.ChromaLink, false);
+            ChromaAnimationAPI.UseIdleAnimation((int)Device.Headset, false);
+            ChromaAnimationAPI.UseIdleAnimation((int)Device.Keyboard, false);
+            ChromaAnimationAPI.UseIdleAnimation((int)Device.Keypad, false);
+            ChromaAnimationAPI.UseIdleAnimation((int)Device.Mouse, false);
+            ChromaAnimationAPI.UseIdleAnimation((int)Device.Mousepad, false);
 
             ChromaAnimationAPI.StopAll();
             ChromaAnimationAPI.CloseAll();
