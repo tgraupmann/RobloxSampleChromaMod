@@ -1,6 +1,6 @@
 [Setup]
 AppName=Roblox Chroma RGB Mod
-AppVerName=Roblox Chroma Mod RGB 1.0
+AppVerName=Roblox Chroma Mod RGB 1.1
 AppPublisher=Tim Graupmann
 AppPublisherURL=https://github.com/tgraupmann/RobloxSampleChromaMod
 AppSupportURL=https://discord.gg/g7vZDkbnKT

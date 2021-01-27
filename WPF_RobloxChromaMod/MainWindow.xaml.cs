@@ -152,22 +152,28 @@ namespace WPF_RobloxChromaMod
                     Thread.Sleep(5000); //wait for folder to exist
                     continue;
                 }
-                foreach (FileInfo fi in di.GetFiles("*.txt"))
+                foreach (FileInfo fi in di.GetFiles())
                 {
-                    if (!sizeMap.ContainsKey(fi.FullName))
+                    switch (fi.Extension.ToLower())
                     {
-                        //new log
-                        sizeMap[fi.FullName] = fi.Length;
-                    }
-                    else
-                    {
-                        long oldLength = sizeMap[fi.FullName];
-                        if (fi.Length >= oldLength)
-                        {
-                            ReadContent(fi, oldLength);
-                        }
-                        sizeMap[fi.FullName] = fi.Length;
-                    }
+                        case ".log":
+                        case ".txt":
+                            if (!sizeMap.ContainsKey(fi.FullName))
+                            {
+                                //new log
+                                sizeMap[fi.FullName] = fi.Length;
+                            }
+                            else
+                            {
+                                long oldLength = sizeMap[fi.FullName];
+                                if (fi.Length >= oldLength)
+                                {
+                                    ReadContent(fi, oldLength);
+                                }
+                                sizeMap[fi.FullName] = fi.Length;
+                            }
+                            break;
+                    }                    
                 }
                 Thread.Sleep(100);
             }
