@@ -40,7 +40,9 @@ This mod uses print statements and a companion app to monitor the game log and p
 
 2. or Play from the Web [https://www.roblox.com/games/6109972658/Chroma-RGB-in-Roblox](https://www.roblox.com/games/6109972658/Chroma-RGB-in-Roblox)
 
-3. Launch `WPF_RobloxChromaMod` (from Visual Studio right now) which monitors the game log and plays `Chroma RGB` for the various game events.
+3. Install the mod from [Releases](https://github.com/tgraupmann/RobloxSampleChromaMod/releases/tag/1.0) and launch the mod
+
+4. or Launch `WPF_RobloxChromaMod` (from Visual Studio right now) which monitors the game log and plays `Chroma RGB` for the various game events.
 
 
 ## Chroma Effects ##
