@@ -158,6 +158,6 @@ end)
 2. [WPF_RobloxChromaMod/MainWindow.xaml.cs](WPF_RobloxChromaMod/MainWindow.xaml.cs) monitors the Roblox game logs and plays Chroma RGB effects for the game events
 
 
-## Support
+# Support
 
-Contact `Tim Graupmann#0611` on Discord for support.
+Support is available on Discord, you can reach me at `Tim Graupmann#0611`.
