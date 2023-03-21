@@ -33,10 +33,11 @@ This mod uses print statements and a companion app to monitor the game log and p
 
 - [Web Chroma Editor](https://chroma.razer.com/ChromaEditor/) - Create Chroma RGB Animations
 
+- [Roblox Studio](https://www.roblox.com/create) - Create Roblox Mods
 
 ## Quick Start ##
 
-1. Open [RobloxSampleChromaMod.rbxl](RobloxSampleChromaMod.rbxl) and edit in Chroma Studio and Hit Play!
+1. Open [RobloxSampleChromaMod.rbxl](RobloxSampleChromaMod.rbxl) and edit in Roblox Studio and Hit Play!
 
 2. or Play from the Web [https://www.roblox.com/games/6109972658/Chroma-RGB-in-Roblox](https://www.roblox.com/games/6109972658/Chroma-RGB-in-Roblox)
 
