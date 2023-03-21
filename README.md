@@ -129,7 +129,7 @@ script.Parent.MouseButton1Click:Connect(leftClick)
 script.Parent.MouseButton2Click:Connect(rightClick)
 ```
 
-**GameStateTextLabel Script**
+**ButtonEffectTextLabel Script**
 
 ```lua
 _G.ChromaEffect = 0;
