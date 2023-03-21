@@ -112,17 +112,64 @@ Notice that `LocalScript` is a child of the `TextButton` at: [StarterGui/ChromaG
 
 The script prints `ChromaRGB: BtnEffectN` to the log which is monitored to play the corresponding Chroma RGB effect.
 
+Another way to relay button state is using a label background color that is sampled by the companion app.
+
 ```lua
 function leftClick()
 	print("ChromaRGB:", script.Parent.Name)
+	_G.ChromaEffect = script.Parent.Name;
 end
 
 function rightClick()
 	print("ChromaRGB:", script.Parent.Name)
+	_G.ChromaEffect = script.Parent.Name;
 end
 
 script.Parent.MouseButton1Click:Connect(leftClick)
 script.Parent.MouseButton2Click:Connect(rightClick)
+```
+
+**GameStateTextLabel Script**
+
+```lua
+_G.ChromaEffect = 0;
+_G.GameStateTextLabel = script.Parent
+
+while wait(0.033) do
+	if (_G.ChromaEffect == "BtnEffect1") then
+		script.Parent.BackgroundColor3 = Color3.fromRGB(255, 0, 0)
+	elseif (_G.ChromaEffect == "BtnEffect2") then
+		script.Parent.BackgroundColor3 = Color3.fromRGB(0, 255, 0)
+	elseif (_G.ChromaEffect == "BtnEffect3") then
+		script.Parent.BackgroundColor3 = Color3.fromRGB(0, 0, 255)
+	elseif (_G.ChromaEffect == "BtnEffect4") then
+		script.Parent.BackgroundColor3 = Color3.fromRGB(191, 0, 0)
+	elseif (_G.ChromaEffect == "BtnEffect5") then
+		script.Parent.BackgroundColor3 = Color3.fromRGB(0, 191, 0)
+	elseif (_G.ChromaEffect == "BtnEffect6") then
+		script.Parent.BackgroundColor3 = Color3.fromRGB(0, 0, 191)
+	elseif (_G.ChromaEffect == "BtnEffect7") then
+		script.Parent.BackgroundColor3 = Color3.fromRGB(127, 0, 0)
+	elseif (_G.ChromaEffect == "BtnEffect8") then
+		script.Parent.BackgroundColor3 = Color3.fromRGB(0, 127, 0)
+	elseif (_G.ChromaEffect == "BtnEffect9") then
+		script.Parent.BackgroundColor3 = Color3.fromRGB(0, 0, 127)
+	elseif (_G.ChromaEffect == "BtnEffect10") then
+		script.Parent.BackgroundColor3 = Color3.fromRGB(63, 0, 0)
+	elseif (_G.ChromaEffect == "BtnEffect11") then
+		script.Parent.BackgroundColor3 = Color3.fromRGB(0, 63, 0)
+	elseif (_G.ChromaEffect == "BtnEffect12") then
+		script.Parent.BackgroundColor3 = Color3.fromRGB(0, 0, 63)
+	elseif (_G.ChromaEffect == "BtnEffect13") then
+		script.Parent.BackgroundColor3 = Color3.fromRGB(255, 255, 0)
+	elseif (_G.ChromaEffect == "BtnEffect14") then
+		script.Parent.BackgroundColor3 = Color3.fromRGB(0, 255, 255)
+	elseif (_G.ChromaEffect == "BtnEffect15") then
+		script.Parent.BackgroundColor3 = Color3.fromRGB(255, 0, 255)
+	else
+		script.Parent.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+	end
+end
 ```
 
 
