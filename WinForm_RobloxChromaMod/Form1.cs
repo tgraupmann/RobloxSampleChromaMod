@@ -18,16 +18,13 @@ namespace WinForm_RobloxChromaMod
 
         private void _mCaptureTimer_Tick(object sender, EventArgs e)
         {
-            _mPictureBox.Hide();
             SendKeys.Send("{PRTSC}");
             _mCaptureImage = Clipboard.GetImage();
+
+            // do some cropping
+
             _mPictureBox.Image = _mCaptureImage;
-            _mPictureBox.Show();
-
-            if (_mMouseDown && _mMouseOver)
-            {
-
-            }
+            _mPictureBox.Invalidate();
         }
 
         bool _mMouseDown = false;

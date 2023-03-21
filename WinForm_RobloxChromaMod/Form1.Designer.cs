@@ -36,6 +36,7 @@
             // 
             // _mPictureBox
             // 
+            this._mPictureBox.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this._mPictureBox.Location = new System.Drawing.Point(67, 113);
             this._mPictureBox.Name = "_mPictureBox";
             this._mPictureBox.Size = new System.Drawing.Size(663, 278);
