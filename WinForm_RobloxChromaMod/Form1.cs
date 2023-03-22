@@ -218,7 +218,7 @@ namespace WinForm_RobloxChromaMod
                         ShowEffect15Mouse();
                         break;
                 }
-                }
+            }
         }
 
         private void _mCaptureTimer_Tick(object sender, EventArgs e)
@@ -258,63 +258,63 @@ namespace WinForm_RobloxChromaMod
                 _mCaptureImage.Dispose();
                 g.Dispose();
 
-                if (MatchColor(color, 255, 0, 0))
+                if (MatchColorRed(color, 1))
                 {
                     SetEffect("Effect1");
                 }
-                else if (MatchColor(color, 0, 255, 0))
+                else if (MatchColorRed(color, 2))
                 {
                     SetEffect("Effect2");
                 }
-                else if (MatchColor(color, 0, 0, 255))
+                else if (MatchColorRed(color, 3))
                 {
                     SetEffect("Effect3");
                 }
-                else if (MatchColor(color, 191, 0, 0))
+                else if (MatchColorRed(color, 4))
                 {
                     SetEffect("Effect4");
                 }
-                else if (MatchColor(color, 0, 191, 0))
+                else if (MatchColorRed(color, 5))
                 {
                     SetEffect("Effect5");
                 }
-                else if (MatchColor(color, 0, 0, 191))
+                else if (MatchColorRed(color, 6))
                 {
                     SetEffect("Effect6");
                 }
-                else if (MatchColor(color, 127, 0, 0))
+                else if (MatchColorRed(color, 7))
                 {
                     SetEffect("Effect7");
                 }
-                else if (MatchColor(color, 0, 127, 0))
+                else if (MatchColorRed(color, 8))
                 {
                     SetEffect("Effect8");
                 }
-                else if (MatchColor(color, 0, 0, 127))
+                else if (MatchColorRed(color, 9))
                 {
                     SetEffect("Effect9");
                 }
-                else if (MatchColor(color, 63, 0, 0))
+                else if (MatchColorRed(color, 10))
                 {
                     SetEffect("Effect10");
                 }
-                else if (MatchColor(color, 0, 63, 0))
+                else if (MatchColorRed(color, 11))
                 {
                     SetEffect("Effect11");
                 }
-                else if (MatchColor(color, 0, 0, 63))
+                else if (MatchColorRed(color, 12))
                 {
                     SetEffect("Effect12");
                 }
-                else if (MatchColor(color, 255, 255, 0))
+                else if (MatchColorRed(color, 13))
                 {
                     SetEffect("Effect13");
                 }
-                else if (MatchColor(color, 0, 255, 255))
+                else if (MatchColorRed(color, 14))
                 {
                     SetEffect("Effect14");
                 }
-                else if (MatchColor(color, 255, 0, 255))
+                else if (MatchColorRed(color, 15))
                 {
                     SetEffect("Effect15");
                 }
@@ -333,6 +333,11 @@ namespace WinForm_RobloxChromaMod
         private bool MatchColor(Color color, byte red, byte green, byte blue)
         {
             return (color.R == red && color.G == green && color.B == blue);
+        }
+
+        private bool MatchColorRed(Color color, byte red)
+        {
+            return (color.R == red);
         }
 
         void SetupHotkeys(string layer)

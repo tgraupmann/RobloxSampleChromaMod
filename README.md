@@ -137,35 +137,35 @@ _G.GameStateTextLabel = script.Parent
 
 while wait(0.033) do
 	if (_G.ChromaEffect == "BtnEffect1") then
-		script.Parent.BackgroundColor3 = Color3.fromRGB(255, 0, 0)
+		script.Parent.BackgroundColor3 = Color3.fromRGB(1, 0, 0)
 	elseif (_G.ChromaEffect == "BtnEffect2") then
-		script.Parent.BackgroundColor3 = Color3.fromRGB(0, 255, 0)
+		script.Parent.BackgroundColor3 = Color3.fromRGB(2, 0, 0)
 	elseif (_G.ChromaEffect == "BtnEffect3") then
-		script.Parent.BackgroundColor3 = Color3.fromRGB(0, 0, 255)
+		script.Parent.BackgroundColor3 = Color3.fromRGB(3, 0, 0)
 	elseif (_G.ChromaEffect == "BtnEffect4") then
-		script.Parent.BackgroundColor3 = Color3.fromRGB(191, 0, 0)
+		script.Parent.BackgroundColor3 = Color3.fromRGB(4, 0, 0)
 	elseif (_G.ChromaEffect == "BtnEffect5") then
-		script.Parent.BackgroundColor3 = Color3.fromRGB(0, 191, 0)
+		script.Parent.BackgroundColor3 = Color3.fromRGB(5, 0, 0)
 	elseif (_G.ChromaEffect == "BtnEffect6") then
-		script.Parent.BackgroundColor3 = Color3.fromRGB(0, 0, 191)
+		script.Parent.BackgroundColor3 = Color3.fromRGB(6, 0, 0)
 	elseif (_G.ChromaEffect == "BtnEffect7") then
-		script.Parent.BackgroundColor3 = Color3.fromRGB(127, 0, 0)
+		script.Parent.BackgroundColor3 = Color3.fromRGB(7, 0, 0)
 	elseif (_G.ChromaEffect == "BtnEffect8") then
-		script.Parent.BackgroundColor3 = Color3.fromRGB(0, 127, 0)
+		script.Parent.BackgroundColor3 = Color3.fromRGB(8, 0, 0)
 	elseif (_G.ChromaEffect == "BtnEffect9") then
-		script.Parent.BackgroundColor3 = Color3.fromRGB(0, 0, 127)
+		script.Parent.BackgroundColor3 = Color3.fromRGB(9, 0, 0)
 	elseif (_G.ChromaEffect == "BtnEffect10") then
-		script.Parent.BackgroundColor3 = Color3.fromRGB(63, 0, 0)
+		script.Parent.BackgroundColor3 = Color3.fromRGB(10, 0, 0)
 	elseif (_G.ChromaEffect == "BtnEffect11") then
-		script.Parent.BackgroundColor3 = Color3.fromRGB(0, 63, 0)
+		script.Parent.BackgroundColor3 = Color3.fromRGB(11, 0, 0)
 	elseif (_G.ChromaEffect == "BtnEffect12") then
-		script.Parent.BackgroundColor3 = Color3.fromRGB(0, 0, 63)
+		script.Parent.BackgroundColor3 = Color3.fromRGB(12, 0, 63)
 	elseif (_G.ChromaEffect == "BtnEffect13") then
-		script.Parent.BackgroundColor3 = Color3.fromRGB(255, 255, 0)
+		script.Parent.BackgroundColor3 = Color3.fromRGB(13, 0, 0)
 	elseif (_G.ChromaEffect == "BtnEffect14") then
-		script.Parent.BackgroundColor3 = Color3.fromRGB(0, 255, 255)
+		script.Parent.BackgroundColor3 = Color3.fromRGB(14, 0, 0)
 	elseif (_G.ChromaEffect == "BtnEffect15") then
-		script.Parent.BackgroundColor3 = Color3.fromRGB(255, 0, 255)
+		script.Parent.BackgroundColor3 = Color3.fromRGB(15, 0, 0)
 	else
 		script.Parent.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
 	end
