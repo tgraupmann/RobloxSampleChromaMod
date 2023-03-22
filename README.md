@@ -198,6 +198,75 @@ humanoid.StateChanged:Connect(function(oldState, newState)
 end)
 ```
 
+Add player state to globals to show in the label background color.
+
+```lua
+			if (strState == "Dead") then
+				_G.GameStateDead = true
+				_G.GameStateClimbing = false
+				_G.GameStateJumping = false
+				_G.GameStateFlying = false
+				_G.GameStateRunning = false
+				_G.GameStateSwimming = false
+				_G.GameStateSeated = false
+			elseif strState == "Climbing" then
+				_G.GameStateDead = false
+				_G.GameStateClimbing = true
+				_G.GameStateJumping = false
+				_G.GameStateFlying = false
+				_G.GameStateRunning = false
+				_G.GameStateSwimming = false
+				_G.GameStateSeated = false
+			elseif strState == "Jumping" then
+				_G.GameStateDead = false
+				_G.GameStateClimbing = false
+				_G.GameStateJumping = true
+				_G.GameStateFlying = false
+				_G.GameStateRunning = false
+				_G.GameStateSwimming = false
+				_G.GameStateSeated = false
+			elseif strState == "Flying" then
+				_G.GameStateDead = false
+				_G.GameStateClimbing = false
+				_G.GameStateJumping = false
+				_G.GameStateFlying = true
+				_G.GameStateRunning = false
+				_G.GameStateSwimming = false
+				_G.GameStateSeated = false
+			elseif strState == "Landed" then
+				_G.GameStateDead = false
+				_G.GameStateClimbing = false
+				_G.GameStateJumping = false
+				_G.GameStateFlying = false
+				_G.GameStateSwimming = false
+				_G.GameStateSeated = false
+			elseif strState == "Running" then
+				_G.GameStateDead = false
+				_G.GameStateClimbing = false
+				--_G.GameStateJumping = false
+				_G.GameStateFlying = false
+				_G.GameStateRunning = true
+				_G.GameStateSwimming = false
+				_G.GameStateSeated = false
+			elseif strState == "Seated" then
+				_G.GameStateDead = false
+				_G.GameStateClimbing = false
+				_G.GameStateJumping = false
+				_G.GameStateFlying = false
+				_G.GameStateRunning = false
+				_G.GameStateSwimming = false
+				_G.GameStateSeated = true
+			elseif strState == "Swimming" then
+				_G.GameStateDead = false
+				_G.GameStateClimbing = false
+				_G.GameStateJumping = false
+				_G.GameStateFlying = false
+				_G.GameStateRunning = false
+				_G.GameStateSwimming = true
+				_G.GameStateSeated = false
+			end
+```
+
 
 **WPF_RobloxChromaMod**
 
