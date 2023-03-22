@@ -3,6 +3,7 @@
 
 using ChromaSDK;
 using System;
+using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
 
@@ -221,6 +222,26 @@ namespace WinForm_RobloxChromaMod
             }
         }
 
+        #region Player State
+
+        private Dictionary<string, bool> _mPlayerState = new Dictionary<string, bool>();
+
+        private bool GetPlayerState(string state)
+        {
+            if (!_mPlayerState.ContainsKey(state))
+            {
+                return false;
+            }
+            return _mPlayerState[state];
+        }
+
+        private void SetPlayerState(string state, bool flag)
+        {
+            _mPlayerState[state] = flag;
+        }
+
+        #endregion
+
         private void _mCaptureTimer_Tick(object sender, EventArgs e)
         {
             try
@@ -325,34 +346,146 @@ namespace WinForm_RobloxChromaMod
 
                 const byte MASK_DEAD = 1;
                 const byte MASK_CLIMBING = 3;
+                const byte MASK_JUMPING = 7;
                 const byte MASK_FLYING = 15;
                 const byte MASK_RUNNING = 37;
                 const byte MASK_SWIMMING = 63;
-                const byte MASK_SEATED = 127; 
+                const byte MASK_SEATED = 127;
+
                 if (MatchColorGeeenMask(color, MASK_DEAD))
                 {
+                    if (!GetPlayerState("Dead"))
+                    {
+                        SetPlayerState("Dead", true);
 
+                        ShowEffect5ChromaLink();
+                        ShowEffect5Headset();
+                        ShowEffect5Keyboard();
+                        ShowEffect5Keypad();
+                        ShowEffect5Mouse();
+                        ShowEffect5Mousepad();
+                    }
                 }
+                else
+                {
+                    SetPlayerState("Dead", false);
+                }
+
+                if (MatchColorGeeenMask(color, MASK_JUMPING))
+                {
+                    if (!GetPlayerState("Jumping"))
+                    {
+                        SetPlayerState("Jumping", true);
+                        ShowJumpingChromaLink();
+                        ShowJumpingHeadset();
+                        ShowJumpingKeyboard();
+                        ShowJumpingKeypad();
+                        ShowJumpingMousepad();
+                        ShowJumpingMouse();
+                    }
+                }
+                else
+                {
+                    SetPlayerState("Jumping", false);
+                }
+
                 if (MatchColorGeeenMask(color, MASK_CLIMBING))
                 {
-
+                    if (!GetPlayerState("Climbing"))
+                    {
+                        SetPlayerState("Climbing", true);
+                        ShowClimbingChromaLink();
+                        ShowClimbingHeadset();
+                        ShowClimbingKeyboard();
+                        ShowClimbingKeypad();
+                        ShowClimbingMousepad();
+                        ShowClimbingMouse();
+                    }
                 }
+                else
+                {
+                    SetPlayerState("Climbing", false);
+                }
+
                 if (MatchColorGeeenMask(color, MASK_FLYING))
                 {
+                    if (!GetPlayerState("Flying"))
+                    {
+                        SetPlayerState("Flying", true);
 
+                        ShowEffect7ChromaLink();
+                        ShowEffect7Headset();
+                        ShowEffect7Keyboard();
+                        ShowEffect7Keypad();
+                        ShowEffect7Mouse();
+                        ShowEffect7Mousepad();
+                    }
                 }
+                else
+                {
+                    SetPlayerState("Flying", true);
+                }
+
                 if (MatchColorGeeenMask(color, MASK_RUNNING))
                 {
+                    if (!GetPlayerState("Running"))
+                    {
+                        SetPlayerState("Running", true);
 
+                        ShowEffect7ChromaLink();
+                        ShowEffect7Headset();
+                        ShowEffect7Keyboard();
+                        ShowEffect7Keypad();
+                        ShowEffect7Mouse();
+                        ShowEffect7Mousepad();
+                    }
                 }
+                else
+                {
+                    SetPlayerState("Running", false);
+                }
+
                 if (MatchColorGeeenMask(color, MASK_SWIMMING))
                 {
+                    if (!GetPlayerState("Swimming"))
+                    {
+                        SetPlayerState("Swimming", true);
 
+                        ShowEffect4ChromaLink();
+                        ShowEffect4Headset();
+                        ShowEffect4Keyboard();
+                        ShowEffect4Keypad();
+                        ShowEffect4Mouse();
+                        ShowEffect4Mousepad();
+                    }
                 }
+                else
+                {
+                    SetPlayerState("Swimming", false);
+                }
+
                 if (MatchColorGeeenMask(color, MASK_SEATED))
                 {
+                    if (!GetPlayerState("Seated"))
+                    {
+                        SetPlayerState("Seated", true);
 
+                        SetPlayerState("Climbing", false);
+                        SetPlayerState("Running", false);
+                        SetPlayerState("Swimming", false);
+                        ShowEffect3ChromaLink();
+                        ShowEffect3Headset();
+                        ShowEffect3Keyboard();
+                        ShowEffect3Keypad();
+                        ShowEffect3Mouse();
+                        ShowEffect3Mousepad();
+                    }
                 }
+                else
+                {
+                    SetPlayerState("Seated", false);
+                }
+
             }
             catch
             {
@@ -1278,6 +1411,207 @@ namespace WinForm_RobloxChromaMod
             ChromaAnimationAPI.OverrideFrameDurationName(baseLayer, 0.033f);
             ChromaAnimationAPI.PlayAnimationName(baseLayer, false);
         }
+        #endregion
+
+
+        #region Climbing
+
+        void ShowClimbingKeyboard()
+        {
+            string baseLayer = "Animations/Climbing_Keyboard.chroma";
+            ChromaAnimationAPI.CloseAnimationName(baseLayer);
+            ChromaAnimationAPI.GetAnimation(baseLayer);
+            ChromaAnimationAPI.ReduceFramesName(baseLayer, 2);
+            SetupHotkeys(baseLayer);
+            ChromaAnimationAPI.SetChromaCustomFlagName(baseLayer, true);
+            ChromaAnimationAPI.SetChromaCustomColorAllFramesName(baseLayer);
+            ChromaAnimationAPI.OverrideFrameDurationName(baseLayer, 0.033f);
+            ChromaAnimationAPI.PlayAnimationName(baseLayer, false);
+        }
+        void ShowClimbingChromaLink()
+        {
+            string baseLayer = "Animations/Climbing_ChromaLink.chroma";
+            ChromaAnimationAPI.CloseAnimationName(baseLayer);
+            ChromaAnimationAPI.GetAnimation(baseLayer);
+            ChromaAnimationAPI.ReduceFramesName(baseLayer, 2);
+            ChromaAnimationAPI.OverrideFrameDurationName(baseLayer, 0.033f);
+            ChromaAnimationAPI.PlayAnimationName(baseLayer, false);
+        }
+        void ShowClimbingHeadset()
+        {
+            string baseLayer = "Animations/Climbing_Headset.chroma";
+            ChromaAnimationAPI.CloseAnimationName(baseLayer);
+            ChromaAnimationAPI.GetAnimation(baseLayer);
+            ChromaAnimationAPI.ReduceFramesName(baseLayer, 2);
+            ChromaAnimationAPI.OverrideFrameDurationName(baseLayer, 0.033f);
+            ChromaAnimationAPI.PlayAnimationName(baseLayer, false);
+        }
+        void ShowClimbingMousepad()
+        {
+            string baseLayer = "Animations/Climbing_Mousepad.chroma";
+            ChromaAnimationAPI.CloseAnimationName(baseLayer);
+            ChromaAnimationAPI.GetAnimation(baseLayer);
+            ChromaAnimationAPI.ReduceFramesName(baseLayer, 2);
+            ChromaAnimationAPI.OverrideFrameDurationName(baseLayer, 0.033f);
+            ChromaAnimationAPI.PlayAnimationName(baseLayer, false);
+        }
+        void ShowClimbingMouse()
+        {
+            string baseLayer = "Animations/Climbing_Mouse.chroma";
+            ChromaAnimationAPI.CloseAnimationName(baseLayer);
+            ChromaAnimationAPI.GetAnimation(baseLayer);
+            ChromaAnimationAPI.ReduceFramesName(baseLayer, 2);
+            ChromaAnimationAPI.OverrideFrameDurationName(baseLayer, 0.033f);
+            ChromaAnimationAPI.PlayAnimationName(baseLayer, false);
+        }
+        void ShowClimbingKeypad()
+        {
+            string baseLayer = "Animations/Climbing_Keypad.chroma";
+            ChromaAnimationAPI.CloseAnimationName(baseLayer);
+            ChromaAnimationAPI.GetAnimation(baseLayer);
+            ChromaAnimationAPI.ReduceFramesName(baseLayer, 2);
+            ChromaAnimationAPI.OverrideFrameDurationName(baseLayer, 0.033f);
+            ChromaAnimationAPI.PlayAnimationName(baseLayer, false);
+        }
+
+        #endregion
+
+
+        #region Jumping
+
+        void ShowJumpingKeyboard()
+        {
+            string baseLayer = "Animations/Jumping_Keyboard.chroma";
+            ChromaAnimationAPI.CloseAnimationName(baseLayer);
+            ChromaAnimationAPI.GetAnimation(baseLayer);
+            ChromaAnimationAPI.TrimStartFramesName(baseLayer, 50);
+            ChromaAnimationAPI.ReduceFramesName(baseLayer, 2);
+            SetupHotkeys(baseLayer);
+            ChromaAnimationAPI.SetChromaCustomFlagName(baseLayer, true);
+            ChromaAnimationAPI.SetChromaCustomColorAllFramesName(baseLayer);
+            ChromaAnimationAPI.OverrideFrameDurationName(baseLayer, 0.033f);
+            ChromaAnimationAPI.PlayAnimationName(baseLayer, false);
+        }
+        void ShowJumpingChromaLink()
+        {
+            string baseLayer = "Animations/Jumping_ChromaLink.chroma";
+            ChromaAnimationAPI.CloseAnimationName(baseLayer);
+            ChromaAnimationAPI.GetAnimation(baseLayer);
+            ChromaAnimationAPI.TrimStartFramesName(baseLayer, 50);
+            ChromaAnimationAPI.ReduceFramesName(baseLayer, 2);
+            ChromaAnimationAPI.OverrideFrameDurationName(baseLayer, 0.033f);
+            ChromaAnimationAPI.PlayAnimationName(baseLayer, false);
+        }
+        void ShowJumpingHeadset()
+        {
+            string baseLayer = "Animations/Jumping_Headset.chroma";
+            ChromaAnimationAPI.CloseAnimationName(baseLayer);
+            ChromaAnimationAPI.GetAnimation(baseLayer);
+            ChromaAnimationAPI.TrimStartFramesName(baseLayer, 50);
+            ChromaAnimationAPI.ReduceFramesName(baseLayer, 2);
+            ChromaAnimationAPI.OverrideFrameDurationName(baseLayer, 0.033f);
+            ChromaAnimationAPI.PlayAnimationName(baseLayer, false);
+        }
+        void ShowJumpingMousepad()
+        {
+            string baseLayer = "Animations/Jumping_Mousepad.chroma";
+            ChromaAnimationAPI.CloseAnimationName(baseLayer);
+            ChromaAnimationAPI.GetAnimation(baseLayer);
+            ChromaAnimationAPI.TrimStartFramesName(baseLayer, 50);
+            ChromaAnimationAPI.ReduceFramesName(baseLayer, 2);
+            ChromaAnimationAPI.OverrideFrameDurationName(baseLayer, 0.033f);
+            ChromaAnimationAPI.PlayAnimationName(baseLayer, false);
+        }
+        void ShowJumpingMouse()
+        {
+            string baseLayer = "Animations/Jumping_Mouse.chroma";
+            ChromaAnimationAPI.CloseAnimationName(baseLayer);
+            ChromaAnimationAPI.GetAnimation(baseLayer);
+            ChromaAnimationAPI.TrimStartFramesName(baseLayer, 50);
+            ChromaAnimationAPI.ReduceFramesName(baseLayer, 2);
+            ChromaAnimationAPI.OverrideFrameDurationName(baseLayer, 0.033f);
+            ChromaAnimationAPI.PlayAnimationName(baseLayer, false);
+        }
+        void ShowJumpingKeypad()
+        {
+            string baseLayer = "Animations/Jumping_Keypad.chroma";
+            ChromaAnimationAPI.CloseAnimationName(baseLayer);
+            ChromaAnimationAPI.GetAnimation(baseLayer);
+            ChromaAnimationAPI.TrimStartFramesName(baseLayer, 50);
+            ChromaAnimationAPI.ReduceFramesName(baseLayer, 2);
+            ChromaAnimationAPI.OverrideFrameDurationName(baseLayer, 0.033f);
+            ChromaAnimationAPI.PlayAnimationName(baseLayer, false);
+        }
+
+        #endregion
+
+
+        #region Running
+
+        void ShowRunningKeyboard()
+        {
+            string baseLayer = "Animations/Running_Keyboard.chroma";
+            ChromaAnimationAPI.CloseAnimationName(baseLayer);
+            ChromaAnimationAPI.GetAnimation(baseLayer);
+            ChromaAnimationAPI.TrimStartFramesName(baseLayer, 50);
+            ChromaAnimationAPI.DuplicateFramesName(baseLayer);
+            SetupHotkeys(baseLayer);
+            ChromaAnimationAPI.SetChromaCustomFlagName(baseLayer, true);
+            ChromaAnimationAPI.SetChromaCustomColorAllFramesName(baseLayer);
+            ChromaAnimationAPI.OverrideFrameDurationName(baseLayer, 0.033f);
+            ChromaAnimationAPI.PlayAnimationName(baseLayer, false);
+        }
+        void ShowRunningChromaLink()
+        {
+            string baseLayer = "Animations/Running_ChromaLink.chroma";
+            ChromaAnimationAPI.CloseAnimationName(baseLayer);
+            ChromaAnimationAPI.GetAnimation(baseLayer);
+            ChromaAnimationAPI.TrimStartFramesName(baseLayer, 50);
+            ChromaAnimationAPI.DuplicateFramesName(baseLayer);
+            ChromaAnimationAPI.OverrideFrameDurationName(baseLayer, 0.033f);
+            ChromaAnimationAPI.PlayAnimationName(baseLayer, false);
+        }
+        void ShowRunningHeadset()
+        {
+            string baseLayer = "Animations/Running_Headset.chroma";
+            ChromaAnimationAPI.CloseAnimationName(baseLayer);
+            ChromaAnimationAPI.GetAnimation(baseLayer);
+            ChromaAnimationAPI.TrimStartFramesName(baseLayer, 50);
+            ChromaAnimationAPI.DuplicateFramesName(baseLayer);
+            ChromaAnimationAPI.OverrideFrameDurationName(baseLayer, 0.033f);
+            ChromaAnimationAPI.PlayAnimationName(baseLayer, false);
+        }
+        void ShowRunningMousepad()
+        {
+            string baseLayer = "Animations/Running_Mousepad.chroma";
+            ChromaAnimationAPI.CloseAnimationName(baseLayer);
+            ChromaAnimationAPI.GetAnimation(baseLayer);
+            ChromaAnimationAPI.TrimStartFramesName(baseLayer, 50);
+            ChromaAnimationAPI.DuplicateFramesName(baseLayer);
+            ChromaAnimationAPI.OverrideFrameDurationName(baseLayer, 0.033f);
+            ChromaAnimationAPI.PlayAnimationName(baseLayer, false);
+        }
+        void ShowRunningMouse()
+        {
+            string baseLayer = "Animations/Running_Mouse.chroma";
+            ChromaAnimationAPI.CloseAnimationName(baseLayer);
+            ChromaAnimationAPI.GetAnimation(baseLayer);
+            ChromaAnimationAPI.TrimStartFramesName(baseLayer, 50);
+            ChromaAnimationAPI.DuplicateFramesName(baseLayer);
+            ChromaAnimationAPI.OverrideFrameDurationName(baseLayer, 0.033f);
+            ChromaAnimationAPI.PlayAnimationName(baseLayer, false);
+        }
+        void ShowRunningKeypad()
+        {
+            string baseLayer = "Animations/Running_Keypad.chroma";
+            ChromaAnimationAPI.CloseAnimationName(baseLayer);
+            ChromaAnimationAPI.GetAnimation(baseLayer);
+            ChromaAnimationAPI.TrimStartFramesName(baseLayer, 50);
+            ChromaAnimationAPI.DuplicateFramesName(baseLayer);
+            ChromaAnimationAPI.OverrideFrameDurationName(baseLayer, 0.033f);
+            ChromaAnimationAPI.PlayAnimationName(baseLayer, false);
+        }
+
         #endregion
     }
 }
