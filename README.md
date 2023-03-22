@@ -132,43 +132,84 @@ script.Parent.MouseButton2Click:Connect(rightClick)
 **ButtonEffectTextLabel Script**
 
 ```lua
+-- globals
+
+-- button effects
 _G.ChromaEffect = 0;
+
+-- game state
+_G.GameStateClimbing = false
+_G.GameStateJumping = false
+_G.GameStateFlying = false
+_G.GameStateRunning = false
+_G.GameStateSwimming = true
+_G.GameStateSeated = false
+
 _G.GameStateTextLabel = script.Parent
 
 while wait(0.033) do
+	
+	-- button state
+	red = 0
 	if (_G.ChromaEffect == "BtnEffect1") then
-		script.Parent.BackgroundColor3 = Color3.fromRGB(1, 0, 0)
+		red = 1
 	elseif (_G.ChromaEffect == "BtnEffect2") then
-		script.Parent.BackgroundColor3 = Color3.fromRGB(2, 0, 0)
+		red = 2
 	elseif (_G.ChromaEffect == "BtnEffect3") then
-		script.Parent.BackgroundColor3 = Color3.fromRGB(3, 0, 0)
+		red = 3
 	elseif (_G.ChromaEffect == "BtnEffect4") then
-		script.Parent.BackgroundColor3 = Color3.fromRGB(4, 0, 0)
+		red = 4
 	elseif (_G.ChromaEffect == "BtnEffect5") then
-		script.Parent.BackgroundColor3 = Color3.fromRGB(5, 0, 0)
+		red = 5
 	elseif (_G.ChromaEffect == "BtnEffect6") then
-		script.Parent.BackgroundColor3 = Color3.fromRGB(6, 0, 0)
+		red = 6
 	elseif (_G.ChromaEffect == "BtnEffect7") then
-		script.Parent.BackgroundColor3 = Color3.fromRGB(7, 0, 0)
+		red = 7
 	elseif (_G.ChromaEffect == "BtnEffect8") then
-		script.Parent.BackgroundColor3 = Color3.fromRGB(8, 0, 0)
+		red = 8
 	elseif (_G.ChromaEffect == "BtnEffect9") then
-		script.Parent.BackgroundColor3 = Color3.fromRGB(9, 0, 0)
+		red = 9
 	elseif (_G.ChromaEffect == "BtnEffect10") then
-		script.Parent.BackgroundColor3 = Color3.fromRGB(10, 0, 0)
+		red = 10
 	elseif (_G.ChromaEffect == "BtnEffect11") then
-		script.Parent.BackgroundColor3 = Color3.fromRGB(11, 0, 0)
+		red = 11
 	elseif (_G.ChromaEffect == "BtnEffect12") then
-		script.Parent.BackgroundColor3 = Color3.fromRGB(12, 0, 63)
+		red = 12
 	elseif (_G.ChromaEffect == "BtnEffect13") then
-		script.Parent.BackgroundColor3 = Color3.fromRGB(13, 0, 0)
+		red = 13
 	elseif (_G.ChromaEffect == "BtnEffect14") then
-		script.Parent.BackgroundColor3 = Color3.fromRGB(14, 0, 0)
+		red = 14
 	elseif (_G.ChromaEffect == "BtnEffect15") then
-		script.Parent.BackgroundColor3 = Color3.fromRGB(15, 0, 0)
-	else
-		script.Parent.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+		red = 15
 	end
+	
+	-- game state
+	green = 0
+	if _G.GameStateDead then
+		green = 1
+	else
+		if _G.GameStateClimbing then
+			green = bit32.bor(green, 3)
+		end
+		if _G.GameStateJumping then
+			green = bit32.bor(green, 7)
+		end
+		if _G.GameStateFlying then
+			green = bit32.bor(green, 15)
+		end
+		if _G.GameStateRunning then
+			green = bit32.bor(green, 37)
+		end
+		if _G.GameStateSwimming then
+			green = bit32.bor(green, 63)
+		end
+		if _G.GameStateSeated then
+			green = bit32.bor(green, 127)
+		end
+	end
+	
+	-- final color
+	script.Parent.BackgroundColor3 = Color3.fromRGB(red, green, 0)
 end
 ```
 
