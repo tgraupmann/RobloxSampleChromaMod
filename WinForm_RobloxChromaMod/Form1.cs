@@ -322,6 +322,37 @@ namespace WinForm_RobloxChromaMod
                 {
                     SetEffect("None");
                 }
+
+                const byte MASK_DEAD = 1;
+                const byte MASK_CLIMBING = 3;
+                const byte MASK_FLYING = 15;
+                const byte MASK_RUNNING = 37;
+                const byte MASK_SWIMMING = 63;
+                const byte MASK_SEATED = 127; 
+                if (MatchColorGeeenMask(color, MASK_DEAD))
+                {
+
+                }
+                if (MatchColorGeeenMask(color, MASK_CLIMBING))
+                {
+
+                }
+                if (MatchColorGeeenMask(color, MASK_FLYING))
+                {
+
+                }
+                if (MatchColorGeeenMask(color, MASK_RUNNING))
+                {
+
+                }
+                if (MatchColorGeeenMask(color, MASK_SWIMMING))
+                {
+
+                }
+                if (MatchColorGeeenMask(color, MASK_SEATED))
+                {
+
+                }
             }
             catch
             {
@@ -338,6 +369,11 @@ namespace WinForm_RobloxChromaMod
         private bool MatchColorRed(Color color, byte red)
         {
             return (color.R == red);
+        }
+
+        private bool MatchColorGeeenMask(Color color, byte mask)
+        {
+            return ((color.G | mask) == mask);
         }
 
         void SetupHotkeys(string layer)
