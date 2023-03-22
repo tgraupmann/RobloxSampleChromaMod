@@ -310,12 +310,19 @@ Add player state to globals to show in the label background color.
 			end
 ```
 
+**RobloxChromaMod**
+
+1. Open [WinForm_RobloxChromaMod/WinForm_RobloxChromaMod_Unicode.sln](WinForm_RobloxChromaMod/WinForm_RobloxChromaMod_Unicode.sln)
+
+2. [WinForm_RobloxChromaMod/Form1.cs](WinForm_RobloxChromaMod/Form1.cs) captures the Roblox display to determine the game state and play Chroma effects for the game events.
 
 **WPF_RobloxChromaMod**
 
+* Note: Playing effects by parsing game logs has a delay
+
 1. Open [WPF_RobloxChromaMod/WPF_RobloxChromaMod.sln](WPF_RobloxChromaMod/WPF_RobloxChromaMod.sln) with Visual Studio
 
-2. [WPF_RobloxChromaMod/MainWindow.xaml.cs](WPF_RobloxChromaMod/MainWindow.xaml.cs) monitors the Roblox game logs and plays Chroma RGB effects for the game events
+2. [WPF_RobloxChromaMod/MainWindow.xaml.cs](WPF_RobloxChromaMod/MainWindow.xaml.cs) monitors the Roblox game logs and plays Chroma RGB effects for the game events.
 
 
 # Support
