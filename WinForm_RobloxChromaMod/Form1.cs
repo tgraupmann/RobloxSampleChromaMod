@@ -1,6 +1,7 @@
 ﻿// Ref: https://www.youtube.com/watch?v=6iv7y5v1e0A - C# Capture
 // Ref: https://www.youtube.com/watch?v=Q63GV5tnXN0 - Crop Bitmap
 
+using ChromaSDK;
 using System;
 using System.Drawing;
 using System.Windows.Forms;
@@ -16,6 +17,8 @@ namespace WinForm_RobloxChromaMod
         Point _mMouseMoveOffset = Point.Empty;
 
         Image _mCaptureImage = null;
+
+        string _mPreviousEffect = string.Empty;
 
         public Form1()
         {
@@ -67,6 +70,145 @@ namespace WinForm_RobloxChromaMod
 
         #endregion Input Events
 
+        private void SetEffect(string effectName)
+        {
+            if (effectName != _mPreviousEffect)
+            {
+                _mPreviousEffect = effectName;
+                _mLabelButtonEffect.Text = effectName;
+                /*
+                if (effectName != "None")
+                {
+                    string animationName = "Animations/" + effectName;
+                    ChromaAnimationAPI.PlayComposite(animationName, false);
+                }
+                */
+                switch (effectName)
+                {
+                    case "Effect1":
+                        ShowEffect1ChromaLink();
+                        ShowEffect1Headset();
+                        ShowEffect1Keyboard();
+                        ShowEffect1Keypad();
+                        ShowEffect1Mousepad();
+                        ShowEffect1Mouse();
+                        break;
+                    case "Effect2":
+                        ShowEffect2ChromaLink();
+                        ShowEffect2Headset();
+                        ShowEffect2Keyboard();
+                        ShowEffect2Keypad();
+                        ShowEffect2Mousepad();
+                        ShowEffect2Mouse();
+                        break;
+                    case "Effect3":
+                        ShowEffect3ChromaLink();
+                        ShowEffect3Headset();
+                        ShowEffect3Keyboard();
+                        ShowEffect3Keypad();
+                        ShowEffect3Mousepad();
+                        ShowEffect3Mouse();
+                        break;
+                    case "Effect4":
+                        ShowEffect4ChromaLink();
+                        ShowEffect4Headset();
+                        ShowEffect4Keyboard();
+                        ShowEffect4Keypad();
+                        ShowEffect4Mousepad();
+                        ShowEffect4Mouse();
+                        break;
+                    case "Effect5":
+                        ShowEffect5ChromaLink();
+                        ShowEffect5Headset();
+                        ShowEffect5Keyboard();
+                        ShowEffect5Keypad();
+                        ShowEffect5Mousepad();
+                        ShowEffect5Mouse();
+                        break;
+                    case "Effect6":
+                        ShowEffect6ChromaLink();
+                        ShowEffect6Headset();
+                        ShowEffect6Keyboard();
+                        ShowEffect6Keypad();
+                        ShowEffect6Mousepad();
+                        ShowEffect6Mouse();
+                        break;
+                    case "Effect7":
+                        ShowEffect7ChromaLink();
+                        ShowEffect7Headset();
+                        ShowEffect7Keyboard();
+                        ShowEffect7Keypad();
+                        ShowEffect7Mousepad();
+                        ShowEffect7Mouse();
+                        break;
+                    case "Effect8":
+                        ShowEffect8ChromaLink();
+                        ShowEffect8Headset();
+                        ShowEffect8Keyboard();
+                        ShowEffect8Keypad();
+                        ShowEffect8Mousepad();
+                        ShowEffect8Mouse();
+                        break;
+                    case "Effect9":
+                        ShowEffect9ChromaLink();
+                        ShowEffect9Headset();
+                        ShowEffect9Keyboard();
+                        ShowEffect9Keypad();
+                        ShowEffect9Mousepad();
+                        ShowEffect9Mouse();
+                        break;
+                    case "Effect10":
+                        ShowEffect10ChromaLink();
+                        ShowEffect10Headset();
+                        ShowEffect10Keyboard();
+                        ShowEffect10Keypad();
+                        ShowEffect10Mousepad();
+                        ShowEffect10Mouse();
+                        break;
+                    case "Effect11":
+                        ShowEffect11ChromaLink();
+                        ShowEffect11Headset();
+                        ShowEffect11Keyboard();
+                        ShowEffect11Keypad();
+                        ShowEffect11Mousepad();
+                        ShowEffect11Mouse();
+                        break;
+                    case "Effect12":
+                        ShowEffect12ChromaLink();
+                        ShowEffect12Headset();
+                        ShowEffect12Keyboard();
+                        ShowEffect12Keypad();
+                        ShowEffect12Mousepad();
+                        ShowEffect12Mouse();
+                        break;
+                    case "Effect13":
+                        ShowEffect13ChromaLink();
+                        ShowEffect13Headset();
+                        ShowEffect13Keyboard();
+                        ShowEffect13Keypad();
+                        ShowEffect13Mousepad();
+                        ShowEffect13Mouse();
+                        break;
+                    case "Effect14":
+                        ShowEffect14ChromaLink();
+                        ShowEffect14Headset();
+                        ShowEffect14Keyboard();
+                        ShowEffect14Keypad();
+                        ShowEffect14Mousepad();
+                        ShowEffect14Mouse();
+                        break;
+                    case "Effect15":
+                        ShowEffect15ChromaLink();
+                        ShowEffect15Headset();
+                        ShowEffect15Keyboard();
+                        ShowEffect15Keypad();
+                        ShowEffect15Mousepad();
+                        ShowEffect15Mouse();
+                        break;
+                }
+                }
+        }
+
         private void _mCaptureTimer_Tick(object sender, EventArgs e)
         {
             try
@@ -106,67 +248,67 @@ namespace WinForm_RobloxChromaMod
 
                 if (MatchColor(color, 255, 0, 0))
                 {
-                    _mLabelButtonEffect.Text = "BtnEffect1";
+                    SetEffect("Effect1");
                 }
                 else if (MatchColor(color, 0, 255, 0))
                 {
-                    _mLabelButtonEffect.Text = "BtnEffect2";
+                    SetEffect("Effect2");
                 }
                 else if (MatchColor(color, 0, 0, 255))
                 {
-                    _mLabelButtonEffect.Text = "BtnEffect3";
+                    SetEffect("Effect3");
                 }
                 else if (MatchColor(color, 191, 0, 0))
                 {
-                    _mLabelButtonEffect.Text = "BtnEffect4";
+                    SetEffect("Effect4");
                 }
                 else if (MatchColor(color, 0, 191, 0))
                 {
-                    _mLabelButtonEffect.Text = "BtnEffect5";
+                    SetEffect("Effect5");
                 }
                 else if (MatchColor(color, 0, 0, 191))
                 {
-                    _mLabelButtonEffect.Text = "BtnEffect6";
+                    SetEffect("Effect6");
                 }
                 else if (MatchColor(color, 127, 0, 0))
                 {
-                    _mLabelButtonEffect.Text = "BtnEffect7";
+                    SetEffect("Effect7");
                 }
                 else if (MatchColor(color, 0, 127, 0))
                 {
-                    _mLabelButtonEffect.Text = "BtnEffect8";
+                    SetEffect("Effect8");
                 }
                 else if (MatchColor(color, 0, 0, 127))
                 {
-                    _mLabelButtonEffect.Text = "BtnEffect9";
+                    SetEffect("Effect9");
                 }
                 else if (MatchColor(color, 63, 0, 0))
                 {
-                    _mLabelButtonEffect.Text = "BtnEffect10";
+                    SetEffect("Effect10");
                 }
                 else if (MatchColor(color, 0, 63, 0))
                 {
-                    _mLabelButtonEffect.Text = "BtnEffect11";
+                    SetEffect("Effect11");
                 }
                 else if (MatchColor(color, 0, 0, 63))
                 {
-                    _mLabelButtonEffect.Text = "BtnEffect12";
+                    SetEffect("Effect12");
                 }
                 else if (MatchColor(color, 255, 255, 0))
                 {
-                    _mLabelButtonEffect.Text = "BtnEffect13";
+                    SetEffect("Effect13");
                 }
                 else if (MatchColor(color, 0, 255, 255))
                 {
-                    _mLabelButtonEffect.Text = "BtnEffect14";
+                    SetEffect("Effect14");
                 }
                 else if (MatchColor(color, 255, 0, 255))
                 {
-                    _mLabelButtonEffect.Text = "BtnEffect15";
+                    SetEffect("Effect15");
                 }
                 else
                 {
-                    _mLabelButtonEffect.Text = "None";
+                    SetEffect("None");
                 }
             }
             catch
@@ -174,9 +316,915 @@ namespace WinForm_RobloxChromaMod
             }
         }
 
+        #region Helper methods
+
         private bool MatchColor(Color color, byte red, byte green, byte blue)
         {
             return (color.R == red && color.G == green && color.B == blue);
         }
+
+        void SetupHotkeys(string layer)
+        {
+            int[] keys = {
+                (int)Keyboard.RZKEY.RZKEY_W,
+                (int)Keyboard.RZKEY.RZKEY_A,
+                (int)Keyboard.RZKEY.RZKEY_S,
+                (int)Keyboard.RZKEY.RZKEY_D,
+                (int)Keyboard.RZKEY.RZKEY_SPACE,
+                };
+            int color = ChromaAnimationAPI.GetRGB(0, 255, 0);
+            ChromaAnimationAPI.SetKeysColorAllFramesName(layer, keys, keys.Length, color);
+        }
+
+        #endregion Helper methods
+
+
+        #region Autogenerated
+        void ShowEffect1Keyboard()
+        {
+            string baseLayer = "Animations/Blank_Keyboard.chroma";
+            string layer2 = "Animations/Title_Keyboard.chroma";
+            string layer3 = "Animations/BlackAndWhiteRainbow_Keyboard.chroma";
+            ChromaAnimationAPI.CloseAnimationName(baseLayer);
+            ChromaAnimationAPI.CloseAnimationName(layer2);
+            ChromaAnimationAPI.CloseAnimationName(layer3);
+            ChromaAnimationAPI.GetAnimation(baseLayer);
+            ChromaAnimationAPI.GetAnimation(layer2);
+            ChromaAnimationAPI.GetAnimation(layer3);
+            ChromaAnimationAPI.ReduceFramesName(layer2, 2);
+            int frameCount = ChromaAnimationAPI.GetFrameCountName(layer2);
+            ChromaAnimationAPI.MakeBlankFramesName(baseLayer, frameCount, 0.1f, 0);
+            int color1 = ChromaAnimationAPI.GetRGB(0, 255, 255);
+            int color2 = ChromaAnimationAPI.GetRGB(255, 255, 255);
+            ChromaAnimationAPI.MultiplyTargetColorLerpAllFramesName(layer3, color1, color2);
+            ChromaAnimationAPI.CopyNonZeroTargetAllKeysAllFramesName(layer3, layer2);
+            ChromaAnimationAPI.CopyNonZeroAllKeysAllFramesName(layer2, baseLayer);
+            SetupHotkeys(baseLayer);
+            ChromaAnimationAPI.FillZeroColorAllFramesRGBName(baseLayer, 32, 0, 32);
+            ChromaAnimationAPI.SetChromaCustomFlagName(baseLayer, true);
+            ChromaAnimationAPI.OverrideFrameDurationName(baseLayer, 0.033f);
+            ChromaAnimationAPI.PlayAnimationName(baseLayer, false);
+        }
+        void ShowEffect1ChromaLink()
+        {
+            string baseLayer = "Animations/BlackAndWhiteRainbow_ChromaLink.chroma";
+            ChromaAnimationAPI.CloseAnimationName(baseLayer);
+            ChromaAnimationAPI.GetAnimation(baseLayer);
+            ChromaAnimationAPI.ReduceFramesName(baseLayer, 2);
+            ChromaAnimationAPI.ReduceFramesName(baseLayer, 2);
+            int color1 = ChromaAnimationAPI.GetRGB(0, 255, 255);
+            int color2 = ChromaAnimationAPI.GetRGB(255, 255, 255);
+            ChromaAnimationAPI.MultiplyTargetColorLerpAllFramesName(baseLayer, color1, color2);
+            ChromaAnimationAPI.OverrideFrameDurationName(baseLayer, 0.033f);
+            ChromaAnimationAPI.PlayAnimationName(baseLayer, false);
+        }
+        void ShowEffect1Headset()
+        {
+            string baseLayer = "Animations/BlackAndWhiteRainbow_Headset.chroma";
+            ChromaAnimationAPI.CloseAnimationName(baseLayer);
+            ChromaAnimationAPI.GetAnimation(baseLayer);
+            ChromaAnimationAPI.ReduceFramesName(baseLayer, 2);
+            ChromaAnimationAPI.ReduceFramesName(baseLayer, 2);
+            int color1 = ChromaAnimationAPI.GetRGB(0, 255, 255);
+            int color2 = ChromaAnimationAPI.GetRGB(255, 255, 255);
+            ChromaAnimationAPI.MultiplyTargetColorLerpAllFramesName(baseLayer, color1, color2);
+            ChromaAnimationAPI.OverrideFrameDurationName(baseLayer, 0.033f);
+            ChromaAnimationAPI.PlayAnimationName(baseLayer, false);
+        }
+        void ShowEffect1Mousepad()
+        {
+            string baseLayer = "Animations/BlackAndWhiteRainbow_Mousepad.chroma";
+            ChromaAnimationAPI.CloseAnimationName(baseLayer);
+            ChromaAnimationAPI.GetAnimation(baseLayer);
+            ChromaAnimationAPI.ReduceFramesName(baseLayer, 2);
+            ChromaAnimationAPI.ReduceFramesName(baseLayer, 2);
+            int color1 = ChromaAnimationAPI.GetRGB(0, 255, 255);
+            int color2 = ChromaAnimationAPI.GetRGB(255, 255, 255);
+            ChromaAnimationAPI.MultiplyTargetColorLerpAllFramesName(baseLayer, color1, color2);
+            ChromaAnimationAPI.OverrideFrameDurationName(baseLayer, 0.033f);
+            ChromaAnimationAPI.PlayAnimationName(baseLayer, false);
+        }
+        void ShowEffect1Mouse()
+        {
+            string baseLayer = "Animations/BlackAndWhiteRainbow_Mouse.chroma";
+            ChromaAnimationAPI.CloseAnimationName(baseLayer);
+            ChromaAnimationAPI.GetAnimation(baseLayer);
+            ChromaAnimationAPI.ReduceFramesName(baseLayer, 2);
+            ChromaAnimationAPI.ReduceFramesName(baseLayer, 2);
+            int color1 = ChromaAnimationAPI.GetRGB(0, 255, 255);
+            int color2 = ChromaAnimationAPI.GetRGB(255, 255, 255);
+            ChromaAnimationAPI.MultiplyTargetColorLerpAllFramesName(baseLayer, color1, color2);
+            ChromaAnimationAPI.OverrideFrameDurationName(baseLayer, 0.033f);
+            ChromaAnimationAPI.PlayAnimationName(baseLayer, false);
+        }
+        void ShowEffect1Keypad()
+        {
+            string baseLayer = "Animations/BlackAndWhiteRainbow_Keypad.chroma";
+            ChromaAnimationAPI.CloseAnimationName(baseLayer);
+            ChromaAnimationAPI.GetAnimation(baseLayer);
+            ChromaAnimationAPI.ReduceFramesName(baseLayer, 2);
+            ChromaAnimationAPI.ReduceFramesName(baseLayer, 2);
+            int color1 = ChromaAnimationAPI.GetRGB(0, 255, 255);
+            int color2 = ChromaAnimationAPI.GetRGB(255, 255, 255);
+            ChromaAnimationAPI.MultiplyTargetColorLerpAllFramesName(baseLayer, color1, color2);
+            ChromaAnimationAPI.OverrideFrameDurationName(baseLayer, 0.033f);
+            ChromaAnimationAPI.PlayAnimationName(baseLayer, false);
+        }
+        void ShowEffect2Keyboard()
+        {
+            string baseLayer = "Animations/Effect2_Keyboard.chroma";
+            ChromaAnimationAPI.CloseAnimationName(baseLayer);
+            ChromaAnimationAPI.GetAnimation(baseLayer);
+            ChromaAnimationAPI.ReduceFramesName(baseLayer, 2);
+            SetupHotkeys(baseLayer);
+            ChromaAnimationAPI.SetChromaCustomFlagName(baseLayer, true);
+            ChromaAnimationAPI.OverrideFrameDurationName(baseLayer, 0.033f);
+            ChromaAnimationAPI.PlayAnimationName(baseLayer, false);
+        }
+        void ShowEffect2ChromaLink()
+        {
+            string baseLayer = "Animations/Effect2_ChromaLink.chroma";
+            ChromaAnimationAPI.CloseAnimationName(baseLayer);
+            ChromaAnimationAPI.GetAnimation(baseLayer);
+            ChromaAnimationAPI.ReduceFramesName(baseLayer, 2);
+            ChromaAnimationAPI.OverrideFrameDurationName(baseLayer, 0.033f);
+            ChromaAnimationAPI.PlayAnimationName(baseLayer, false);
+        }
+        void ShowEffect2Headset()
+        {
+            string baseLayer = "Animations/Effect2_Headset.chroma";
+            ChromaAnimationAPI.CloseAnimationName(baseLayer);
+            ChromaAnimationAPI.GetAnimation(baseLayer);
+            ChromaAnimationAPI.ReduceFramesName(baseLayer, 2);
+            ChromaAnimationAPI.OverrideFrameDurationName(baseLayer, 0.033f);
+            ChromaAnimationAPI.PlayAnimationName(baseLayer, false);
+        }
+        void ShowEffect2Mousepad()
+        {
+            string baseLayer = "Animations/Effect2_Mousepad.chroma";
+            ChromaAnimationAPI.CloseAnimationName(baseLayer);
+            ChromaAnimationAPI.GetAnimation(baseLayer);
+            ChromaAnimationAPI.ReduceFramesName(baseLayer, 2);
+            ChromaAnimationAPI.OverrideFrameDurationName(baseLayer, 0.033f);
+            ChromaAnimationAPI.PlayAnimationName(baseLayer, false);
+        }
+        void ShowEffect2Mouse()
+        {
+            string baseLayer = "Animations/Effect2_Mouse.chroma";
+            ChromaAnimationAPI.CloseAnimationName(baseLayer);
+            ChromaAnimationAPI.GetAnimation(baseLayer);
+            ChromaAnimationAPI.ReduceFramesName(baseLayer, 2);
+            ChromaAnimationAPI.OverrideFrameDurationName(baseLayer, 0.033f);
+            ChromaAnimationAPI.PlayAnimationName(baseLayer, false);
+        }
+        void ShowEffect2Keypad()
+        {
+            string baseLayer = "Animations/Effect2_Keypad.chroma";
+            ChromaAnimationAPI.CloseAnimationName(baseLayer);
+            ChromaAnimationAPI.GetAnimation(baseLayer);
+            ChromaAnimationAPI.ReduceFramesName(baseLayer, 2);
+            ChromaAnimationAPI.OverrideFrameDurationName(baseLayer, 0.033f);
+            ChromaAnimationAPI.PlayAnimationName(baseLayer, false);
+        }
+        void ShowEffect3Keyboard()
+        {
+            string baseLayer = "Animations/Effect3_Keyboard.chroma";
+            ChromaAnimationAPI.CloseAnimationName(baseLayer);
+            ChromaAnimationAPI.GetAnimation(baseLayer);
+            ChromaAnimationAPI.ReduceFramesName(baseLayer, 2);
+            SetupHotkeys(baseLayer);
+            ChromaAnimationAPI.SetChromaCustomFlagName(baseLayer, true);
+            ChromaAnimationAPI.OverrideFrameDurationName(baseLayer, 0.033f);
+            ChromaAnimationAPI.PlayAnimationName(baseLayer, false);
+        }
+        void ShowEffect3ChromaLink()
+        {
+            string baseLayer = "Animations/Effect3_ChromaLink.chroma";
+            ChromaAnimationAPI.CloseAnimationName(baseLayer);
+            ChromaAnimationAPI.GetAnimation(baseLayer);
+            ChromaAnimationAPI.ReduceFramesName(baseLayer, 2);
+            ChromaAnimationAPI.OverrideFrameDurationName(baseLayer, 0.033f);
+            ChromaAnimationAPI.PlayAnimationName(baseLayer, false);
+        }
+        void ShowEffect3Headset()
+        {
+            string baseLayer = "Animations/Effect3_Headset.chroma";
+            ChromaAnimationAPI.CloseAnimationName(baseLayer);
+            ChromaAnimationAPI.GetAnimation(baseLayer);
+            ChromaAnimationAPI.ReduceFramesName(baseLayer, 2);
+            ChromaAnimationAPI.OverrideFrameDurationName(baseLayer, 0.033f);
+            ChromaAnimationAPI.PlayAnimationName(baseLayer, false);
+        }
+        void ShowEffect3Mousepad()
+        {
+            string baseLayer = "Animations/Effect3_Mousepad.chroma";
+            ChromaAnimationAPI.CloseAnimationName(baseLayer);
+            ChromaAnimationAPI.GetAnimation(baseLayer);
+            ChromaAnimationAPI.ReduceFramesName(baseLayer, 2);
+            ChromaAnimationAPI.OverrideFrameDurationName(baseLayer, 0.033f);
+            ChromaAnimationAPI.PlayAnimationName(baseLayer, false);
+        }
+        void ShowEffect3Mouse()
+        {
+            string baseLayer = "Animations/Effect3_Mouse.chroma";
+            ChromaAnimationAPI.CloseAnimationName(baseLayer);
+            ChromaAnimationAPI.GetAnimation(baseLayer);
+            ChromaAnimationAPI.ReduceFramesName(baseLayer, 2);
+            ChromaAnimationAPI.OverrideFrameDurationName(baseLayer, 0.033f);
+            ChromaAnimationAPI.PlayAnimationName(baseLayer, false);
+        }
+        void ShowEffect3Keypad()
+        {
+            string baseLayer = "Animations/Effect3_Keypad.chroma";
+            ChromaAnimationAPI.CloseAnimationName(baseLayer);
+            ChromaAnimationAPI.GetAnimation(baseLayer);
+            ChromaAnimationAPI.ReduceFramesName(baseLayer, 2);
+            ChromaAnimationAPI.OverrideFrameDurationName(baseLayer, 0.033f);
+            ChromaAnimationAPI.PlayAnimationName(baseLayer, false);
+        }
+        void ShowEffect4Keyboard()
+        {
+            string baseLayer = "Animations/Effect4_Keyboard.chroma";
+            ChromaAnimationAPI.CloseAnimationName(baseLayer);
+            ChromaAnimationAPI.GetAnimation(baseLayer);
+            SetupHotkeys(baseLayer);
+            ChromaAnimationAPI.SetChromaCustomFlagName(baseLayer, true);
+            ChromaAnimationAPI.OverrideFrameDurationName(baseLayer, 0.033f);
+            ChromaAnimationAPI.PlayAnimationName(baseLayer, false);
+        }
+        void ShowEffect4ChromaLink()
+        {
+            string baseLayer = "Animations/Effect4_ChromaLink.chroma";
+            ChromaAnimationAPI.CloseAnimationName(baseLayer);
+            ChromaAnimationAPI.GetAnimation(baseLayer);
+            ChromaAnimationAPI.OverrideFrameDurationName(baseLayer, 0.033f);
+            ChromaAnimationAPI.PlayAnimationName(baseLayer, false);
+        }
+        void ShowEffect4Headset()
+        {
+            string baseLayer = "Animations/Effect4_Headset.chroma";
+            ChromaAnimationAPI.CloseAnimationName(baseLayer);
+            ChromaAnimationAPI.GetAnimation(baseLayer);
+            ChromaAnimationAPI.OverrideFrameDurationName(baseLayer, 0.033f);
+            ChromaAnimationAPI.PlayAnimationName(baseLayer, false);
+        }
+        void ShowEffect4Mousepad()
+        {
+            string baseLayer = "Animations/Effect4_Mousepad.chroma";
+            ChromaAnimationAPI.CloseAnimationName(baseLayer);
+            ChromaAnimationAPI.GetAnimation(baseLayer);
+            ChromaAnimationAPI.OverrideFrameDurationName(baseLayer, 0.033f);
+            ChromaAnimationAPI.PlayAnimationName(baseLayer, false);
+        }
+        void ShowEffect4Mouse()
+        {
+            string baseLayer = "Animations/Effect4_Mouse.chroma";
+            ChromaAnimationAPI.CloseAnimationName(baseLayer);
+            ChromaAnimationAPI.GetAnimation(baseLayer);
+            ChromaAnimationAPI.OverrideFrameDurationName(baseLayer, 0.033f);
+            ChromaAnimationAPI.PlayAnimationName(baseLayer, false);
+        }
+        void ShowEffect4Keypad()
+        {
+            string baseLayer = "Animations/Effect4_Keypad.chroma";
+            ChromaAnimationAPI.CloseAnimationName(baseLayer);
+            ChromaAnimationAPI.GetAnimation(baseLayer);
+            ChromaAnimationAPI.OverrideFrameDurationName(baseLayer, 0.033f);
+            ChromaAnimationAPI.PlayAnimationName(baseLayer, false);
+        }
+        void ShowEffect5Keyboard()
+        {
+            string baseLayer = "Animations/Effect5_Keyboard.chroma";
+            ChromaAnimationAPI.CloseAnimationName(baseLayer);
+            ChromaAnimationAPI.GetAnimation(baseLayer);
+            ChromaAnimationAPI.ReduceFramesName(baseLayer, 2);
+            SetupHotkeys(baseLayer);
+            ChromaAnimationAPI.SetChromaCustomFlagName(baseLayer, true);
+            ChromaAnimationAPI.OverrideFrameDurationName(baseLayer, 0.033f);
+            ChromaAnimationAPI.PlayAnimationName(baseLayer, false);
+        }
+        void ShowEffect5ChromaLink()
+        {
+            string baseLayer = "Animations/Effect5_ChromaLink.chroma";
+            ChromaAnimationAPI.CloseAnimationName(baseLayer);
+            ChromaAnimationAPI.GetAnimation(baseLayer);
+            ChromaAnimationAPI.ReduceFramesName(baseLayer, 2);
+            ChromaAnimationAPI.OverrideFrameDurationName(baseLayer, 0.033f);
+            ChromaAnimationAPI.PlayAnimationName(baseLayer, false);
+        }
+        void ShowEffect5Headset()
+        {
+            string baseLayer = "Animations/Effect5_Headset.chroma";
+            ChromaAnimationAPI.CloseAnimationName(baseLayer);
+            ChromaAnimationAPI.GetAnimation(baseLayer);
+            ChromaAnimationAPI.ReduceFramesName(baseLayer, 2);
+            ChromaAnimationAPI.OverrideFrameDurationName(baseLayer, 0.033f);
+            ChromaAnimationAPI.PlayAnimationName(baseLayer, false);
+        }
+        void ShowEffect5Mousepad()
+        {
+            string baseLayer = "Animations/Effect5_Mousepad.chroma";
+            ChromaAnimationAPI.CloseAnimationName(baseLayer);
+            ChromaAnimationAPI.GetAnimation(baseLayer);
+            ChromaAnimationAPI.ReduceFramesName(baseLayer, 2);
+            ChromaAnimationAPI.OverrideFrameDurationName(baseLayer, 0.033f);
+            ChromaAnimationAPI.PlayAnimationName(baseLayer, false);
+        }
+        void ShowEffect5Mouse()
+        {
+            string baseLayer = "Animations/Effect5_Mouse.chroma";
+            ChromaAnimationAPI.CloseAnimationName(baseLayer);
+            ChromaAnimationAPI.GetAnimation(baseLayer);
+            ChromaAnimationAPI.ReduceFramesName(baseLayer, 2);
+            ChromaAnimationAPI.OverrideFrameDurationName(baseLayer, 0.033f);
+            ChromaAnimationAPI.PlayAnimationName(baseLayer, false);
+        }
+        void ShowEffect5Keypad()
+        {
+            string baseLayer = "Animations/Effect5_Keypad.chroma";
+            ChromaAnimationAPI.CloseAnimationName(baseLayer);
+            ChromaAnimationAPI.GetAnimation(baseLayer);
+            ChromaAnimationAPI.ReduceFramesName(baseLayer, 2);
+            ChromaAnimationAPI.OverrideFrameDurationName(baseLayer, 0.033f);
+            ChromaAnimationAPI.PlayAnimationName(baseLayer, false);
+        }
+        void ShowEffect6Keyboard()
+        {
+            string baseLayer = "Animations/Effect6_Keyboard.chroma";
+            ChromaAnimationAPI.CloseAnimationName(baseLayer);
+            ChromaAnimationAPI.GetAnimation(baseLayer);
+            ChromaAnimationAPI.ReduceFramesName(baseLayer, 2);
+            int color = ChromaAnimationAPI.GetRGB(182, 133, 255);
+            ChromaAnimationAPI.MultiplyIntensityColorAllFramesName(baseLayer, color);
+            SetupHotkeys(baseLayer);
+            ChromaAnimationAPI.SetChromaCustomFlagName(baseLayer, true);
+            ChromaAnimationAPI.OverrideFrameDurationName(baseLayer, 0.033f);
+            ChromaAnimationAPI.PlayAnimationName(baseLayer, false);
+        }
+        void ShowEffect6ChromaLink()
+        {
+            string baseLayer = "Animations/Effect6_ChromaLink.chroma";
+            ChromaAnimationAPI.CloseAnimationName(baseLayer);
+            ChromaAnimationAPI.GetAnimation(baseLayer);
+            ChromaAnimationAPI.ReduceFramesName(baseLayer, 2);
+            int color = ChromaAnimationAPI.GetRGB(182, 133, 255);
+            ChromaAnimationAPI.MultiplyIntensityColorAllFramesName(baseLayer, color);
+            ChromaAnimationAPI.OverrideFrameDurationName(baseLayer, 0.033f);
+            ChromaAnimationAPI.PlayAnimationName(baseLayer, false);
+        }
+        void ShowEffect6Headset()
+        {
+            string baseLayer = "Animations/Effect6_Headset.chroma";
+            ChromaAnimationAPI.CloseAnimationName(baseLayer);
+            ChromaAnimationAPI.GetAnimation(baseLayer);
+            ChromaAnimationAPI.ReduceFramesName(baseLayer, 2);
+            int color = ChromaAnimationAPI.GetRGB(182, 133, 255);
+            ChromaAnimationAPI.MultiplyIntensityColorAllFramesName(baseLayer, color);
+            ChromaAnimationAPI.OverrideFrameDurationName(baseLayer, 0.033f);
+            ChromaAnimationAPI.PlayAnimationName(baseLayer, false);
+        }
+        void ShowEffect6Mousepad()
+        {
+            string baseLayer = "Animations/Effect6_Mousepad.chroma";
+            ChromaAnimationAPI.CloseAnimationName(baseLayer);
+            ChromaAnimationAPI.GetAnimation(baseLayer);
+            ChromaAnimationAPI.ReduceFramesName(baseLayer, 2);
+            int color = ChromaAnimationAPI.GetRGB(182, 133, 255);
+            ChromaAnimationAPI.MultiplyIntensityColorAllFramesName(baseLayer, color);
+            ChromaAnimationAPI.OverrideFrameDurationName(baseLayer, 0.033f);
+            ChromaAnimationAPI.PlayAnimationName(baseLayer, false);
+        }
+        void ShowEffect6Mouse()
+        {
+            string baseLayer = "Animations/Effect6_Mouse.chroma";
+            ChromaAnimationAPI.CloseAnimationName(baseLayer);
+            ChromaAnimationAPI.GetAnimation(baseLayer);
+            ChromaAnimationAPI.ReduceFramesName(baseLayer, 2);
+            int color = ChromaAnimationAPI.GetRGB(182, 133, 255);
+            ChromaAnimationAPI.MultiplyIntensityColorAllFramesName(baseLayer, color);
+            ChromaAnimationAPI.OverrideFrameDurationName(baseLayer, 0.033f);
+            ChromaAnimationAPI.PlayAnimationName(baseLayer, false);
+        }
+        void ShowEffect6Keypad()
+        {
+            string baseLayer = "Animations/Effect6_Keypad.chroma";
+            ChromaAnimationAPI.CloseAnimationName(baseLayer);
+            ChromaAnimationAPI.GetAnimation(baseLayer);
+            ChromaAnimationAPI.ReduceFramesName(baseLayer, 2);
+            int color = ChromaAnimationAPI.GetRGB(182, 133, 255);
+            ChromaAnimationAPI.MultiplyIntensityColorAllFramesName(baseLayer, color);
+            ChromaAnimationAPI.OverrideFrameDurationName(baseLayer, 0.033f);
+            ChromaAnimationAPI.PlayAnimationName(baseLayer, false);
+        }
+        void ShowEffect7Keyboard()
+        {
+            string baseLayer = "Animations/Effect7_Keyboard.chroma";
+            ChromaAnimationAPI.CloseAnimationName(baseLayer);
+            ChromaAnimationAPI.GetAnimation(baseLayer);
+            ChromaAnimationAPI.ReduceFramesName(baseLayer, 2);
+            ChromaAnimationAPI.ReduceFramesName(baseLayer, 2);
+            SetupHotkeys(baseLayer);
+            ChromaAnimationAPI.SetChromaCustomFlagName(baseLayer, true);
+            ChromaAnimationAPI.OverrideFrameDurationName(baseLayer, 0.033f);
+            ChromaAnimationAPI.PlayAnimationName(baseLayer, false);
+        }
+        void ShowEffect7ChromaLink()
+        {
+            string baseLayer = "Animations/Effect7_ChromaLink.chroma";
+            ChromaAnimationAPI.CloseAnimationName(baseLayer);
+            ChromaAnimationAPI.GetAnimation(baseLayer);
+            ChromaAnimationAPI.ReduceFramesName(baseLayer, 2);
+            ChromaAnimationAPI.ReduceFramesName(baseLayer, 2);
+            ChromaAnimationAPI.OverrideFrameDurationName(baseLayer, 0.033f);
+            ChromaAnimationAPI.PlayAnimationName(baseLayer, false);
+        }
+        void ShowEffect7Headset()
+        {
+            string baseLayer = "Animations/Effect7_Headset.chroma";
+            ChromaAnimationAPI.CloseAnimationName(baseLayer);
+            ChromaAnimationAPI.GetAnimation(baseLayer);
+            ChromaAnimationAPI.ReduceFramesName(baseLayer, 2);
+            ChromaAnimationAPI.ReduceFramesName(baseLayer, 2);
+            ChromaAnimationAPI.OverrideFrameDurationName(baseLayer, 0.033f);
+            ChromaAnimationAPI.PlayAnimationName(baseLayer, false);
+        }
+        void ShowEffect7Mousepad()
+        {
+            string baseLayer = "Animations/Effect7_Mousepad.chroma";
+            ChromaAnimationAPI.CloseAnimationName(baseLayer);
+            ChromaAnimationAPI.GetAnimation(baseLayer);
+            ChromaAnimationAPI.ReduceFramesName(baseLayer, 2);
+            ChromaAnimationAPI.ReduceFramesName(baseLayer, 2);
+            ChromaAnimationAPI.OverrideFrameDurationName(baseLayer, 0.033f);
+            ChromaAnimationAPI.PlayAnimationName(baseLayer, false);
+        }
+        void ShowEffect7Mouse()
+        {
+            string baseLayer = "Animations/Effect7_Mouse.chroma";
+            ChromaAnimationAPI.CloseAnimationName(baseLayer);
+            ChromaAnimationAPI.GetAnimation(baseLayer);
+            ChromaAnimationAPI.ReduceFramesName(baseLayer, 2);
+            ChromaAnimationAPI.ReduceFramesName(baseLayer, 2);
+            ChromaAnimationAPI.OverrideFrameDurationName(baseLayer, 0.033f);
+            ChromaAnimationAPI.PlayAnimationName(baseLayer, false);
+        }
+        void ShowEffect7Keypad()
+        {
+            string baseLayer = "Animations/Effect7_Keypad.chroma";
+            ChromaAnimationAPI.CloseAnimationName(baseLayer);
+            ChromaAnimationAPI.GetAnimation(baseLayer);
+            ChromaAnimationAPI.ReduceFramesName(baseLayer, 2);
+            ChromaAnimationAPI.ReduceFramesName(baseLayer, 2);
+            ChromaAnimationAPI.OverrideFrameDurationName(baseLayer, 0.033f);
+            ChromaAnimationAPI.PlayAnimationName(baseLayer, false);
+        }
+        void ShowEffect8Keyboard()
+        {
+            string baseLayer = "Animations/Effect8_Keyboard.chroma";
+            ChromaAnimationAPI.CloseAnimationName(baseLayer);
+            ChromaAnimationAPI.GetAnimation(baseLayer);
+            SetupHotkeys(baseLayer);
+            ChromaAnimationAPI.SetChromaCustomFlagName(baseLayer, true);
+            ChromaAnimationAPI.OverrideFrameDurationName(baseLayer, 0.033f);
+            ChromaAnimationAPI.PlayAnimationName(baseLayer, false);
+        }
+        void ShowEffect8ChromaLink()
+        {
+            string baseLayer = "Animations/Effect8_ChromaLink.chroma";
+            ChromaAnimationAPI.CloseAnimationName(baseLayer);
+            ChromaAnimationAPI.GetAnimation(baseLayer);
+            ChromaAnimationAPI.OverrideFrameDurationName(baseLayer, 0.033f);
+            ChromaAnimationAPI.PlayAnimationName(baseLayer, false);
+        }
+        void ShowEffect8Headset()
+        {
+            string baseLayer = "Animations/Effect8_Headset.chroma";
+            ChromaAnimationAPI.CloseAnimationName(baseLayer);
+            ChromaAnimationAPI.GetAnimation(baseLayer);
+            ChromaAnimationAPI.PlayAnimationName(baseLayer, false);
+        }
+        void ShowEffect8Mousepad()
+        {
+            string baseLayer = "Animations/Effect8_Mousepad.chroma";
+            ChromaAnimationAPI.CloseAnimationName(baseLayer);
+            ChromaAnimationAPI.GetAnimation(baseLayer);
+            ChromaAnimationAPI.OverrideFrameDurationName(baseLayer, 0.033f);
+            ChromaAnimationAPI.PlayAnimationName(baseLayer, false);
+        }
+        void ShowEffect8Mouse()
+        {
+            string baseLayer = "Animations/Effect8_Mouse.chroma";
+            ChromaAnimationAPI.CloseAnimationName(baseLayer);
+            ChromaAnimationAPI.GetAnimation(baseLayer);
+            ChromaAnimationAPI.OverrideFrameDurationName(baseLayer, 0.033f);
+            ChromaAnimationAPI.PlayAnimationName(baseLayer, false);
+        }
+        void ShowEffect8Keypad()
+        {
+            string baseLayer = "Animations/Effect8_Keypad.chroma";
+            ChromaAnimationAPI.CloseAnimationName(baseLayer);
+            ChromaAnimationAPI.GetAnimation(baseLayer);
+            ChromaAnimationAPI.OverrideFrameDurationName(baseLayer, 0.033f);
+            ChromaAnimationAPI.PlayAnimationName(baseLayer, false);
+        }
+        void ShowEffect9Keyboard()
+        {
+            string baseLayer = "Animations/Effect9_Keyboard.chroma";
+            ChromaAnimationAPI.CloseAnimationName(baseLayer);
+            ChromaAnimationAPI.GetAnimation(baseLayer);
+            SetupHotkeys(baseLayer);
+            ChromaAnimationAPI.SetChromaCustomFlagName(baseLayer, true);
+            ChromaAnimationAPI.OverrideFrameDurationName(baseLayer, 0.033f);
+            ChromaAnimationAPI.PlayAnimationName(baseLayer, false);
+        }
+        void ShowEffect9ChromaLink()
+        {
+            string baseLayer = "Animations/Effect9_ChromaLink.chroma";
+            ChromaAnimationAPI.CloseAnimationName(baseLayer);
+            ChromaAnimationAPI.GetAnimation(baseLayer);
+            ChromaAnimationAPI.OverrideFrameDurationName(baseLayer, 0.033f);
+            ChromaAnimationAPI.PlayAnimationName(baseLayer, false);
+        }
+        void ShowEffect9Headset()
+        {
+            string baseLayer = "Animations/Effect9_Headset.chroma";
+            ChromaAnimationAPI.CloseAnimationName(baseLayer);
+            ChromaAnimationAPI.GetAnimation(baseLayer);
+            ChromaAnimationAPI.OverrideFrameDurationName(baseLayer, 0.033f);
+            ChromaAnimationAPI.PlayAnimationName(baseLayer, false);
+        }
+        void ShowEffect9Mousepad()
+        {
+            string baseLayer = "Animations/Effect9_Mousepad.chroma";
+            ChromaAnimationAPI.CloseAnimationName(baseLayer);
+            ChromaAnimationAPI.GetAnimation(baseLayer);
+            ChromaAnimationAPI.OverrideFrameDurationName(baseLayer, 0.033f);
+            ChromaAnimationAPI.PlayAnimationName(baseLayer, false);
+        }
+        void ShowEffect9Mouse()
+        {
+            string baseLayer = "Animations/Effect9_Mouse.chroma";
+            ChromaAnimationAPI.CloseAnimationName(baseLayer);
+            ChromaAnimationAPI.GetAnimation(baseLayer);
+            ChromaAnimationAPI.OverrideFrameDurationName(baseLayer, 0.033f);
+            ChromaAnimationAPI.PlayAnimationName(baseLayer, false);
+        }
+        void ShowEffect9Keypad()
+        {
+            string baseLayer = "Animations/Effect9_Keypad.chroma";
+            ChromaAnimationAPI.CloseAnimationName(baseLayer);
+            ChromaAnimationAPI.GetAnimation(baseLayer);
+            ChromaAnimationAPI.OverrideFrameDurationName(baseLayer, 0.033f);
+            ChromaAnimationAPI.PlayAnimationName(baseLayer, false);
+        }
+        void ShowEffect10Keyboard()
+        {
+            string baseLayer = "Animations/Effect10_Keyboard.chroma";
+            ChromaAnimationAPI.CloseAnimationName(baseLayer);
+            ChromaAnimationAPI.GetAnimation(baseLayer);
+            SetupHotkeys(baseLayer);
+            ChromaAnimationAPI.SetChromaCustomFlagName(baseLayer, true);
+            ChromaAnimationAPI.OverrideFrameDurationName(baseLayer, 0.033f);
+            ChromaAnimationAPI.PlayAnimationName(baseLayer, false);
+        }
+        void ShowEffect10ChromaLink()
+        {
+            string baseLayer = "Animations/Effect10_ChromaLink.chroma";
+            ChromaAnimationAPI.CloseAnimationName(baseLayer);
+            ChromaAnimationAPI.GetAnimation(baseLayer);
+            ChromaAnimationAPI.OverrideFrameDurationName(baseLayer, 0.033f);
+            ChromaAnimationAPI.PlayAnimationName(baseLayer, false);
+        }
+        void ShowEffect10Headset()
+        {
+            string baseLayer = "Animations/Effect10_Headset.chroma";
+            ChromaAnimationAPI.CloseAnimationName(baseLayer);
+            ChromaAnimationAPI.GetAnimation(baseLayer);
+            ChromaAnimationAPI.OverrideFrameDurationName(baseLayer, 0.033f);
+            ChromaAnimationAPI.PlayAnimationName(baseLayer, false);
+        }
+        void ShowEffect10Mousepad()
+        {
+            string baseLayer = "Animations/Effect10_Mousepad.chroma";
+            ChromaAnimationAPI.CloseAnimationName(baseLayer);
+            ChromaAnimationAPI.GetAnimation(baseLayer);
+            ChromaAnimationAPI.OverrideFrameDurationName(baseLayer, 0.033f);
+            ChromaAnimationAPI.PlayAnimationName(baseLayer, false);
+        }
+        void ShowEffect10Mouse()
+        {
+            string baseLayer = "Animations/Effect10_Mouse.chroma";
+            ChromaAnimationAPI.CloseAnimationName(baseLayer);
+            ChromaAnimationAPI.GetAnimation(baseLayer);
+            ChromaAnimationAPI.OverrideFrameDurationName(baseLayer, 0.033f);
+            ChromaAnimationAPI.PlayAnimationName(baseLayer, false);
+        }
+        void ShowEffect10Keypad()
+        {
+            string baseLayer = "Animations/Effect10_Keypad.chroma";
+            ChromaAnimationAPI.CloseAnimationName(baseLayer);
+            ChromaAnimationAPI.GetAnimation(baseLayer);
+            ChromaAnimationAPI.OverrideFrameDurationName(baseLayer, 0.033f);
+            ChromaAnimationAPI.PlayAnimationName(baseLayer, false);
+        }
+        void ShowEffect11Keyboard()
+        {
+            string baseLayer = "Animations/Effect11_Keyboard.chroma";
+            ChromaAnimationAPI.CloseAnimationName(baseLayer);
+            ChromaAnimationAPI.GetAnimation(baseLayer);
+            ChromaAnimationAPI.ReduceFramesName(baseLayer, 2);
+            int color1 = ChromaAnimationAPI.GetRGB(69, 12, 69);
+            int color2 = ChromaAnimationAPI.GetRGB(255, 255, 0);
+            ChromaAnimationAPI.MultiplyTargetColorLerpAllFramesName(baseLayer, color1, color2);
+            SetupHotkeys(baseLayer);
+            ChromaAnimationAPI.SetChromaCustomFlagName(baseLayer, true);
+            ChromaAnimationAPI.OverrideFrameDurationName(baseLayer, 0.033f);
+            ChromaAnimationAPI.PlayAnimationName(baseLayer, false);
+        }
+        void ShowEffect11ChromaLink()
+        {
+            string baseLayer = "Animations/Effect11_ChromaLink.chroma";
+            ChromaAnimationAPI.CloseAnimationName(baseLayer);
+            ChromaAnimationAPI.GetAnimation(baseLayer);
+            ChromaAnimationAPI.ReduceFramesName(baseLayer, 2);
+            int color1 = ChromaAnimationAPI.GetRGB(69, 12, 69);
+            int color2 = ChromaAnimationAPI.GetRGB(255, 255, 0);
+            ChromaAnimationAPI.MultiplyTargetColorLerpAllFramesName(baseLayer, color1, color2);
+            ChromaAnimationAPI.OverrideFrameDurationName(baseLayer, 0.033f);
+            ChromaAnimationAPI.PlayAnimationName(baseLayer, false);
+        }
+        void ShowEffect11Headset()
+        {
+            string baseLayer = "Animations/Effect11_Headset.chroma";
+            ChromaAnimationAPI.CloseAnimationName(baseLayer);
+            ChromaAnimationAPI.GetAnimation(baseLayer);
+            ChromaAnimationAPI.ReduceFramesName(baseLayer, 2);
+            int color1 = ChromaAnimationAPI.GetRGB(69, 12, 69);
+            int color2 = ChromaAnimationAPI.GetRGB(255, 255, 0);
+            ChromaAnimationAPI.MultiplyTargetColorLerpAllFramesName(baseLayer, color1, color2);
+            ChromaAnimationAPI.OverrideFrameDurationName(baseLayer, 0.033f);
+            ChromaAnimationAPI.PlayAnimationName(baseLayer, false);
+        }
+        void ShowEffect11Mousepad()
+        {
+            string baseLayer = "Animations/Effect11_Mousepad.chroma";
+            ChromaAnimationAPI.CloseAnimationName(baseLayer);
+            ChromaAnimationAPI.GetAnimation(baseLayer);
+            ChromaAnimationAPI.ReduceFramesName(baseLayer, 2);
+            int color1 = ChromaAnimationAPI.GetRGB(69, 12, 69);
+            int color2 = ChromaAnimationAPI.GetRGB(255, 255, 0);
+            ChromaAnimationAPI.MultiplyTargetColorLerpAllFramesName(baseLayer, color1, color2);
+            ChromaAnimationAPI.OverrideFrameDurationName(baseLayer, 0.033f);
+            ChromaAnimationAPI.PlayAnimationName(baseLayer, false);
+        }
+        void ShowEffect11Mouse()
+        {
+            string baseLayer = "Animations/Effect11_Mouse.chroma";
+            ChromaAnimationAPI.CloseAnimationName(baseLayer);
+            ChromaAnimationAPI.GetAnimation(baseLayer);
+            ChromaAnimationAPI.ReduceFramesName(baseLayer, 2);
+            int color1 = ChromaAnimationAPI.GetRGB(69, 12, 69);
+            int color2 = ChromaAnimationAPI.GetRGB(255, 255, 0);
+            ChromaAnimationAPI.MultiplyTargetColorLerpAllFramesName(baseLayer, color1, color2);
+            ChromaAnimationAPI.OverrideFrameDurationName(baseLayer, 0.033f);
+            ChromaAnimationAPI.PlayAnimationName(baseLayer, false);
+        }
+        void ShowEffect11Keypad()
+        {
+            string baseLayer = "Animations/Effect11_Keypad.chroma";
+            ChromaAnimationAPI.CloseAnimationName(baseLayer);
+            ChromaAnimationAPI.GetAnimation(baseLayer);
+            ChromaAnimationAPI.ReduceFramesName(baseLayer, 2);
+            int color1 = ChromaAnimationAPI.GetRGB(69, 12, 69);
+            int color2 = ChromaAnimationAPI.GetRGB(255, 255, 0);
+            ChromaAnimationAPI.MultiplyTargetColorLerpAllFramesName(baseLayer, color1, color2);
+            ChromaAnimationAPI.OverrideFrameDurationName(baseLayer, 0.033f);
+            ChromaAnimationAPI.PlayAnimationName(baseLayer, false);
+        }
+        void ShowEffect12Keyboard()
+        {
+            string baseLayer = "Animations/Effect12_Keyboard.chroma";
+            ChromaAnimationAPI.CloseAnimationName(baseLayer);
+            ChromaAnimationAPI.GetAnimation(baseLayer);
+            SetupHotkeys(baseLayer);
+            ChromaAnimationAPI.SetChromaCustomFlagName(baseLayer, true);
+            ChromaAnimationAPI.OverrideFrameDurationName(baseLayer, 0.033f);
+            ChromaAnimationAPI.PlayAnimationName(baseLayer, false);
+        }
+        void ShowEffect12ChromaLink()
+        {
+            string baseLayer = "Animations/Effect12_ChromaLink.chroma";
+            ChromaAnimationAPI.CloseAnimationName(baseLayer);
+            ChromaAnimationAPI.GetAnimation(baseLayer);
+            ChromaAnimationAPI.OverrideFrameDurationName(baseLayer, 0.033f);
+            ChromaAnimationAPI.PlayAnimationName(baseLayer, false);
+        }
+        void ShowEffect12Headset()
+        {
+            string baseLayer = "Animations/Effect12_Headset.chroma";
+            ChromaAnimationAPI.CloseAnimationName(baseLayer);
+            ChromaAnimationAPI.GetAnimation(baseLayer);
+            ChromaAnimationAPI.OverrideFrameDurationName(baseLayer, 0.033f);
+            ChromaAnimationAPI.PlayAnimationName(baseLayer, false);
+        }
+        void ShowEffect12Mousepad()
+        {
+            string baseLayer = "Animations/Effect12_Mousepad.chroma";
+            ChromaAnimationAPI.CloseAnimationName(baseLayer);
+            ChromaAnimationAPI.GetAnimation(baseLayer);
+            ChromaAnimationAPI.OverrideFrameDurationName(baseLayer, 0.033f);
+            ChromaAnimationAPI.PlayAnimationName(baseLayer, false);
+        }
+        void ShowEffect12Mouse()
+        {
+            string baseLayer = "Animations/Effect12_Mouse.chroma";
+            ChromaAnimationAPI.CloseAnimationName(baseLayer);
+            ChromaAnimationAPI.GetAnimation(baseLayer);
+            ChromaAnimationAPI.OverrideFrameDurationName(baseLayer, 0.033f);
+            ChromaAnimationAPI.PlayAnimationName(baseLayer, false);
+        }
+        void ShowEffect12Keypad()
+        {
+            string baseLayer = "Animations/Effect12_Keypad.chroma";
+            ChromaAnimationAPI.CloseAnimationName(baseLayer);
+            ChromaAnimationAPI.GetAnimation(baseLayer);
+            ChromaAnimationAPI.OverrideFrameDurationName(baseLayer, 0.033f);
+            ChromaAnimationAPI.PlayAnimationName(baseLayer, false);
+        }
+        void ShowEffect13Keyboard()
+        {
+            string baseLayer = "Animations/Effect13_Keyboard.chroma";
+            ChromaAnimationAPI.CloseAnimationName(baseLayer);
+            ChromaAnimationAPI.GetAnimation(baseLayer);
+            ChromaAnimationAPI.DuplicateFramesName(baseLayer);
+            int color1 = ChromaAnimationAPI.GetRGB(0, 0, 0);
+            int color2 = ChromaAnimationAPI.GetRGB(204, 204, 0);
+            ChromaAnimationAPI.MultiplyTargetColorLerpAllFramesName(baseLayer, color1, color2);
+            SetupHotkeys(baseLayer);
+            ChromaAnimationAPI.SetChromaCustomFlagName(baseLayer, true);
+            ChromaAnimationAPI.OverrideFrameDurationName(baseLayer, 0.033f);
+            ChromaAnimationAPI.PlayAnimationName(baseLayer, false);
+        }
+        void ShowEffect13ChromaLink()
+        {
+            string baseLayer = "Animations/Effect13_ChromaLink.chroma";
+            ChromaAnimationAPI.CloseAnimationName(baseLayer);
+            ChromaAnimationAPI.GetAnimation(baseLayer);
+            ChromaAnimationAPI.DuplicateFramesName(baseLayer);
+            int color1 = ChromaAnimationAPI.GetRGB(0, 0, 0);
+            int color2 = ChromaAnimationAPI.GetRGB(204, 204, 0);
+            ChromaAnimationAPI.MultiplyTargetColorLerpAllFramesName(baseLayer, color1, color2);
+            ChromaAnimationAPI.OverrideFrameDurationName(baseLayer, 0.033f);
+            ChromaAnimationAPI.PlayAnimationName(baseLayer, false);
+        }
+        void ShowEffect13Headset()
+        {
+            string baseLayer = "Animations/Effect13_Headset.chroma";
+            ChromaAnimationAPI.CloseAnimationName(baseLayer);
+            ChromaAnimationAPI.GetAnimation(baseLayer);
+            ChromaAnimationAPI.DuplicateFramesName(baseLayer);
+            int color1 = ChromaAnimationAPI.GetRGB(0, 0, 0);
+            int color2 = ChromaAnimationAPI.GetRGB(204, 204, 0);
+            ChromaAnimationAPI.MultiplyTargetColorLerpAllFramesName(baseLayer, color1, color2);
+            ChromaAnimationAPI.OverrideFrameDurationName(baseLayer, 0.033f);
+            ChromaAnimationAPI.PlayAnimationName(baseLayer, false);
+        }
+        void ShowEffect13Mousepad()
+        {
+            string baseLayer = "Animations/Effect13_Mousepad.chroma";
+            ChromaAnimationAPI.CloseAnimationName(baseLayer);
+            ChromaAnimationAPI.GetAnimation(baseLayer);
+            ChromaAnimationAPI.DuplicateFramesName(baseLayer);
+            int color1 = ChromaAnimationAPI.GetRGB(0, 0, 0);
+            int color2 = ChromaAnimationAPI.GetRGB(204, 204, 0);
+            ChromaAnimationAPI.MultiplyTargetColorLerpAllFramesName(baseLayer, color1, color2);
+            ChromaAnimationAPI.OverrideFrameDurationName(baseLayer, 0.033f);
+            ChromaAnimationAPI.PlayAnimationName(baseLayer, false);
+        }
+        void ShowEffect13Mouse()
+        {
+            string baseLayer = "Animations/Effect13_Mouse.chroma";
+            ChromaAnimationAPI.CloseAnimationName(baseLayer);
+            ChromaAnimationAPI.GetAnimation(baseLayer);
+            ChromaAnimationAPI.DuplicateFramesName(baseLayer);
+            int color1 = ChromaAnimationAPI.GetRGB(0, 0, 0);
+            int color2 = ChromaAnimationAPI.GetRGB(204, 204, 0);
+            ChromaAnimationAPI.MultiplyTargetColorLerpAllFramesName(baseLayer, color1, color2);
+            ChromaAnimationAPI.OverrideFrameDurationName(baseLayer, 0.033f);
+            ChromaAnimationAPI.PlayAnimationName(baseLayer, false);
+        }
+        void ShowEffect13Keypad()
+        {
+            string baseLayer = "Animations/Effect13_Keypad.chroma";
+            ChromaAnimationAPI.CloseAnimationName(baseLayer);
+            ChromaAnimationAPI.GetAnimation(baseLayer);
+            ChromaAnimationAPI.DuplicateFramesName(baseLayer);
+            int color1 = ChromaAnimationAPI.GetRGB(0, 0, 0);
+            int color2 = ChromaAnimationAPI.GetRGB(204, 204, 0);
+            ChromaAnimationAPI.MultiplyTargetColorLerpAllFramesName(baseLayer, color1, color2);
+            ChromaAnimationAPI.OverrideFrameDurationName(baseLayer, 0.033f);
+            ChromaAnimationAPI.PlayAnimationName(baseLayer, false);
+        }
+        void ShowEffect14Keyboard()
+        {
+            string baseLayer = "Animations/Effect14_Keyboard.chroma";
+            ChromaAnimationAPI.CloseAnimationName(baseLayer);
+            ChromaAnimationAPI.GetAnimation(baseLayer);
+            SetupHotkeys(baseLayer);
+            ChromaAnimationAPI.SetChromaCustomFlagName(baseLayer, true);
+            ChromaAnimationAPI.OverrideFrameDurationName(baseLayer, 0.033f);
+            ChromaAnimationAPI.PlayAnimationName(baseLayer, false);
+        }
+        void ShowEffect14ChromaLink()
+        {
+            string baseLayer = "Animations/Effect14_ChromaLink.chroma";
+            ChromaAnimationAPI.CloseAnimationName(baseLayer);
+            ChromaAnimationAPI.GetAnimation(baseLayer);
+            ChromaAnimationAPI.OverrideFrameDurationName(baseLayer, 0.033f);
+            ChromaAnimationAPI.PlayAnimationName(baseLayer, false);
+        }
+        void ShowEffect14Headset()
+        {
+            string baseLayer = "Animations/Effect14_Headset.chroma";
+            ChromaAnimationAPI.CloseAnimationName(baseLayer);
+            ChromaAnimationAPI.GetAnimation(baseLayer);
+            ChromaAnimationAPI.OverrideFrameDurationName(baseLayer, 0.033f);
+            ChromaAnimationAPI.PlayAnimationName(baseLayer, false);
+        }
+        void ShowEffect14Mousepad()
+        {
+            string baseLayer = "Animations/Effect14_Mousepad.chroma";
+            ChromaAnimationAPI.CloseAnimationName(baseLayer);
+            ChromaAnimationAPI.GetAnimation(baseLayer);
+            ChromaAnimationAPI.OverrideFrameDurationName(baseLayer, 0.033f);
+            ChromaAnimationAPI.PlayAnimationName(baseLayer, false);
+        }
+        void ShowEffect14Mouse()
+        {
+            string baseLayer = "Animations/Effect14_Mouse.chroma";
+            ChromaAnimationAPI.CloseAnimationName(baseLayer);
+            ChromaAnimationAPI.GetAnimation(baseLayer);
+            ChromaAnimationAPI.OverrideFrameDurationName(baseLayer, 0.033f);
+            ChromaAnimationAPI.PlayAnimationName(baseLayer, false);
+        }
+        void ShowEffect14Keypad()
+        {
+            string baseLayer = "Animations/Effect14_Keypad.chroma";
+            ChromaAnimationAPI.CloseAnimationName(baseLayer);
+            ChromaAnimationAPI.GetAnimation(baseLayer);
+            ChromaAnimationAPI.OverrideFrameDurationName(baseLayer, 0.033f);
+            ChromaAnimationAPI.PlayAnimationName(baseLayer, false);
+        }
+        void ShowEffect15Keyboard()
+        {
+            string baseLayer = "Animations/Effect15_Keyboard.chroma";
+            ChromaAnimationAPI.CloseAnimationName(baseLayer);
+            ChromaAnimationAPI.GetAnimation(baseLayer);
+            SetupHotkeys(baseLayer);
+            ChromaAnimationAPI.SetChromaCustomFlagName(baseLayer, true);
+            ChromaAnimationAPI.OverrideFrameDurationName(baseLayer, 0.033f);
+            ChromaAnimationAPI.PlayAnimationName(baseLayer, false);
+        }
+        void ShowEffect15ChromaLink()
+        {
+            string baseLayer = "Animations/Effect15_ChromaLink.chroma";
+            ChromaAnimationAPI.CloseAnimationName(baseLayer);
+            ChromaAnimationAPI.GetAnimation(baseLayer);
+            ChromaAnimationAPI.OverrideFrameDurationName(baseLayer, 0.033f);
+            ChromaAnimationAPI.PlayAnimationName(baseLayer, false);
+        }
+        void ShowEffect15Headset()
+        {
+            string baseLayer = "Animations/Effect15_Headset.chroma";
+            ChromaAnimationAPI.CloseAnimationName(baseLayer);
+            ChromaAnimationAPI.GetAnimation(baseLayer);
+            ChromaAnimationAPI.OverrideFrameDurationName(baseLayer, 0.033f);
+            ChromaAnimationAPI.PlayAnimationName(baseLayer, false);
+        }
+        void ShowEffect15Mousepad()
+        {
+            string baseLayer = "Animations/Effect15_Mousepad.chroma";
+            ChromaAnimationAPI.CloseAnimationName(baseLayer);
+            ChromaAnimationAPI.GetAnimation(baseLayer);
+            ChromaAnimationAPI.OverrideFrameDurationName(baseLayer, 0.033f);
+            ChromaAnimationAPI.PlayAnimationName(baseLayer, false);
+        }
+        void ShowEffect15Mouse()
+        {
+            string baseLayer = "Animations/Effect15_Mouse.chroma";
+            ChromaAnimationAPI.CloseAnimationName(baseLayer);
+            ChromaAnimationAPI.GetAnimation(baseLayer);
+            ChromaAnimationAPI.OverrideFrameDurationName(baseLayer, 0.033f);
+            ChromaAnimationAPI.PlayAnimationName(baseLayer, false);
+        }
+        void ShowEffect15Keypad()
+        {
+            string baseLayer = "Animations/Effect15_Keypad.chroma";
+            ChromaAnimationAPI.CloseAnimationName(baseLayer);
+            ChromaAnimationAPI.GetAnimation(baseLayer);
+            ChromaAnimationAPI.OverrideFrameDurationName(baseLayer, 0.033f);
+            ChromaAnimationAPI.PlayAnimationName(baseLayer, false);
+        }
+        #endregion
     }
 }
