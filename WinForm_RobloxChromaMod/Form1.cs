@@ -376,6 +376,7 @@ namespace WinForm_RobloxChromaMod
                     if (!GetPlayerState("Jumping"))
                     {
                         SetPlayerState("Jumping", true);
+
                         ShowJumpingChromaLink();
                         ShowJumpingHeadset();
                         ShowJumpingKeyboard();
@@ -470,9 +471,6 @@ namespace WinForm_RobloxChromaMod
                     {
                         SetPlayerState("Seated", true);
 
-                        SetPlayerState("Climbing", false);
-                        SetPlayerState("Running", false);
-                        SetPlayerState("Swimming", false);
                         ShowEffect3ChromaLink();
                         ShowEffect3Headset();
                         ShowEffect3Keyboard();

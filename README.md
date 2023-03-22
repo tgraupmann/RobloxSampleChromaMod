@@ -151,7 +151,9 @@ while wait(0.033) do
 	
 	-- button state
 	red = 0
-	if (_G.ChromaEffect == "BtnEffect1") then
+	if (_G.ChromaEffect == "BtnEffectNone") then
+		red = 0
+	elseif (_G.ChromaEffect == "BtnEffect1") then
 		red = 1
 	elseif (_G.ChromaEffect == "BtnEffect2") then
 		red = 2
