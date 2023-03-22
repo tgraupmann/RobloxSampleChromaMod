@@ -1,5 +1,9 @@
 ﻿using ChromaSDK;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using System;
+using System.Drawing;
+using System.IO;
 using System.Threading;
 using System.Windows.Forms;
 
@@ -7,6 +11,83 @@ namespace WinForm_RobloxChromaMod
 {
     static class Program
     {
+        const string CONFIG_NAME = "config.json";
+
+        #region Load Configuration
+
+        private static void LoadConfiguration()
+        {
+            try
+            {
+                FileInfo fi = new FileInfo(CONFIG_NAME);
+                if (!fi.Exists)
+                {
+                    return;
+                }
+                using (FileStream fs = File.Open(CONFIG_NAME, FileMode.Open, FileAccess.Read, FileShare.ReadWrite))
+                {
+                    using (StreamReader sr = new StreamReader(fs))
+                    {
+                        using (JsonTextReader reader = new JsonTextReader(sr))
+                        {
+                            JObject json = (JObject)JToken.ReadFrom(reader);
+                            Form1._sMouseMoveStart = new Point(
+                                json.GetValue("start-x").ToObject<int>(),
+                                json.GetValue("start-y").ToObject<int>());
+
+                            Form1._sMouseMoveEnd = new Point(
+                                json.GetValue("end-x").ToObject<int>(),
+                                json.GetValue("end-y").ToObject<int>());
+
+                            Form1._sMouseMoveOffset = new Point(
+                                json.GetValue("offset-x").ToObject<int>(),
+                                json.GetValue("offset-y").ToObject<int>());
+                        }
+                    }
+                }
+            }
+            catch
+            {
+
+            }
+        }
+
+        #endregion
+
+        #region Save Configuration
+
+        private static void SaveConfiguration()
+        {
+            try
+            {
+                using (FileStream fs = File.Open(CONFIG_NAME, FileMode.OpenOrCreate, FileAccess.Write, FileShare.ReadWrite))
+                {
+                    using (StreamWriter sw = new StreamWriter(fs))
+                    {
+                        using (JsonTextWriter writer = new JsonTextWriter(sw))
+                        {
+                            JObject json = new JObject(
+                                new JProperty("start-x", Form1._sMouseMoveStart.X),
+                                new JProperty("start-y", Form1._sMouseMoveStart.Y),
+                                new JProperty("end-x", Form1._sMouseMoveEnd.X),
+                                new JProperty("end-y", Form1._sMouseMoveEnd.Y),
+                                new JProperty("offset-x", Form1._sMouseMoveOffset.X),
+                                new JProperty("offset-y", Form1._sMouseMoveOffset.Y));
+                            json.WriteTo(writer);
+                            writer.Flush();
+                        }
+                        sw.Flush();
+                    }
+                }
+            }
+            catch
+            {
+
+            }
+        }
+
+        #endregion
+
         /// <summary>
         /// The main entry point for the application.
         /// </summary>
@@ -48,10 +129,13 @@ namespace WinForm_RobloxChromaMod
                     return;
             }
 
+            LoadConfiguration();
 
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new Form1());
+
+            SaveConfiguration();
 
             if (ChromaAnimationAPI.IsInitialized())
             {

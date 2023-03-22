@@ -12,9 +12,9 @@ namespace WinForm_RobloxChromaMod
     {
         bool _mMouseDown = false;
         bool _mMouseOver = false;
-        Point _mMouseMoveStart = Point.Empty;
-        Point _mMouseMoveEnd = Point.Empty;
-        Point _mMouseMoveOffset = Point.Empty;
+        public static Point _sMouseMoveStart = Point.Empty;
+        public static Point _sMouseMoveEnd = Point.Empty;
+        public static Point _sMouseMoveOffset = Point.Empty;
 
         Image _mCaptureImage = null;
 
@@ -25,6 +25,18 @@ namespace WinForm_RobloxChromaMod
             InitializeComponent();
         }
 
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            UpdateDebugLabels();
+        }
+
+        private void UpdateDebugLabels()
+        {
+            _mDebugLabel1.Text = string.Format("Start {0},{1}", _sMouseMoveStart.X, _sMouseMoveStart.Y);
+            _mDebugLabel2.Text = string.Format("End {0},{1}", _sMouseMoveEnd.X, _sMouseMoveEnd.Y);
+            _mDebugLabel3.Text = string.Format("Offset {0},{1}", _sMouseMoveOffset.X, _sMouseMoveOffset.Y);
+        }
+
         #region Input Events
 
         private void PictureMouseDown(object sender, MouseEventArgs e)
@@ -32,9 +44,9 @@ namespace WinForm_RobloxChromaMod
             if (!_mMouseDown && _mMouseOver)
             {
                 _mMouseDown = true;
-                _mMouseMoveStart = new Point(e.X + _mMouseMoveOffset.X, e.Y + _mMouseMoveOffset.Y);
-                _mMouseMoveOffset = Point.Empty;
-                _mDebugLabel1.Text = string.Format("Start {0},{1}", _mMouseMoveStart.X, _mMouseMoveStart.Y);
+                _sMouseMoveStart = new Point(e.X + _sMouseMoveOffset.X, e.Y + _sMouseMoveOffset.Y);
+                _sMouseMoveOffset = Point.Empty;
+                UpdateDebugLabels();
             }
         }
 
@@ -42,9 +54,9 @@ namespace WinForm_RobloxChromaMod
         {
             if (_mMouseDown)
             {
-                _mMouseMoveEnd = new Point(e.X + _mMouseMoveOffset.X, e.Y + _mMouseMoveOffset.Y);
-                _mMouseMoveOffset = new Point(_mMouseMoveStart.X - _mMouseMoveEnd.X, _mMouseMoveStart.Y - _mMouseMoveEnd.Y);
-                _mDebugLabel3.Text = string.Format("Offset {0},{1}", _mMouseMoveOffset.X, _mMouseMoveOffset.Y);
+                _sMouseMoveEnd = new Point(e.X + _sMouseMoveOffset.X, e.Y + _sMouseMoveOffset.Y);
+                _sMouseMoveOffset = new Point(_sMouseMoveStart.X - _sMouseMoveEnd.X, _sMouseMoveStart.Y - _sMouseMoveEnd.Y);
+                UpdateDebugLabels();
             }
             _mMouseDown = false;
         }
@@ -53,8 +65,8 @@ namespace WinForm_RobloxChromaMod
         {
             if (_mMouseDown)
             {
-                _mMouseMoveEnd = new Point(e.X + _mMouseMoveOffset.X, e.Y + _mMouseMoveOffset.Y);
-                _mDebugLabel2.Text = string.Format("End {0},{1}", _mMouseMoveEnd.X, _mMouseMoveEnd.Y);
+                _sMouseMoveEnd = new Point(e.X + _sMouseMoveOffset.X, e.Y + _sMouseMoveOffset.Y);
+                UpdateDebugLabels();
             }
         }
 
@@ -229,8 +241,8 @@ namespace WinForm_RobloxChromaMod
                 // do some cropping
                 Graphics g = _mPictureBox.CreateGraphics();
                 Rectangle rectCropArea = new Rectangle(
-                    _mMouseMoveStart.X - _mMouseMoveEnd.X,
-                    _mMouseMoveStart.Y - _mMouseMoveEnd.Y,
+                    _sMouseMoveStart.X - _sMouseMoveEnd.X,
+                    _sMouseMoveStart.Y - _sMouseMoveEnd.Y,
                     _mPictureBox.Width,
                     _mPictureBox.Height);
                 g.DrawImage(_mCaptureImage, new Rectangle(0, 0, _mPictureBox.Width, _mPictureBox.Height), rectCropArea, GraphicsUnit.Pixel);

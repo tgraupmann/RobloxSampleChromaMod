@@ -139,6 +139,7 @@
             this.Name = "Form1";
             this.Text = "Roblox Companion App";
             this.TopMost = true;
+            this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this._mPictureBox)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
