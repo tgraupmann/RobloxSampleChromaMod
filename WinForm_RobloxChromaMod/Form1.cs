@@ -5,12 +5,16 @@ using ChromaSDK;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Threading;
 using System.Windows.Forms;
+using static ChromaSDK.ChromaAnimationAPI;
 
 namespace WinForm_RobloxChromaMod
 {
     public partial class Form1 : Form
     {
+        bool _mWaitForExit = true;
+
         bool _mMouseDown = false;
         bool _mMouseOver = false;
         public static Point _sMouseMoveStart = Point.Empty;
@@ -19,7 +23,20 @@ namespace WinForm_RobloxChromaMod
 
         Image _mCaptureImage = null;
 
+        FChromaSDKScene _mScene = null;
+        Dictionary<string, int> _mEffectIndexes = new Dictionary<string, int>();
+        bool _mExtended = false;
+        int _mAmbientColor = 0;
+
         string _mPreviousEffect = string.Empty;
+
+        const string ANIMATION_DEAD = "Animations/Dead";
+        const string ANIMATION_CLIMBING = "Animations/Climbing";
+        const string ANIMATION_FLYING = "Animations/Flying";
+        const string ANIMATION_RUNNING = "Animations/Running";
+        const string ANIMATION_SEATED = "Animations/Seated";
+        const string ANIMATION_SWIMMING = "Animations/Swimming";
+        const string ANIMATION_JUMPING = "Animations/Jumping";
 
         public Form1()
         {
@@ -29,6 +46,105 @@ namespace WinForm_RobloxChromaMod
         private void Form1_Load(object sender, EventArgs e)
         {
             UpdateDebugLabels();
+
+            // setup scene
+            _mScene = new FChromaSDKScene();
+
+            const int SPEED_MULTIPLIER = 3;
+
+            FChromaSDKSceneEffect effect;
+
+            for (int animation = 1; animation <= 15; ++animation)
+            {
+                effect = new FChromaSDKSceneEffect();
+                effect._mAnimation = string.Format("Animations/Effect{0}", animation);
+                effect._mSpeed = SPEED_MULTIPLIER;
+                effect._mBlend = EChromaSDKSceneBlend.SB_None;
+                effect._mState = false;
+                effect._mMode = EChromaSDKSceneMode.SM_Add;
+                _mScene._mEffects.Add(effect);
+                _mEffectIndexes[effect._mAnimation] = (int)_mScene._mEffects.Count - 1;
+            }
+
+            // climbing
+            effect = new FChromaSDKSceneEffect();
+            effect._mAnimation = ANIMATION_CLIMBING;
+            effect._mSpeed = SPEED_MULTIPLIER;
+            effect._mBlend = EChromaSDKSceneBlend.SB_None;
+            effect._mState = false;
+            effect._mMode = EChromaSDKSceneMode.SM_Add;
+            _mScene._mEffects.Add(effect);
+            _mEffectIndexes[effect._mAnimation] = (int)_mScene._mEffects.Count - 1;
+
+            // flying
+            effect = new FChromaSDKSceneEffect();
+            effect._mAnimation = ANIMATION_FLYING;
+            effect._mSpeed = SPEED_MULTIPLIER;
+            effect._mBlend = EChromaSDKSceneBlend.SB_None;
+            effect._mState = false;
+            effect._mMode = EChromaSDKSceneMode.SM_Add;
+            _mScene._mEffects.Add(effect);
+            _mEffectIndexes[effect._mAnimation] = (int)_mScene._mEffects.Count - 1;
+
+            // running
+            effect = new FChromaSDKSceneEffect();
+            effect._mAnimation = ANIMATION_RUNNING;
+            effect._mSpeed = SPEED_MULTIPLIER;
+            effect._mBlend = EChromaSDKSceneBlend.SB_None;
+            effect._mState = false;
+            effect._mMode = EChromaSDKSceneMode.SM_Add;
+            _mScene._mEffects.Add(effect);
+            _mEffectIndexes[effect._mAnimation] = (int)_mScene._mEffects.Count - 1;
+
+            // seated
+            effect = new FChromaSDKSceneEffect();
+            effect._mAnimation = ANIMATION_SEATED;
+            effect._mSpeed = SPEED_MULTIPLIER;
+            effect._mBlend = EChromaSDKSceneBlend.SB_None;
+            effect._mState = false;
+            effect._mMode = EChromaSDKSceneMode.SM_Add;
+            _mScene._mEffects.Add(effect);
+            _mEffectIndexes[effect._mAnimation] = (int)_mScene._mEffects.Count - 1;
+
+            // swimming
+            effect = new FChromaSDKSceneEffect();
+            effect._mAnimation = ANIMATION_SWIMMING;
+            effect._mSpeed = SPEED_MULTIPLIER;
+            effect._mBlend = EChromaSDKSceneBlend.SB_None;
+            effect._mState = false;
+            effect._mMode = EChromaSDKSceneMode.SM_Add;
+            _mScene._mEffects.Add(effect);
+            _mEffectIndexes[effect._mAnimation] = (int)_mScene._mEffects.Count - 1;
+
+            // jumping
+            effect = new FChromaSDKSceneEffect();
+            effect._mAnimation = ANIMATION_JUMPING;
+            effect._mSpeed = SPEED_MULTIPLIER;
+            effect._mBlend = EChromaSDKSceneBlend.SB_None;
+            effect._mState = false;
+            effect._mMode = EChromaSDKSceneMode.SM_Add;
+            _mScene._mEffects.Add(effect);
+            _mEffectIndexes[effect._mAnimation] = (int)_mScene._mEffects.Count - 1;
+
+            // dead
+            effect = new FChromaSDKSceneEffect();
+            effect._mAnimation = ANIMATION_DEAD;
+            effect._mSpeed = SPEED_MULTIPLIER;
+            effect._mBlend = EChromaSDKSceneBlend.SB_None;
+            effect._mState = false;
+            effect._mMode = EChromaSDKSceneMode.SM_Add;
+            _mScene._mEffects.Add(effect);
+            _mEffectIndexes[effect._mAnimation] = (int)_mScene._mEffects.Count - 1;
+
+            // Start game loop
+            ThreadStart ts = new ThreadStart(GameLoop);
+            Thread thread = new Thread(ts);
+            thread.Start();
+        }
+
+        private void Form1_FormClosed(object sender, System.Windows.Forms.FormClosedEventArgs e)
+        {
+            _mWaitForExit = false;
         }
 
         private void UpdateDebugLabels()
@@ -89,134 +205,36 @@ namespace WinForm_RobloxChromaMod
             {
                 _mPreviousEffect = effectName;
                 _mLabelButtonEffect.Text = effectName;
-                /*
-                if (effectName != "None")
+
+                for (int animation = 1; animation <= 15; ++animation)
                 {
-                    string animationName = "Animations/" + effectName;
-                    ChromaAnimationAPI.PlayComposite(animationName, false);
+                    string animationName = string.Format("Animations/Effect{0}", animation);
+                    int effectIndex = _mEffectIndexes[animationName];
+                    _mScene._mEffects[effectIndex]._mState = false;
                 }
-                */
+
                 switch (effectName)
                 {
                     case "Effect1":
-                        ShowEffect1ChromaLink();
-                        ShowEffect1Headset();
-                        ShowEffect1Keyboard();
-                        ShowEffect1Keypad();
-                        ShowEffect1Mousepad();
-                        ShowEffect1Mouse();
-                        break;
                     case "Effect2":
-                        ShowEffect2ChromaLink();
-                        ShowEffect2Headset();
-                        ShowEffect2Keyboard();
-                        ShowEffect2Keypad();
-                        ShowEffect2Mousepad();
-                        ShowEffect2Mouse();
-                        break;
                     case "Effect3":
-                        ShowEffect3ChromaLink();
-                        ShowEffect3Headset();
-                        ShowEffect3Keyboard();
-                        ShowEffect3Keypad();
-                        ShowEffect3Mousepad();
-                        ShowEffect3Mouse();
-                        break;
                     case "Effect4":
-                        ShowEffect4ChromaLink();
-                        ShowEffect4Headset();
-                        ShowEffect4Keyboard();
-                        ShowEffect4Keypad();
-                        ShowEffect4Mousepad();
-                        ShowEffect4Mouse();
-                        break;
                     case "Effect5":
-                        ShowEffect5ChromaLink();
-                        ShowEffect5Headset();
-                        ShowEffect5Keyboard();
-                        ShowEffect5Keypad();
-                        ShowEffect5Mousepad();
-                        ShowEffect5Mouse();
-                        break;
                     case "Effect6":
-                        ShowEffect6ChromaLink();
-                        ShowEffect6Headset();
-                        ShowEffect6Keyboard();
-                        ShowEffect6Keypad();
-                        ShowEffect6Mousepad();
-                        ShowEffect6Mouse();
-                        break;
                     case "Effect7":
-                        ShowEffect7ChromaLink();
-                        ShowEffect7Headset();
-                        ShowEffect7Keyboard();
-                        ShowEffect7Keypad();
-                        ShowEffect7Mousepad();
-                        ShowEffect7Mouse();
-                        break;
                     case "Effect8":
-                        ShowEffect8ChromaLink();
-                        ShowEffect8Headset();
-                        ShowEffect8Keyboard();
-                        ShowEffect8Keypad();
-                        ShowEffect8Mousepad();
-                        ShowEffect8Mouse();
-                        break;
                     case "Effect9":
-                        ShowEffect9ChromaLink();
-                        ShowEffect9Headset();
-                        ShowEffect9Keyboard();
-                        ShowEffect9Keypad();
-                        ShowEffect9Mousepad();
-                        ShowEffect9Mouse();
-                        break;
                     case "Effect10":
-                        ShowEffect10ChromaLink();
-                        ShowEffect10Headset();
-                        ShowEffect10Keyboard();
-                        ShowEffect10Keypad();
-                        ShowEffect10Mousepad();
-                        ShowEffect10Mouse();
-                        break;
                     case "Effect11":
-                        ShowEffect11ChromaLink();
-                        ShowEffect11Headset();
-                        ShowEffect11Keyboard();
-                        ShowEffect11Keypad();
-                        ShowEffect11Mousepad();
-                        ShowEffect11Mouse();
-                        break;
                     case "Effect12":
-                        ShowEffect12ChromaLink();
-                        ShowEffect12Headset();
-                        ShowEffect12Keyboard();
-                        ShowEffect12Keypad();
-                        ShowEffect12Mousepad();
-                        ShowEffect12Mouse();
-                        break;
                     case "Effect13":
-                        ShowEffect13ChromaLink();
-                        ShowEffect13Headset();
-                        ShowEffect13Keyboard();
-                        ShowEffect13Keypad();
-                        ShowEffect13Mousepad();
-                        ShowEffect13Mouse();
-                        break;
                     case "Effect14":
-                        ShowEffect14ChromaLink();
-                        ShowEffect14Headset();
-                        ShowEffect14Keyboard();
-                        ShowEffect14Keypad();
-                        ShowEffect14Mousepad();
-                        ShowEffect14Mouse();
-                        break;
                     case "Effect15":
-                        ShowEffect15ChromaLink();
-                        ShowEffect15Headset();
-                        ShowEffect15Keyboard();
-                        ShowEffect15Keypad();
-                        ShowEffect15Mousepad();
-                        ShowEffect15Mouse();
+                        {
+                            string animationName = string.Format("Animations/{0}", effectName);
+                            int effectIndex = _mEffectIndexes[animationName];
+                            _mScene._mEffects[effectIndex]._mState = true;
+                        }
                         break;
                 }
             }
@@ -278,6 +296,8 @@ namespace WinForm_RobloxChromaMod
                 bmp.Dispose();
                 _mCaptureImage.Dispose();
                 g.Dispose();
+
+                #region Button Effects
 
                 if (MatchColorRed(color, 1))
                 {
@@ -344,145 +364,44 @@ namespace WinForm_RobloxChromaMod
                     SetEffect("None");
                 }
 
-                const byte MASK_DEAD = 1;
-                const byte MASK_CLIMBING = 3;
-                const byte MASK_JUMPING = 7;
-                const byte MASK_FLYING = 15;
-                const byte MASK_RUNNING = 37;
-                const byte MASK_SWIMMING = 63;
-                const byte MASK_SEATED = 127;
+                #endregion Button Effects
 
-                if (MatchColorGeeenMask(color, MASK_DEAD))
-                {
-                    if (!GetPlayerState("Dead"))
-                    {
-                        SetPlayerState("Dead", true);
+                const byte MASK_DEAD = 0x1;
+                const byte MASK_CLIMBING = 0x1 << 1;
+                const byte MASK_JUMPING = 0x1 << 2;
+                const byte MASK_FLYING = 0x1 << 3;
+                const byte MASK_RUNNING = 0x1 << 4;
+                const byte MASK_SWIMMING = 0x1 << 5;
+                const byte MASK_SEATED = 0x1 << 6;
 
-                        ShowEffect5ChromaLink();
-                        ShowEffect5Headset();
-                        ShowEffect5Keyboard();
-                        ShowEffect5Keypad();
-                        ShowEffect5Mouse();
-                        ShowEffect5Mousepad();
-                    }
-                }
-                else
-                {
-                    SetPlayerState("Dead", false);
-                }
+                _mScene._mEffects[_mEffectIndexes[ANIMATION_DEAD]]._mState =
+                    MatchColorGeeenMask(color, MASK_DEAD);
 
-                if (MatchColorGeeenMask(color, MASK_JUMPING))
-                {
-                    if (!GetPlayerState("Jumping"))
-                    {
-                        SetPlayerState("Jumping", true);
+                _mScene._mEffects[_mEffectIndexes[ANIMATION_CLIMBING]]._mState =
+                    MatchColorGeeenMask(color, MASK_CLIMBING);
 
-                        ShowJumpingChromaLink();
-                        ShowJumpingHeadset();
-                        ShowJumpingKeyboard();
-                        ShowJumpingKeypad();
-                        ShowJumpingMousepad();
-                        ShowJumpingMouse();
-                    }
-                }
-                else
-                {
-                    SetPlayerState("Jumping", false);
-                }
+                _mScene._mEffects[_mEffectIndexes[ANIMATION_RUNNING]]._mState =
+                    MatchColorGeeenMask(color, MASK_RUNNING);
 
-                if (MatchColorGeeenMask(color, MASK_CLIMBING))
-                {
-                    if (!GetPlayerState("Climbing"))
-                    {
-                        SetPlayerState("Climbing", true);
-                        ShowClimbingChromaLink();
-                        ShowClimbingHeadset();
-                        ShowClimbingKeyboard();
-                        ShowClimbingKeypad();
-                        ShowClimbingMousepad();
-                        ShowClimbingMouse();
-                    }
-                }
-                else
-                {
-                    SetPlayerState("Climbing", false);
-                }
+                _mScene._mEffects[_mEffectIndexes[ANIMATION_FLYING]]._mState =
+                    MatchColorGeeenMask(color, MASK_FLYING);
 
-                if (MatchColorGeeenMask(color, MASK_FLYING))
-                {
-                    if (!GetPlayerState("Flying"))
-                    {
-                        SetPlayerState("Flying", true);
+                _mScene._mEffects[_mEffectIndexes[ANIMATION_SEATED]]._mState =
+                    MatchColorGeeenMask(color, MASK_SEATED);
 
-                        ShowEffect7ChromaLink();
-                        ShowEffect7Headset();
-                        ShowEffect7Keyboard();
-                        ShowEffect7Keypad();
-                        ShowEffect7Mouse();
-                        ShowEffect7Mousepad();
-                    }
-                }
-                else
-                {
-                    SetPlayerState("Flying", true);
-                }
+                _mScene._mEffects[_mEffectIndexes[ANIMATION_SWIMMING]]._mState =
+                    MatchColorGeeenMask(color, MASK_SWIMMING);
 
-                if (MatchColorGeeenMask(color, MASK_RUNNING))
-                {
-                    if (!GetPlayerState("Running"))
-                    {
-                        SetPlayerState("Running", true);
+                _mScene._mEffects[_mEffectIndexes[ANIMATION_JUMPING]]._mState =
+                    MatchColorGeeenMask(color, MASK_JUMPING); 
 
-                        ShowEffect7ChromaLink();
-                        ShowEffect7Headset();
-                        ShowEffect7Keyboard();
-                        ShowEffect7Keypad();
-                        ShowEffect7Mouse();
-                        ShowEffect7Mousepad();
-                    }
-                }
-                else
-                {
-                    SetPlayerState("Running", false);
-                }
-
-                if (MatchColorGeeenMask(color, MASK_SWIMMING))
-                {
-                    if (!GetPlayerState("Swimming"))
-                    {
-                        SetPlayerState("Swimming", true);
-
-                        ShowEffect4ChromaLink();
-                        ShowEffect4Headset();
-                        ShowEffect4Keyboard();
-                        ShowEffect4Keypad();
-                        ShowEffect4Mouse();
-                        ShowEffect4Mousepad();
-                    }
-                }
-                else
-                {
-                    SetPlayerState("Swimming", false);
-                }
-
-                if (MatchColorGeeenMask(color, MASK_SEATED))
-                {
-                    if (!GetPlayerState("Seated"))
-                    {
-                        SetPlayerState("Seated", true);
-
-                        ShowEffect3ChromaLink();
-                        ShowEffect3Headset();
-                        ShowEffect3Keyboard();
-                        ShowEffect3Keypad();
-                        ShowEffect3Mouse();
-                        ShowEffect3Mousepad();
-                    }
-                }
-                else
-                {
-                    SetPlayerState("Seated", false);
-                }
+                _mLblDebugDead.Text = string.Format("Dead: {0}", _mScene._mEffects[_mEffectIndexes[ANIMATION_DEAD]]._mState);
+                _mLblDebugClimbing.Text = string.Format("Climbing: {0}", _mScene._mEffects[_mEffectIndexes[ANIMATION_CLIMBING]]._mState);
+                _mLblDebugJumping.Text = string.Format("Jumping: {0}", _mScene._mEffects[_mEffectIndexes[ANIMATION_JUMPING]]._mState);
+                _mLblDebugFlying.Text = string.Format("Flying: {0}", _mScene._mEffects[_mEffectIndexes[ANIMATION_FLYING]]._mState);
+                _mLblDebugRunning.Text = string.Format("Running: {0}", _mScene._mEffects[_mEffectIndexes[ANIMATION_RUNNING]]._mState);
+                _mLblDebugSeated.Text = string.Format("Seated: {0}", _mScene._mEffects[_mEffectIndexes[ANIMATION_SEATED]]._mState);
+                _mLblDebugSwimming.Text = string.Format("Swimming: {0}", _mScene._mEffects[_mEffectIndexes[ANIMATION_SWIMMING]]._mState);
 
             }
             catch
@@ -1611,5 +1530,492 @@ namespace WinForm_RobloxChromaMod
         }
 
         #endregion
+
+
+        #region Blending
+
+        int HIBYTE(int a)
+        {
+            return (a & 0xFF00) >> 8;
+        }
+
+        int LOBYTE(int a)
+        {
+            return (a & 0x00FF);
+        }
+
+
+        int GetKeyColorIndex(int row, int column)
+        {
+            return ChromaAnimationAPI.GetMaxColumn(Device2D.Keyboard) * row + column;
+        }
+
+        void SetKeyColor(int[] colors, int rzkey, int color)
+        {
+            const int customFlag = 1 << 24;
+            int row = HIBYTE(rzkey);
+            int column = LOBYTE(rzkey);
+            colors[GetKeyColorIndex(row, column)] = color | customFlag;
+        }
+
+        void SetKeyColorRGB(int[] colors, int rzkey, int red, int green, int blue)
+        {
+            SetKeyColor(colors, rzkey, ChromaAnimationAPI.GetRGB(red, green, blue));
+        }
+
+        int GetColorArraySize1D(Device1D device)
+        {
+            int maxLeds = ChromaAnimationAPI.GetMaxLeds(device);
+            return maxLeds;
+        }
+
+        int GetColorArraySize2D(Device2D device)
+        {
+            int maxRow = ChromaAnimationAPI.GetMaxRow(device);
+            int maxColumn = ChromaAnimationAPI.GetMaxColumn(device);
+            return maxRow * maxColumn;
+        }
+
+        int MultiplyColor(int color1, int color2)
+        {
+            int redColor1 = color1 & 0xFF;
+            int greenColor1 = (color1 >> 8) & 0xFF;
+            int blueColor1 = (color1 >> 16) & 0xFF;
+
+            int redColor2 = color2 & 0xFF;
+            int greenColor2 = (color2 >> 8) & 0xFF;
+            int blueColor2 = (color2 >> 16) & 0xFF;
+
+            int red = (int)Math.Floor(255 * ((redColor1 / 255.0f) * (redColor2 / 255.0f)));
+            int green = (int)Math.Floor(255 * ((greenColor1 / 255.0f) * (greenColor2 / 255.0f)));
+            int blue = (int)Math.Floor(255 * ((blueColor1 / 255.0f) * (blueColor2 / 255.0f)));
+
+            return ChromaAnimationAPI.GetRGB(red, green, blue);
+        }
+
+        int AverageColor(int color1, int color2)
+        {
+            return ChromaAnimationAPI.LerpColor(color1, color2, 0.5f);
+        }
+
+        int AddColor(int color1, int color2)
+        {
+            int redColor1 = color1 & 0xFF;
+            int greenColor1 = (color1 >> 8) & 0xFF;
+            int blueColor1 = (color1 >> 16) & 0xFF;
+
+            int redColor2 = color2 & 0xFF;
+            int greenColor2 = (color2 >> 8) & 0xFF;
+            int blueColor2 = (color2 >> 16) & 0xFF;
+
+            int red = Math.Min(redColor1 + redColor2, 255) & 0xFF;
+            int green = Math.Min(greenColor1 + greenColor2, 255) & 0xFF;
+            int blue = Math.Min(blueColor1 + blueColor2, 255) & 0xFF;
+
+            return ChromaAnimationAPI.GetRGB(red, green, blue);
+        }
+
+        int SubtractColor(int color1, int color2)
+        {
+            int redColor1 = color1 & 0xFF;
+            int greenColor1 = (color1 >> 8) & 0xFF;
+            int blueColor1 = (color1 >> 16) & 0xFF;
+
+            int redColor2 = color2 & 0xFF;
+            int greenColor2 = (color2 >> 8) & 0xFF;
+            int blueColor2 = (color2 >> 16) & 0xFF;
+
+            int red = Math.Max(redColor1 - redColor2, 0) & 0xFF;
+            int green = Math.Max(greenColor1 - greenColor2, 0) & 0xFF;
+            int blue = Math.Max(blueColor1 - blueColor2, 0) & 0xFF;
+
+            return ChromaAnimationAPI.GetRGB(red, green, blue);
+        }
+
+        int MaxColor(int color1, int color2)
+        {
+            int redColor1 = color1 & 0xFF;
+            int greenColor1 = (color1 >> 8) & 0xFF;
+            int blueColor1 = (color1 >> 16) & 0xFF;
+
+            int redColor2 = color2 & 0xFF;
+            int greenColor2 = (color2 >> 8) & 0xFF;
+            int blueColor2 = (color2 >> 16) & 0xFF;
+
+            int red = Math.Max(redColor1, redColor2) & 0xFF;
+            int green = Math.Max(greenColor1, greenColor2) & 0xFF;
+            int blue = Math.Max(blueColor1, blueColor2) & 0xFF;
+
+            return ChromaAnimationAPI.GetRGB(red, green, blue);
+        }
+
+        int MinColor(int color1, int color2)
+        {
+            int redColor1 = color1 & 0xFF;
+            int greenColor1 = (color1 >> 8) & 0xFF;
+            int blueColor1 = (color1 >> 16) & 0xFF;
+
+            int redColor2 = color2 & 0xFF;
+            int greenColor2 = (color2 >> 8) & 0xFF;
+            int blueColor2 = (color2 >> 16) & 0xFF;
+
+            int red = Math.Min(redColor1, redColor2) & 0xFF;
+            int green = Math.Min(greenColor1, greenColor2) & 0xFF;
+            int blue = Math.Min(blueColor1, blueColor2) & 0xFF;
+
+            return ChromaAnimationAPI.GetRGB(red, green, blue);
+        }
+
+        int InvertColor(int color)
+        {
+            int red = 255 - (color & 0xFF);
+            int green = 255 - ((color >> 8) & 0xFF);
+            int blue = 255 - ((color >> 16) & 0xFF);
+
+            return ChromaAnimationAPI.GetRGB(red, green, blue);
+        }
+
+        int MultiplyNonZeroTargetColorLerp(int color1, int color2, int inputColor)
+        {
+            if (inputColor == 0)
+            {
+                return inputColor;
+            }
+            float red = (inputColor & 0xFF) / 255.0f;
+            float green = ((inputColor & 0xFF00) >> 8) / 255.0f;
+            float blue = ((inputColor & 0xFF0000) >> 16) / 255.0f;
+            float t = (red + green + blue) / 3.0f;
+            return ChromaAnimationAPI.LerpColor(color1, color2, t);
+        }
+
+        int Thresh(int color1, int color2, int inputColor)
+        {
+            float red = (inputColor & 0xFF) / 255.0f;
+            float green = ((inputColor & 0xFF00) >> 8) / 255.0f;
+            float blue = ((inputColor & 0xFF0000) >> 16) / 255.0f;
+            float t = (red + green + blue) / 3.0f;
+            if (t == 0.0)
+            {
+                return 0;
+            }
+            if (t < 0.5)
+            {
+                return color1;
+            }
+            else
+            {
+                return color2;
+            }
+        }
+
+
+        void BlendAnimation1D(FChromaSDKSceneEffect effect, FChromaSDKDeviceFrameIndex deviceFrameIndex, int device, Device1D device1d, string animationName,
+            int[] colors, int[] tempColors)
+        {
+            int size = GetColorArraySize1D(device1d);
+            int frameId = deviceFrameIndex._mFrameIndex[device];
+            int frameCount = ChromaAnimationAPI.GetFrameCountName(animationName);
+            if (frameId < frameCount)
+            {
+                //cout << animationName << ": " << (1 + frameId) << " of " << frameCount << endl;
+                float duration;
+                ChromaAnimationAPI.GetFrameName(animationName, frameId, out duration, tempColors, size, null, 0);
+                for (int i = 0; i < size; ++i)
+                {
+                    int color1 = colors[i]; //target
+                    int tempColor = tempColors[i]; //source
+
+                    // BLEND
+                    int color2;
+                    switch (effect._mBlend)
+                    {
+                        case EChromaSDKSceneBlend.SB_None:
+                            color2 = tempColor; //source
+                            break;
+                        case EChromaSDKSceneBlend.SB_Invert:
+                            if (tempColor != 0) //source
+                            {
+                                color2 = InvertColor(tempColor); //source inverted
+                            }
+                            else
+                            {
+                                color2 = 0;
+                            }
+                            break;
+                        case EChromaSDKSceneBlend.SB_Threshold:
+                            color2 = Thresh(effect._mPrimaryColor, effect._mSecondaryColor, tempColor); //source
+                            break;
+                        case EChromaSDKSceneBlend.SB_Lerp:
+                        default:
+                            color2 = MultiplyNonZeroTargetColorLerp(effect._mPrimaryColor, effect._mSecondaryColor, tempColor); //source
+                            break;
+                    }
+
+                    // MODE
+                    switch (effect._mMode)
+                    {
+                        case EChromaSDKSceneMode.SM_Max:
+                            colors[i] = MaxColor(color1, color2);
+                            break;
+                        case EChromaSDKSceneMode.SM_Min:
+                            colors[i] = MinColor(color1, color2);
+                            break;
+                        case EChromaSDKSceneMode.SM_Average:
+                            colors[i] = AverageColor(color1, color2);
+                            break;
+                        case EChromaSDKSceneMode.SM_Multiply:
+                            colors[i] = MultiplyColor(color1, color2);
+                            break;
+                        case EChromaSDKSceneMode.SM_Add:
+                            colors[i] = AddColor(color1, color2);
+                            break;
+                        case EChromaSDKSceneMode.SM_Subtract:
+                            colors[i] = SubtractColor(color1, color2);
+                            break;
+                        case EChromaSDKSceneMode.SM_Replace:
+                        default:
+                            if (color2 != 0)
+                            {
+                                colors[i] = color2;
+                            }
+                            break;
+                    }
+                }
+                deviceFrameIndex._mFrameIndex[device] = (frameId + frameCount + effect._mSpeed) % frameCount;
+            }
+        }
+
+        void BlendAnimation2D(FChromaSDKSceneEffect effect, FChromaSDKDeviceFrameIndex deviceFrameIndex, int device, Device2D device2D, string animationName,
+            int[] colors, int[] tempColors)
+        {
+            int size = GetColorArraySize2D(device2D);
+            int frameId = deviceFrameIndex._mFrameIndex[device];
+            int frameCount = ChromaAnimationAPI.GetFrameCountName(animationName);
+            if (frameId < frameCount)
+            {
+                //cout << animationName << ": " << (1 + frameId) << " of " << frameCount << endl;
+                float duration;
+                ChromaAnimationAPI.GetFrameName(animationName, frameId, out duration, tempColors, size, null, 0);
+                for (int i = 0; i < size; ++i)
+                {
+                    int color1 = colors[i]; //target
+                    int tempColor = tempColors[i]; //source
+
+                    // BLEND
+                    int color2;
+                    switch (effect._mBlend)
+                    {
+                        case EChromaSDKSceneBlend.SB_None:
+                            color2 = tempColor; //source
+                            break;
+                        case EChromaSDKSceneBlend.SB_Invert:
+                            if (tempColor != 0) //source
+                            {
+                                color2 = InvertColor(tempColor); //source inverted
+                            }
+                            else
+                            {
+                                color2 = 0;
+                            }
+                            break;
+                        case EChromaSDKSceneBlend.SB_Threshold:
+                            color2 = Thresh(effect._mPrimaryColor, effect._mSecondaryColor, tempColor); //source
+                            break;
+                        case EChromaSDKSceneBlend.SB_Lerp:
+                        default:
+                            color2 = MultiplyNonZeroTargetColorLerp(effect._mPrimaryColor, effect._mSecondaryColor, tempColor); //source
+                            break;
+                    }
+
+                    // MODE
+                    switch (effect._mMode)
+                    {
+                        case EChromaSDKSceneMode.SM_Max:
+                            colors[i] = MaxColor(color1, color2);
+                            break;
+                        case EChromaSDKSceneMode.SM_Min:
+                            colors[i] = MinColor(color1, color2);
+                            break;
+                        case EChromaSDKSceneMode.SM_Average:
+                            colors[i] = AverageColor(color1, color2);
+                            break;
+                        case EChromaSDKSceneMode.SM_Multiply:
+                            colors[i] = MultiplyColor(color1, color2);
+                            break;
+                        case EChromaSDKSceneMode.SM_Add:
+                            colors[i] = AddColor(color1, color2);
+                            break;
+                        case EChromaSDKSceneMode.SM_Subtract:
+                            colors[i] = SubtractColor(color1, color2);
+                            break;
+                        case EChromaSDKSceneMode.SM_Replace:
+                        default:
+                            if (color2 != 0)
+                            {
+                                colors[i] = color2;
+                            }
+                            break;
+                    }
+                }
+                deviceFrameIndex._mFrameIndex[device] = (frameId + frameCount + effect._mSpeed) % frameCount;
+            }
+        }
+
+        void BlendAnimations(FChromaSDKScene scene,
+            int[] colorsChromaLink, int[] tempColorsChromaLink,
+            int[] colorsHeadset, int[] tempColorsHeadset,
+            int[] colorsKeyboard, int[] tempColorsKeyboard,
+            int[] colorsKeyboardExtended, int[] tempColorsKeyboardExtended,
+            int[] colorsKeypad, int[] tempColorsKeypad,
+            int[] colorsMouse, int[] tempColorsMouse,
+            int[] colorsMousepad, int[] tempColorsMousepad)
+        {
+            // blend active animations
+            List<FChromaSDKSceneEffect> effects = scene._mEffects;
+            foreach (FChromaSDKSceneEffect effect in effects)
+            {
+                if (effect._mState)
+                {
+                    FChromaSDKDeviceFrameIndex deviceFrameIndex = effect._mFrameIndex;
+
+                    //iterate all device types
+                    for (int d = (int)Device.ChromaLink; d < (int)Device.MAX; ++d)
+                    {
+                        string animationName = effect._mAnimation;
+
+                        switch ((Device)d)
+                        {
+                            case Device.ChromaLink:
+                                animationName += "_ChromaLink.chroma";
+                                BlendAnimation1D(effect, deviceFrameIndex, d, Device1D.ChromaLink, animationName, colorsChromaLink, tempColorsChromaLink);
+                                break;
+                            case Device.Headset:
+                                animationName += "_Headset.chroma";
+                                BlendAnimation1D(effect, deviceFrameIndex, d, Device1D.Headset, animationName, colorsHeadset, tempColorsHeadset);
+                                break;
+                            case Device.Keyboard:
+                                animationName += "_Keyboard.chroma";
+                                BlendAnimation2D(effect, deviceFrameIndex, d, Device2D.Keyboard, animationName, colorsKeyboard, tempColorsKeyboard);
+                                break;
+                            case Device.KeyboardExtended:
+                                animationName += "_KeyboardExtended.chroma";
+                                BlendAnimation2D(effect, deviceFrameIndex, d, Device2D.KeyboardExtended, animationName, colorsKeyboardExtended, tempColorsKeyboardExtended);
+                                break;
+                            case Device.Keypad:
+                                animationName += "_Keypad.chroma";
+                                BlendAnimation2D(effect, deviceFrameIndex, d, Device2D.Keypad, animationName, colorsKeypad, tempColorsKeypad);
+                                break;
+                            case Device.Mouse:
+                                animationName += "_Mouse.chroma";
+                                BlendAnimation2D(effect, deviceFrameIndex, d, Device2D.Mouse, animationName, colorsMouse, tempColorsMouse);
+                                break;
+                            case Device.Mousepad:
+                                animationName += "_Mousepad.chroma";
+                                BlendAnimation1D(effect, deviceFrameIndex, d, Device1D.Mousepad, animationName, colorsMousepad, tempColorsMousepad);
+                                break;
+                        }
+                    }
+                }
+
+            }
+        }
+
+        public void SetStaticColor(int[] colors, int color)
+        {
+            for (int i = 0; i < colors.Length; ++i)
+            {
+                colors[i] = color;
+            }
+        }
+
+        #endregion Blending
+
+        public void GameLoop()
+        {
+            int sizeChromaLink = GetColorArraySize1D(Device1D.ChromaLink);
+            int sizeHeadset = GetColorArraySize1D(Device1D.Headset);
+            int sizeKeyboard = GetColorArraySize2D(Device2D.Keyboard);
+            int sizeKeyboardExtended = GetColorArraySize2D(Device2D.KeyboardExtended);
+            int sizeKeypad = GetColorArraySize2D(Device2D.Keypad);
+            int sizeMouse = GetColorArraySize2D(Device2D.Mouse);
+            int sizeMousepad = GetColorArraySize1D(Device1D.Mousepad);
+
+            int[] colorsChromaLink = new int[sizeChromaLink];
+            int[] colorsHeadset = new int[sizeHeadset];
+            int[] colorsKeyboard = new int[sizeKeyboard];
+            int[] colorsKeyboardExtended = new int[sizeKeyboardExtended];
+            int[] colorsKeyboardKeys = new int[sizeKeyboard];
+            int[] colorsKeypad = new int[sizeKeypad];
+            int[] colorsMouse = new int[sizeMouse];
+            int[] colorsMousepad = new int[sizeMousepad];
+
+            int[] tempColorsChromaLink = new int[sizeChromaLink];
+            int[] tempColorsHeadset = new int[sizeHeadset];
+            int[] tempColorsKeyboard = new int[sizeKeyboard];
+            int[] tempColorsKeyboardExtended = new int[sizeKeyboardExtended];
+            int[] tempColorsKeypad = new int[sizeKeypad];
+            int[] tempColorsMouse = new int[sizeMouse];
+            int[] tempColorsMousepad = new int[sizeMousepad];
+
+            uint timeMS = 0;
+
+            while (_mWaitForExit)
+            {
+                // start with a blank frame
+                SetStaticColor(colorsChromaLink, _mAmbientColor);
+                SetStaticColor(colorsHeadset, _mAmbientColor);
+                if (_mExtended)
+                {
+                    SetStaticColor(colorsKeyboardExtended, _mAmbientColor);
+                }
+                else
+                {
+                    SetStaticColor(colorsKeyboard, _mAmbientColor);
+                }
+                SetStaticColor(colorsKeyboardKeys, _mAmbientColor);
+                SetStaticColor(colorsKeypad, _mAmbientColor);
+                SetStaticColor(colorsMouse, _mAmbientColor);
+                SetStaticColor(colorsMousepad, _mAmbientColor);
+
+
+                BlendAnimations(_mScene,
+                    colorsChromaLink, tempColorsChromaLink,
+                    colorsHeadset, tempColorsHeadset,
+                    colorsKeyboard, tempColorsKeyboard,
+                    colorsKeyboardExtended, tempColorsKeyboardExtended,
+                    colorsKeypad, tempColorsKeypad,
+                    colorsMouse, tempColorsMouse,
+                    colorsMousepad, tempColorsMousepad);
+
+                SetKeyColorRGB(colorsKeyboardKeys, (int)Keyboard.RZKEY.RZKEY_W, 255, 255, 0);
+                SetKeyColorRGB(colorsKeyboardKeys, (int)Keyboard.RZKEY.RZKEY_A, 255, 255, 0);
+                SetKeyColorRGB(colorsKeyboardKeys, (int)Keyboard.RZKEY.RZKEY_S, 255, 255, 0);
+                SetKeyColorRGB(colorsKeyboardKeys, (int)Keyboard.RZKEY.RZKEY_D, 255, 255, 0);
+
+
+                ChromaAnimationAPI.SetEffectCustom1D((int)Device1D.ChromaLink, colorsChromaLink);
+                ChromaAnimationAPI.SetEffectCustom1D((int)Device1D.Headset, colorsHeadset);
+                ChromaAnimationAPI.SetEffectCustom1D((int)Device1D.Mousepad, colorsMousepad);
+
+                if (_mExtended)
+                {
+                    ChromaAnimationAPI.SetCustomColorFlag2D((int)Device2D.KeyboardExtended, colorsKeyboardExtended);
+                    ChromaAnimationAPI.SetEffectKeyboardCustom2D((int)Device2D.KeyboardExtended, colorsKeyboardExtended, colorsKeyboardKeys);
+                }
+                else
+                {
+                    ChromaAnimationAPI.SetCustomColorFlag2D((int)Device2D.Keyboard, colorsKeyboard);
+                    ChromaAnimationAPI.SetEffectKeyboardCustom2D((int)Device2D.Keyboard, colorsKeyboard, colorsKeyboardKeys);
+                }
+
+                ChromaAnimationAPI.SetEffectCustom2D((int)Device2D.Keypad, colorsKeypad);
+                ChromaAnimationAPI.SetEffectCustom2D((int)Device2D.Mouse, colorsMouse);
+
+
+                Thread.Sleep(33); //30 FPS
+                timeMS += 33;
+            }
+
+        }
     }
 }

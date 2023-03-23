@@ -38,6 +38,13 @@
             this._mButtonColor = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this._mLabelButtonEffect = new System.Windows.Forms.Label();
+            this._mLblDebugSwimming = new System.Windows.Forms.Label();
+            this._mLblDebugDead = new System.Windows.Forms.Label();
+            this._mLblDebugClimbing = new System.Windows.Forms.Label();
+            this._mLblDebugSeated = new System.Windows.Forms.Label();
+            this._mLblDebugFlying = new System.Windows.Forms.Label();
+            this._mLblDebugJumping = new System.Windows.Forms.Label();
+            this._mLblDebugRunning = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this._mPictureBox)).BeginInit();
             this.SuspendLayout();
             // 
@@ -72,7 +79,7 @@
             // _mDebugLabel2
             // 
             this._mDebugLabel2.AutoSize = true;
-            this._mDebugLabel2.Location = new System.Drawing.Point(442, 62);
+            this._mDebugLabel2.Location = new System.Drawing.Point(442, 29);
             this._mDebugLabel2.Name = "_mDebugLabel2";
             this._mDebugLabel2.Size = new System.Drawing.Size(38, 17);
             this._mDebugLabel2.TabIndex = 2;
@@ -81,7 +88,7 @@
             // _mDebugLabel3
             // 
             this._mDebugLabel3.AutoSize = true;
-            this._mDebugLabel3.Location = new System.Drawing.Point(442, 110);
+            this._mDebugLabel3.Location = new System.Drawing.Point(442, 46);
             this._mDebugLabel3.Name = "_mDebugLabel3";
             this._mDebugLabel3.Size = new System.Drawing.Size(33, 17);
             this._mDebugLabel3.TabIndex = 3;
@@ -90,7 +97,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(442, 160);
+            this.label1.Location = new System.Drawing.Point(442, 76);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(126, 17);
             this.label1.TabIndex = 4;
@@ -99,7 +106,7 @@
             // _mButtonColor
             // 
             this._mButtonColor.AutoSize = true;
-            this._mButtonColor.Location = new System.Drawing.Point(442, 187);
+            this._mButtonColor.Location = new System.Drawing.Point(442, 93);
             this._mButtonColor.Name = "_mButtonColor";
             this._mButtonColor.Size = new System.Drawing.Size(41, 17);
             this._mButtonColor.TabIndex = 5;
@@ -108,7 +115,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(442, 234);
+            this.label2.Location = new System.Drawing.Point(442, 124);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(140, 17);
             this.label2.TabIndex = 6;
@@ -117,17 +124,87 @@
             // _mLabelButtonEffect
             // 
             this._mLabelButtonEffect.AutoSize = true;
-            this._mLabelButtonEffect.Location = new System.Drawing.Point(442, 260);
+            this._mLabelButtonEffect.Location = new System.Drawing.Point(442, 141);
             this._mLabelButtonEffect.Name = "_mLabelButtonEffect";
             this._mLabelButtonEffect.Size = new System.Drawing.Size(66, 17);
             this._mLabelButtonEffect.TabIndex = 7;
             this._mLabelButtonEffect.Text = "No Effect";
+            // 
+            // _mLblDebugSwimming
+            // 
+            this._mLblDebugSwimming.AutoSize = true;
+            this._mLblDebugSwimming.Location = new System.Drawing.Point(442, 231);
+            this._mLblDebugSwimming.Name = "_mLblDebugSwimming";
+            this._mLblDebugSwimming.Size = new System.Drawing.Size(108, 17);
+            this._mLblDebugSwimming.TabIndex = 8;
+            this._mLblDebugSwimming.Text = "Swimming: false";
+            // 
+            // _mLblDebugDead
+            // 
+            this._mLblDebugDead.AutoSize = true;
+            this._mLblDebugDead.Location = new System.Drawing.Point(442, 178);
+            this._mLblDebugDead.Name = "_mLblDebugDead";
+            this._mLblDebugDead.Size = new System.Drawing.Size(80, 17);
+            this._mLblDebugDead.TabIndex = 9;
+            this._mLblDebugDead.Text = "Dead: false";
+            // 
+            // _mLblDebugClimbing
+            // 
+            this._mLblDebugClimbing.AutoSize = true;
+            this._mLblDebugClimbing.Location = new System.Drawing.Point(442, 205);
+            this._mLblDebugClimbing.Name = "_mLblDebugClimbing";
+            this._mLblDebugClimbing.Size = new System.Drawing.Size(99, 17);
+            this._mLblDebugClimbing.TabIndex = 10;
+            this._mLblDebugClimbing.Text = "Climbing: false";
+            // 
+            // _mLblDebugSeated
+            // 
+            this._mLblDebugSeated.AutoSize = true;
+            this._mLblDebugSeated.Location = new System.Drawing.Point(442, 259);
+            this._mLblDebugSeated.Name = "_mLblDebugSeated";
+            this._mLblDebugSeated.Size = new System.Drawing.Size(91, 17);
+            this._mLblDebugSeated.TabIndex = 11;
+            this._mLblDebugSeated.Text = "Seated: false";
+            // 
+            // _mLblDebugFlying
+            // 
+            this._mLblDebugFlying.AutoSize = true;
+            this._mLblDebugFlying.Location = new System.Drawing.Point(442, 314);
+            this._mLblDebugFlying.Name = "_mLblDebugFlying";
+            this._mLblDebugFlying.Size = new System.Drawing.Size(83, 17);
+            this._mLblDebugFlying.TabIndex = 12;
+            this._mLblDebugFlying.Text = "Flying: false";
+            // 
+            // _mLblDebugJumping
+            // 
+            this._mLblDebugJumping.AutoSize = true;
+            this._mLblDebugJumping.Location = new System.Drawing.Point(442, 287);
+            this._mLblDebugJumping.Name = "_mLblDebugJumping";
+            this._mLblDebugJumping.Size = new System.Drawing.Size(99, 17);
+            this._mLblDebugJumping.TabIndex = 13;
+            this._mLblDebugJumping.Text = "Jumping: false";
+            // 
+            // _mLblDebugRunning
+            // 
+            this._mLblDebugRunning.AutoSize = true;
+            this._mLblDebugRunning.Location = new System.Drawing.Point(442, 343);
+            this._mLblDebugRunning.Name = "_mLblDebugRunning";
+            this._mLblDebugRunning.Size = new System.Drawing.Size(99, 17);
+            this._mLblDebugRunning.TabIndex = 14;
+            this._mLblDebugRunning.Text = "Running: false";
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(692, 421);
+            this.Controls.Add(this._mLblDebugRunning);
+            this.Controls.Add(this._mLblDebugJumping);
+            this.Controls.Add(this._mLblDebugFlying);
+            this.Controls.Add(this._mLblDebugSeated);
+            this.Controls.Add(this._mLblDebugClimbing);
+            this.Controls.Add(this._mLblDebugDead);
+            this.Controls.Add(this._mLblDebugSwimming);
             this.Controls.Add(this._mLabelButtonEffect);
             this.Controls.Add(this.label2);
             this.Controls.Add(this._mButtonColor);
@@ -157,6 +234,13 @@
         private System.Windows.Forms.Label _mButtonColor;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label _mLabelButtonEffect;
+        private System.Windows.Forms.Label _mLblDebugSwimming;
+        private System.Windows.Forms.Label _mLblDebugDead;
+        private System.Windows.Forms.Label _mLblDebugClimbing;
+        private System.Windows.Forms.Label _mLblDebugSeated;
+        private System.Windows.Forms.Label _mLblDebugFlying;
+        private System.Windows.Forms.Label _mLblDebugJumping;
+        private System.Windows.Forms.Label _mLblDebugRunning;
     }
 }
 
