@@ -47,6 +47,15 @@ namespace WinForm_RobloxChromaMod
         {
             UpdateDebugLabels();
 
+            // list all monitors
+            int indexScreen = 1;
+            foreach (Screen screen in Screen.AllScreens)
+            {
+                string deviceName = string.Format("{0}: {1}", indexScreen, screen.DeviceName);
+                _mCboMonitors.Items.Add(deviceName);
+                ++indexScreen;
+            }
+
             // setup scene
             _mScene = new FChromaSDKScene();
 
