@@ -423,7 +423,7 @@ namespace WinForm_RobloxChromaMod
 
         private bool MatchColorGeeenMask(Color color, byte mask)
         {
-            return ((color.G | mask) == mask);
+            return ((color.G & mask) == mask);
         }
 
         void SetupHotkeys(string layer)

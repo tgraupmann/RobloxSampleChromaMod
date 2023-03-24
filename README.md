@@ -90,6 +90,11 @@ This mod uses print statements and a companion app to monitor the game log and p
 <a target="_blank" href="https://youtu.be/KymVo2Tzx1g"><img src="https://img.youtube.com/vi/KymVo2Tzx1g/0.jpg"></a>
 
 
+**Flying Physics - Roblox Scripting Tutorial**
+
+<a target="_blank" href="https://www.youtube.com/watch?v=FYl0JvUZq4I"><img src="https://img.youtube.com/vi/FYl0JvUZq4I/0.jpg"></a>
+
+
 ## Screenshots ##
 
 **Roblox**
@@ -141,7 +146,7 @@ _G.ChromaEffect = 0;
 _G.GameStateClimbing = false
 _G.GameStateJumping = false
 _G.GameStateFlying = false
-_G.GameStateRunning = false
+_G.GameStateRunning = 0
 _G.GameStateSwimming = true
 _G.GameStateSeated = false
 
@@ -191,22 +196,22 @@ while wait(0.033) do
 		green = 1
 	else
 		if _G.GameStateClimbing then
-			green = bit32.bor(green, 3)
+			green = bit32.bor(green, bit32.lshift(1, 1))
 		end
 		if _G.GameStateJumping then
-			green = bit32.bor(green, 7)
+			green = bit32.bor(green, bit32.lshift(1, 2))
 		end
 		if _G.GameStateFlying then
-			green = bit32.bor(green, 15)
+			green = bit32.bor(green, bit32.lshift(1, 3))
 		end
-		if _G.GameStateRunning then
-			green = bit32.bor(green, 37)
+		if _G.GameStateRunning > os.time() then
+			green = bit32.bor(green, bit32.lshift(1, 4))
 		end
 		if _G.GameStateSwimming then
-			green = bit32.bor(green, 63)
+			green = bit32.bor(green, bit32.lshift(1, 5))
 		end
 		if _G.GameStateSeated then
-			green = bit32.bor(green, 127)
+			green = bit32.bor(green, bit32.lshift(1, 6))
 		end
 	end
 	
@@ -244,12 +249,19 @@ end)
 Add player state to globals to show in the label background color.
 
 ```lua
+-- listen to humanoid state
+humanoid.StateChanged:Connect(function(oldState, newState)
+	if (newState ~= nil and oldState ~= newState and newState ~= Enum.HumanoidStateType.None) then
+		local state = tostring(newState);
+		if (string.len(state) > tokenLength) then
+			local strState = string.sub(state, tokenLength + 1)
+			--print ("ChromaRGB:", string.format("Player_%s", strState))
 			if (strState == "Dead") then
 				_G.GameStateDead = true
 				_G.GameStateClimbing = false
 				_G.GameStateJumping = false
 				_G.GameStateFlying = false
-				_G.GameStateRunning = false
+				_G.GameStateRunning = 0
 				_G.GameStateSwimming = false
 				_G.GameStateSeated = false
 			elseif strState == "Climbing" then
@@ -257,7 +269,7 @@ Add player state to globals to show in the label background color.
 				_G.GameStateClimbing = true
 				_G.GameStateJumping = false
 				_G.GameStateFlying = false
-				_G.GameStateRunning = false
+				_G.GameStateRunning = 0
 				_G.GameStateSwimming = false
 				_G.GameStateSeated = false
 			elseif strState == "Jumping" then
@@ -265,7 +277,7 @@ Add player state to globals to show in the label background color.
 				_G.GameStateClimbing = false
 				_G.GameStateJumping = true
 				_G.GameStateFlying = false
-				_G.GameStateRunning = false
+				_G.GameStateRunning = 0
 				_G.GameStateSwimming = false
 				_G.GameStateSeated = false
 			elseif strState == "Flying" then
@@ -273,7 +285,7 @@ Add player state to globals to show in the label background color.
 				_G.GameStateClimbing = false
 				_G.GameStateJumping = false
 				_G.GameStateFlying = true
-				_G.GameStateRunning = false
+				_G.GameStateRunning = 0
 				_G.GameStateSwimming = false
 				_G.GameStateSeated = false
 			elseif strState == "Landed" then
@@ -281,14 +293,15 @@ Add player state to globals to show in the label background color.
 				_G.GameStateClimbing = false
 				_G.GameStateJumping = false
 				_G.GameStateFlying = false
+				_G.GameStateRunning = 0
 				_G.GameStateSwimming = false
 				_G.GameStateSeated = false
 			elseif strState == "Running" then
 				_G.GameStateDead = false
 				_G.GameStateClimbing = false
-				--_G.GameStateJumping = false
+				_G.GameStateJumping = false
 				_G.GameStateFlying = false
-				_G.GameStateRunning = true
+				_G.GameStateRunning = os.time() + 2
 				_G.GameStateSwimming = false
 				_G.GameStateSeated = false
 			elseif strState == "Seated" then
@@ -296,7 +309,7 @@ Add player state to globals to show in the label background color.
 				_G.GameStateClimbing = false
 				_G.GameStateJumping = false
 				_G.GameStateFlying = false
-				_G.GameStateRunning = false
+				_G.GameStateRunning = 0
 				_G.GameStateSwimming = false
 				_G.GameStateSeated = true
 			elseif strState == "Swimming" then
@@ -304,10 +317,20 @@ Add player state to globals to show in the label background color.
 				_G.GameStateClimbing = false
 				_G.GameStateJumping = false
 				_G.GameStateFlying = false
-				_G.GameStateRunning = false
+				_G.GameStateRunning = 0
 				_G.GameStateSwimming = true
 				_G.GameStateSeated = false
+			elseif strState == "WASD" then
+				if (not _G.GameStateDead and
+					not _G.GameStateClimbing and
+					not _G.GameStateSwimming and
+					not _G.GameStateFlying) then
+					_G.GameStateRunning = os.time() + 2
+				end
 			end
+		end
+	end
+end)
 ```
 
 **RobloxChromaMod**
@@ -315,15 +338,6 @@ Add player state to globals to show in the label background color.
 1. Open [WinForm_RobloxChromaMod/WinForm_RobloxChromaMod_Unicode.sln](WinForm_RobloxChromaMod/WinForm_RobloxChromaMod_Unicode.sln)
 
 2. [WinForm_RobloxChromaMod/Form1.cs](WinForm_RobloxChromaMod/Form1.cs) captures the Roblox display to determine the game state and play Chroma effects for the game events.
-
-**WPF_RobloxChromaMod**
-
-* Note: Playing effects by parsing game logs has a delay
-
-1. Open [WPF_RobloxChromaMod/WPF_RobloxChromaMod.sln](WPF_RobloxChromaMod/WPF_RobloxChromaMod.sln) with Visual Studio
-
-2. [WPF_RobloxChromaMod/MainWindow.xaml.cs](WPF_RobloxChromaMod/MainWindow.xaml.cs) monitors the Roblox game logs and plays Chroma RGB effects for the game events.
-
 
 # Support
 
