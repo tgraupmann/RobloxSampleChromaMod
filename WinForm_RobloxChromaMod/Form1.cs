@@ -2095,7 +2095,10 @@ namespace WinForm_RobloxChromaMod
 
         private void CboItemChanged(object sender, EventArgs e)
         {
-
+            _sMouseMoveStart = Point.Empty;
+            _sMouseMoveEnd = Point.Empty;
+            _sMouseMoveOffset = Point.Empty;
+            _sScreenIndex = _mCboMonitors.SelectedIndex - 1;
         }
     }
 }
