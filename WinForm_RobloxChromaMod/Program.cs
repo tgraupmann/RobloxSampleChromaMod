@@ -42,13 +42,15 @@ namespace WinForm_RobloxChromaMod
                             Form1._sMouseMoveOffset = new Point(
                                 json.GetValue("offset-x").ToObject<int>(),
                                 json.GetValue("offset-y").ToObject<int>());
+
+                            Form1._sScreenIndex = json.GetValue("screen-index").ToObject<int>();
                         }
                     }
                 }
             }
-            catch
+            catch (Exception ex)
             {
-
+                Console.Error.WriteLine("Failed to load configuration exception: {0}", ex);
             }
         }
 
@@ -72,17 +74,16 @@ namespace WinForm_RobloxChromaMod
                                 new JProperty("end-x", Form1._sMouseMoveEnd.X),
                                 new JProperty("end-y", Form1._sMouseMoveEnd.Y),
                                 new JProperty("offset-x", Form1._sMouseMoveOffset.X),
-                                new JProperty("offset-y", Form1._sMouseMoveOffset.Y));
+                                new JProperty("offset-y", Form1._sMouseMoveOffset.Y),
+                                new JProperty("screen-index", Form1._sScreenIndex));
                             json.WriteTo(writer);
-                            writer.Flush();
                         }
-                        sw.Flush();
                     }
                 }
             }
-            catch
+            catch (Exception ex)
             {
-
+                Console.Error.WriteLine("Failed to save configuration exception: {0}", ex);
             }
         }
 

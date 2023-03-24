@@ -5,6 +5,7 @@ using ChromaSDK;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Drawing.Imaging;
 using System.Threading;
 using System.Windows.Forms;
 using static ChromaSDK.ChromaAnimationAPI;
@@ -20,6 +21,7 @@ namespace WinForm_RobloxChromaMod
         public static Point _sMouseMoveStart = Point.Empty;
         public static Point _sMouseMoveEnd = Point.Empty;
         public static Point _sMouseMoveOffset = Point.Empty;
+        public static int _sScreenIndex = -1;
 
         Image _mCaptureImage = null;
 
@@ -45,8 +47,6 @@ namespace WinForm_RobloxChromaMod
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            UpdateDebugLabels();
-
             // list all monitors
             int indexScreen = 1;
             foreach (Screen screen in Screen.AllScreens)
@@ -55,6 +55,22 @@ namespace WinForm_RobloxChromaMod
                 _mCboMonitors.Items.Add(deviceName);
                 ++indexScreen;
             }
+
+            _mCboMonitors.SelectedIndexChanged -= CboItemChanged;
+            try
+            {
+                _mCboMonitors.SelectedIndex = _sScreenIndex + 1;
+            }
+            catch
+            {
+                _mCboMonitors.SelectedIndex = 0;
+            }
+            _mCboMonitors.SelectedIndexChanged += CboItemChanged;
+
+            UpdateDebugLabels();
+
+            // create capture bitmap
+            _mCaptureImage = new Bitmap(_mPictureBox.Width, _mPictureBox.Height, PixelFormat.Format24bppRgb);
 
             // setup scene
             _mScene = new FChromaSDKScene();
@@ -154,6 +170,10 @@ namespace WinForm_RobloxChromaMod
         private void Form1_FormClosed(object sender, System.Windows.Forms.FormClosedEventArgs e)
         {
             _mWaitForExit = false;
+            if (_mCaptureImage != null)
+            {
+                _mCaptureImage.Dispose();
+            }
         }
 
         private void UpdateDebugLabels()
@@ -273,38 +293,67 @@ namespace WinForm_RobloxChromaMod
         {
             try
             {
+                #region Capture with clipboard
+                
+                /*
+
                 // replace clipboard operation later
                 SendKeys.Send("{PRTSC}");
 
                 // clipboard operation can fail
                 _mCaptureImage = Clipboard.GetImage();
+
+                */
+
+                #endregion Capture with clipboard
             }
             catch
             {
 
             }
 
+            Graphics captureGraphics = null;
+            Graphics g = null;
+            Bitmap bmp = null;
+
             try
             {
+                int selectedIndex = _mCboMonitors.SelectedIndex;
+
+                if (selectedIndex < 1 || (selectedIndex - 1) >= Screen.AllScreens.Length)
+                {
+                    return; // skip capture
+                }
+
+                // get the selected screen
+                Screen screen = Screen.AllScreens[selectedIndex - 1];
+
+
+                // capture from screen
+                Rectangle captureRectangle = screen.Bounds;
+                // create graphics
+                captureGraphics = Graphics.FromImage(_mCaptureImage);
+                // copy pixels from screen
+                captureGraphics.CopyFromScreen(
+                    captureRectangle.Left + _sMouseMoveStart.X - _sMouseMoveEnd.X,
+                    captureRectangle.Top + _sMouseMoveStart.Y - _sMouseMoveEnd.Y, 0, 0, captureRectangle.Size);
+
                 // do some cropping
-                Graphics g = _mPictureBox.CreateGraphics();
+                g = _mPictureBox.CreateGraphics();
+
                 Rectangle rectCropArea = new Rectangle(
-                    _sMouseMoveStart.X - _sMouseMoveEnd.X,
-                    _sMouseMoveStart.Y - _sMouseMoveEnd.Y,
+                    0,
+                    0,
                     _mPictureBox.Width,
                     _mPictureBox.Height);
-                g.DrawImage(_mCaptureImage, new Rectangle(0, 0, _mPictureBox.Width, _mPictureBox.Height), rectCropArea, GraphicsUnit.Pixel);
+                g.DrawImage(_mCaptureImage, 0, 0);
 
                 // read the center pixel
-                Bitmap bmp = new Bitmap(_mCaptureImage);
-                Color color = bmp.GetPixel(rectCropArea.X + _mPictureBox.Width / 2,
-                    rectCropArea.Y + _mPictureBox.Height / 2);
+                bmp = new Bitmap(_mCaptureImage);
+                int x = Math.Max(0, _mPictureBox.Width / 2);
+                int y = Math.Max(0, _mPictureBox.Height / 2);
+                Color color = bmp.GetPixel(x, y);
                 _mButtonColor.Text = string.Format("{0},{1},{2}", color.R, color.G, color.B);
-
-                // cleanup
-                bmp.Dispose();
-                _mCaptureImage.Dispose();
-                g.Dispose();
 
                 #region Button Effects
 
@@ -413,8 +462,25 @@ namespace WinForm_RobloxChromaMod
                 _mLblDebugSwimming.Text = string.Format("Swimming: {0}", _mScene._mEffects[_mEffectIndexes[ANIMATION_SWIMMING]]._mState);
 
             }
-            catch
+            catch (Exception ex)
             {
+                Console.Error.WriteLine("Failed to capture image exception: {0}", ex);
+            }
+            finally
+            {
+                // cleanup
+                if (bmp != null)
+                {
+                    bmp.Dispose();
+                }
+                if (g != null)
+                {
+                    g.Dispose();
+                }
+                if (captureGraphics != null)
+                {
+                    captureGraphics.Dispose();
+                }
             }
         }
 
@@ -2024,6 +2090,11 @@ namespace WinForm_RobloxChromaMod
                 Thread.Sleep(33); //30 FPS
                 timeMS += 33;
             }
+
+        }
+
+        private void CboItemChanged(object sender, EventArgs e)
+        {
 
         }
     }

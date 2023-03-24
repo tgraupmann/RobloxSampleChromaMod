@@ -72,7 +72,7 @@
             // _mDebugLabel1
             // 
             this._mDebugLabel1.AutoSize = true;
-            this._mDebugLabel1.Location = new System.Drawing.Point(661, 105);
+            this._mDebugLabel1.Location = new System.Drawing.Point(661, 77);
             this._mDebugLabel1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this._mDebugLabel1.Name = "_mDebugLabel1";
             this._mDebugLabel1.Size = new System.Drawing.Size(89, 25);
@@ -82,7 +82,7 @@
             // _mDebugLabel2
             // 
             this._mDebugLabel2.AutoSize = true;
-            this._mDebugLabel2.Location = new System.Drawing.Point(661, 131);
+            this._mDebugLabel2.Location = new System.Drawing.Point(661, 103);
             this._mDebugLabel2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this._mDebugLabel2.Name = "_mDebugLabel2";
             this._mDebugLabel2.Size = new System.Drawing.Size(57, 25);
@@ -92,7 +92,7 @@
             // _mDebugLabel3
             // 
             this._mDebugLabel3.AutoSize = true;
-            this._mDebugLabel3.Location = new System.Drawing.Point(661, 158);
+            this._mDebugLabel3.Location = new System.Drawing.Point(661, 130);
             this._mDebugLabel3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this._mDebugLabel3.Name = "_mDebugLabel3";
             this._mDebugLabel3.Size = new System.Drawing.Size(50, 25);
@@ -102,7 +102,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(661, 205);
+            this.label1.Location = new System.Drawing.Point(661, 177);
             this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(192, 25);
@@ -112,7 +112,7 @@
             // _mButtonColor
             // 
             this._mButtonColor.AutoSize = true;
-            this._mButtonColor.Location = new System.Drawing.Point(661, 231);
+            this._mButtonColor.Location = new System.Drawing.Point(661, 203);
             this._mButtonColor.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this._mButtonColor.Name = "_mButtonColor";
             this._mButtonColor.Size = new System.Drawing.Size(63, 25);
@@ -122,7 +122,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(661, 280);
+            this.label2.Location = new System.Drawing.Point(661, 252);
             this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(212, 25);
@@ -132,7 +132,7 @@
             // _mLabelButtonEffect
             // 
             this._mLabelButtonEffect.AutoSize = true;
-            this._mLabelButtonEffect.Location = new System.Drawing.Point(661, 306);
+            this._mLabelButtonEffect.Location = new System.Drawing.Point(661, 278);
             this._mLabelButtonEffect.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this._mLabelButtonEffect.Name = "_mLabelButtonEffect";
             this._mLabelButtonEffect.Size = new System.Drawing.Size(100, 25);
@@ -142,7 +142,7 @@
             // _mLblDebugSwimming
             // 
             this._mLblDebugSwimming.AutoSize = true;
-            this._mLblDebugSwimming.Location = new System.Drawing.Point(661, 447);
+            this._mLblDebugSwimming.Location = new System.Drawing.Point(661, 419);
             this._mLblDebugSwimming.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this._mLblDebugSwimming.Name = "_mLblDebugSwimming";
             this._mLblDebugSwimming.Size = new System.Drawing.Size(167, 25);
@@ -152,7 +152,7 @@
             // _mLblDebugDead
             // 
             this._mLblDebugDead.AutoSize = true;
-            this._mLblDebugDead.Location = new System.Drawing.Point(661, 364);
+            this._mLblDebugDead.Location = new System.Drawing.Point(661, 336);
             this._mLblDebugDead.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this._mLblDebugDead.Name = "_mLblDebugDead";
             this._mLblDebugDead.Size = new System.Drawing.Size(121, 25);
@@ -162,7 +162,7 @@
             // _mLblDebugClimbing
             // 
             this._mLblDebugClimbing.AutoSize = true;
-            this._mLblDebugClimbing.Location = new System.Drawing.Point(661, 406);
+            this._mLblDebugClimbing.Location = new System.Drawing.Point(661, 378);
             this._mLblDebugClimbing.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this._mLblDebugClimbing.Name = "_mLblDebugClimbing";
             this._mLblDebugClimbing.Size = new System.Drawing.Size(153, 25);
@@ -172,7 +172,7 @@
             // _mLblDebugSeated
             // 
             this._mLblDebugSeated.AutoSize = true;
-            this._mLblDebugSeated.Location = new System.Drawing.Point(661, 491);
+            this._mLblDebugSeated.Location = new System.Drawing.Point(661, 463);
             this._mLblDebugSeated.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this._mLblDebugSeated.Name = "_mLblDebugSeated";
             this._mLblDebugSeated.Size = new System.Drawing.Size(138, 25);
@@ -182,7 +182,7 @@
             // _mLblDebugFlying
             // 
             this._mLblDebugFlying.AutoSize = true;
-            this._mLblDebugFlying.Location = new System.Drawing.Point(661, 577);
+            this._mLblDebugFlying.Location = new System.Drawing.Point(661, 549);
             this._mLblDebugFlying.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this._mLblDebugFlying.Name = "_mLblDebugFlying";
             this._mLblDebugFlying.Size = new System.Drawing.Size(128, 25);
@@ -192,7 +192,7 @@
             // _mLblDebugJumping
             // 
             this._mLblDebugJumping.AutoSize = true;
-            this._mLblDebugJumping.Location = new System.Drawing.Point(661, 534);
+            this._mLblDebugJumping.Location = new System.Drawing.Point(661, 506);
             this._mLblDebugJumping.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this._mLblDebugJumping.Name = "_mLblDebugJumping";
             this._mLblDebugJumping.Size = new System.Drawing.Size(151, 25);
@@ -202,7 +202,7 @@
             // _mLblDebugRunning
             // 
             this._mLblDebugRunning.AutoSize = true;
-            this._mLblDebugRunning.Location = new System.Drawing.Point(661, 622);
+            this._mLblDebugRunning.Location = new System.Drawing.Point(661, 594);
             this._mLblDebugRunning.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this._mLblDebugRunning.Name = "_mLblDebugRunning";
             this._mLblDebugRunning.Size = new System.Drawing.Size(150, 25);
