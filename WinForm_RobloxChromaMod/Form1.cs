@@ -1,5 +1,6 @@
 ﻿// Ref: https://www.youtube.com/watch?v=6iv7y5v1e0A - C# Capture
 // Ref: https://www.youtube.com/watch?v=Q63GV5tnXN0 - Crop Bitmap
+// Ref: https://www.c-sharpcorner.com/UploadFile/2d2d83/how-to-capture-a-screen-using-C-Sharp/ - Capture Screen
 
 using ChromaSDK;
 using System;
