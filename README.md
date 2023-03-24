@@ -333,6 +333,41 @@ humanoid.StateChanged:Connect(function(oldState, newState)
 end)
 ```
 
+**Player Input Handling**
+
+```lua
+local UserInputService = game:GetService("UserInputService")
+
+local function onInputBegan(inputObject, gameProcessedEvent)
+	-- First check if the "gameProcessedEvent" is true
+	-- This indicates that another script had already processed the input, so this one can be ignored
+	if gameProcessedEvent then return end
+	-- Next, check that the input was a keyboard event
+	if inputObject.UserInputType == Enum.UserInputType.Keyboard then
+		if (not _G.GameStateDead) then
+			if (not _G.GameStateClimbing and
+				not _G.GameStateSwimming and
+				not _G.GameStateSeated) then
+				if (not _G.GameStateFlying and
+					not _G.GameStateJumping and
+					inputObject.KeyCode.Name == "W" or
+					inputObject.KeyCode.Name == "A" or
+					inputObject.KeyCode.Name == "S" or
+					inputObject.KeyCode.Name == "D") then
+					--print("Time:", os.time(), "ChromaRGB:", "Player_WASD")
+					_G.GameStateRunning = os.time() + 2
+				elseif (inputObject.KeyCode.Name == "F") then
+					_G.GameStateFlying = not _G.GameStateFlying			
+				end
+			end
+		end
+		
+	end
+end
+
+UserInputService.InputBegan:Connect(onInputBegan)
+```
+
 **RobloxChromaMod**
 
 1. Open [WinForm_RobloxChromaMod/WinForm_RobloxChromaMod_Unicode.sln](WinForm_RobloxChromaMod/WinForm_RobloxChromaMod_Unicode.sln)
