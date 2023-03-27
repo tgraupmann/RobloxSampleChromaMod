@@ -292,30 +292,11 @@ namespace WinForm_RobloxChromaMod
 
         private void _mCaptureTimer_Tick(object sender, EventArgs e)
         {
-            try
-            {
-                #region Capture with clipboard
-                
-                /*
-
-                // replace clipboard operation later
-                SendKeys.Send("{PRTSC}");
-
-                // clipboard operation can fail
-                _mCaptureImage = Clipboard.GetImage();
-
-                */
-
-                #endregion Capture with clipboard
-            }
-            catch
-            {
-
-            }
-
             Graphics captureGraphics = null;
             Graphics g = null;
             Bitmap bmp = null;
+            Brush brush = null;
+            Pen pen = null;
 
             try
             {
@@ -339,6 +320,20 @@ namespace WinForm_RobloxChromaMod
                     captureRectangle.Left + _sMouseMoveStart.X - _sMouseMoveEnd.X,
                     captureRectangle.Top + _sMouseMoveStart.Y - _sMouseMoveEnd.Y, 0, 0, captureRectangle.Size);
 
+                // find the center of the picture box
+                int x = Math.Max(0, _mPictureBox.Width / 2);
+                int y = Math.Max(0, _mPictureBox.Height / 2);
+
+                #region Draw Capture Marker
+
+                brush = new SolidBrush(Color.FromKnownColor(KnownColor.White));
+                const int markerBorder = 3;
+                pen = new Pen(brush, markerBorder);
+                const int markerSize = 4;
+                captureGraphics.DrawRectangle(pen, x - markerSize, y - markerSize, markerSize * 2, markerSize * 2);
+
+                #endregion Draw Capture Marker
+
                 // do some cropping
                 g = _mPictureBox.CreateGraphics();
 
@@ -351,8 +346,6 @@ namespace WinForm_RobloxChromaMod
 
                 // read the center pixel
                 bmp = new Bitmap(_mCaptureImage);
-                int x = Math.Max(0, _mPictureBox.Width / 2);
-                int y = Math.Max(0, _mPictureBox.Height / 2);
                 Color color = bmp.GetPixel(x, y);
                 _mButtonColor.Text = string.Format("{0},{1},{2}", color.R, color.G, color.B);
 
@@ -470,6 +463,14 @@ namespace WinForm_RobloxChromaMod
             finally
             {
                 // cleanup
+                if (pen != null)
+                {
+                    pen.Dispose();
+                }
+                if (brush != null)
+                {
+                    brush.Dispose();
+                }
                 if (bmp != null)
                 {
                     bmp.Dispose();
