@@ -1,6 +1,10 @@
+# Latest
+
+* Note: Visit the [Chroma Animation Guide](https://chroma.razer.com/ChromaGuide/) to find the latest supported plugin for Chroma RGB.
+
 # Roblox Sample Chroma RGB Mod
 
-This mod uses print statements and a companion app to monitor the game log and play Chroma RGB effects.
+This mod uses a companion Chroma app with screen capture to sync game state and play Chroma RGB effects.
 
 ## Table of Contents
 
@@ -18,21 +22,13 @@ This mod uses print statements and a companion app to monitor the game log and p
 
 * [Chroma Animation Guide](http://chroma.razer.com/ChromaGuide/) - Visual examples of the Chroma Animation API methods
 
-**Mods:**
-
-* [MinecraftChromaMod](https://github.com/tgraupmann/MinecraftChromaMod) - Minecraft Chroma RGB Mod
-
-* [RobloxSampleChromaMod](https://github.com/tgraupmann/RobloxSampleChromaMod) - Roblox Sample Chroma RGB Mod
-
-* [Cpp_RustChromaModClient](https://github.com/tgraupmann/Cpp_RustChromaModClient) - Rust Chroma RGB Mod Client
-
 **Editors:**
 
 * [Web Chroma Editor](https://chroma.razer.com/ChromaEditor/) - Create Chroma RGB Animations
 
 * [Roblox Studio](https://www.roblox.com/create) - Create Roblox Mods
 
-## Quick Start ##
+## Quick Start
 
 1. Upload any texture decals for the mod - [Create/Upload Decals](https://create.roblox.com/dashboard/creations?activeTab=Decal)
 
@@ -44,7 +40,7 @@ This mod uses print statements and a companion app to monitor the game log and p
 
 5. or Launch `WPF_RobloxChromaMod` (from Visual Studio right now) which monitors the game log and plays `Chroma RGB` for the various game events.
 
-## Chroma Effects ##
+## Chroma Effects
 
 * Climbing Effect
 
@@ -64,39 +60,37 @@ This mod uses print statements and a companion app to monitor the game log and p
 
 * Swimming Effect
 
-## Videos ##
+## Videos
 
 **Chroma RGB in Roblox (Overview)**
 
 <a target="_blank" href="https://youtu.be/AI5I4I07aW8"><img src="https://img.youtube.com/vi/AI5I4I07aW8/0.jpg"></a>
 
-**Chroma RGB – Player State**
+## Screenshots
 
-<a target="_blank" href="https://youtu.be/JkeKgwhZWbQ"><img src="https://img.youtube.com/vi/JkeKgwhZWbQ/0.jpg"></a>
+---
 
-**Create Chroma Animations with the [Web Chroma Editor](https://chroma.razer.com/ChromaEditor/)**
-
-<a target="_blank" href="https://youtu.be/ZVX3DNW2gIM"><img src="https://img.youtube.com/vi/ZVX3DNW2gIM/0.jpg"></a>
-
-**Roblox Mod - Add Running Animation**
-
-<a target="_blank" href="https://youtu.be/KymVo2Tzx1g"><img src="https://img.youtube.com/vi/KymVo2Tzx1g/0.jpg"></a>
-
-**Flying Physics - Roblox Scripting Tutorial**
-
-<a target="_blank" href="https://www.youtube.com/watch?v=FYl0JvUZq4I"><img src="https://img.youtube.com/vi/FYl0JvUZq4I/0.jpg"></a>
-
-## Screenshots ##
-
-**Roblox**
+**Roblox Chroma Mod**
 
 ![image_1](images/image_1.png)
 
-**WPF_RobloxChromaMod**
+---
+
+**Chroma RGB Ring**
+
+![Chroma Ring](images/chroma.png)
+
+* The Roblox Mod displays an ImageLabel with the center color of the circle displaying the current game state for the Roblox Companion App to capture and display Chroma effects.
+
+---
+
+**WinForm_RobloxChromaMod**
+
+* The Roblox Companion App has a monitor selector and a picture box that centers on the Chroma Ring to capture the game state from the Roblox Mod. The white square marker is where the game state is captured from. The labels in the companion app are just example game states that can be captured. Since the color is 24-bit RGB, each tracking pixel can track 24 independent game states. 8 channels can be captured per color channel using bit operations.
 
 ![image_3](images/image_3.png)
 
-## Scripts ##
+## Scripts
 
 **TextButton Script**
 
@@ -104,23 +98,20 @@ Notice that `LocalScript` is a child of the `TextButton` at: [StarterGui/ChromaG
 
 ![image_2](images/image_2.png)
 
-The script prints `ChromaRGB: BtnEffectN` to the log which is monitored to play the corresponding Chroma RGB effect.
-
-Another way to relay button state is using a label background color that is sampled by the companion app.
+Set the button effect name in a global variable to show in the label background color.
 
 ```lua
 function leftClick()
- print("ChromaRGB:", script.Parent.Name)
  _G.ChromaEffect = script.Parent.Name;
 end
 
 function rightClick()
- print("ChromaRGB:", script.Parent.Name)
  _G.ChromaEffect = script.Parent.Name;
 end
 
 script.Parent.MouseButton1Click:Connect(leftClick)
 script.Parent.MouseButton2Click:Connect(rightClick)
+
 ```
 
 **ButtonEffectTextLabel Script**
@@ -209,9 +200,9 @@ while wait(0.033) do
 end
 ```
 
-**Player State Script**
+**Starter Chracter Scripts**
 
-Print player state events so that Chroma can react to changes. [StarterPlayer/StarterCharacterScripts/LocalScript.lua](StarterPlayer/StarterCharacterScripts/LocalScript.lua)
+Add player state to globals to show in the label background color [StarterPlayer/StarterCharacterScripts/LocalScript.lua](StarterPlayer/StarterCharacterScripts/LocalScript.lua)
 
 ![image_4](images/image_4.png)
 
@@ -220,23 +211,8 @@ local character = script.Parent
 
 local humanoid = character:WaitForChild("Humanoid")
 
-local tokenLength = 24 -- "Enum.HumanoidStateType."
+local tokenLength = string.len("Enum.HumanoidStateType.")
 
--- listen to humanoid state
-humanoid.StateChanged:Connect(function(oldState, newState)
- if (newState ~= nil and oldState ~= newState and newState ~= Enum.HumanoidStateType.None) then
-  local state = tostring(newState);
-  if (string.len(state) > tokenLength) then
-   local strState = string.sub(state, tokenLength + 1)
-   print ("ChromaRGB:", string.format("Player_%s", strState));
-  end
- end
-end)
-```
-
-Add player state to globals to show in the label background color.
-
-```lua
 -- listen to humanoid state
 humanoid.StateChanged:Connect(function(oldState, newState)
  if (newState ~= nil and oldState ~= newState and newState ~= Enum.HumanoidStateType.None) then
@@ -319,11 +295,8 @@ humanoid.StateChanged:Connect(function(oldState, newState)
   end
  end
 end)
-```
 
-**Player Input Handling**
 
-```lua
 local UserInputService = game:GetService("UserInputService")
 
 local function onInputBegan(inputObject, gameProcessedEvent)
