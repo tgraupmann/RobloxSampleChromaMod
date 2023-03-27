@@ -76,7 +76,7 @@ namespace WinForm_RobloxChromaMod
             // setup scene
             _mScene = new FChromaSDKScene();
 
-            const int SPEED_MULTIPLIER = 3;
+            const int SPEED_MULTIPLIER = 1;
 
             FChromaSDKSceneEffect effect;
 
