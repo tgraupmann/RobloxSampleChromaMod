@@ -34,11 +34,9 @@ This mod uses a companion Chroma app with screen capture to sync game state and 
 
 2. Open [RobloxSampleChromaMod.rbxl](RobloxSampleChromaMod.rbxl) and edit in Roblox Studio and Hit Play!
 
-3. or Play from the Web [https://www.roblox.com/games/6109972658/Chroma-RGB-in-Roblox](https://www.roblox.com/games/6109972658/Chroma-RGB-in-Roblox)
+3. or Play from the Web [https://www.roblox.com/games/12920629232/Chroma-RGB-in-Roblox](https://www.roblox.com/games/12920629232/Chroma-RGB-in-Roblox)
 
-4. Install the mod from [Releases](https://github.com/tgraupmann/RobloxSampleChromaMod/releases/tag/1.0) and launch the mod
-
-5. or Launch `WPF_RobloxChromaMod` (from Visual Studio right now) which monitors the game log and plays `Chroma RGB` for the various game events.
+4. Launch `Winform_RobloxChromaMod` which monitors the screen and plays `Chroma RGB` for the various game events.
 
 ## Chroma Effects
 
