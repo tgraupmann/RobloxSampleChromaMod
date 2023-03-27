@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this._mPictureBox = new System.Windows.Forms.PictureBox();
             this._mCaptureTimer = new System.Windows.Forms.Timer(this.components);
             this._mDebugLabel1 = new System.Windows.Forms.Label();
@@ -241,6 +242,7 @@
             this.Controls.Add(this._mDebugLabel2);
             this.Controls.Add(this._mDebugLabel1);
             this.Controls.Add(this._mPictureBox);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.Name = "Form1";
             this.Text = "Roblox Companion App";
