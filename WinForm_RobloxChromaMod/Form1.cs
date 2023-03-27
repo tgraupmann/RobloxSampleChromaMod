@@ -68,8 +68,6 @@ namespace WinForm_RobloxChromaMod
             }
             _mCboMonitors.SelectedIndexChanged += CboItemChanged;
 
-            UpdateDebugLabels();
-
             // create capture bitmap
             _mCaptureImage = new Bitmap(_mPictureBox.Width, _mPictureBox.Height, PixelFormat.Format24bppRgb);
 
@@ -177,13 +175,6 @@ namespace WinForm_RobloxChromaMod
             }
         }
 
-        private void UpdateDebugLabels()
-        {
-            _mDebugLabel1.Text = string.Format("Start {0},{1}", _sMouseMoveStart.X, _sMouseMoveStart.Y);
-            _mDebugLabel2.Text = string.Format("End {0},{1}", _sMouseMoveEnd.X, _sMouseMoveEnd.Y);
-            _mDebugLabel3.Text = string.Format("Offset {0},{1}", _sMouseMoveOffset.X, _sMouseMoveOffset.Y);
-        }
-
         #region Input Events
 
         private void PictureMouseDown(object sender, MouseEventArgs e)
@@ -193,7 +184,6 @@ namespace WinForm_RobloxChromaMod
                 _mMouseDown = true;
                 _sMouseMoveStart = new Point(e.X + _sMouseMoveOffset.X, e.Y + _sMouseMoveOffset.Y);
                 _sMouseMoveOffset = Point.Empty;
-                UpdateDebugLabels();
             }
         }
 
@@ -203,7 +193,6 @@ namespace WinForm_RobloxChromaMod
             {
                 _sMouseMoveEnd = new Point(e.X + _sMouseMoveOffset.X, e.Y + _sMouseMoveOffset.Y);
                 _sMouseMoveOffset = new Point(_sMouseMoveStart.X - _sMouseMoveEnd.X, _sMouseMoveStart.Y - _sMouseMoveEnd.Y);
-                UpdateDebugLabels();
             }
             _mMouseDown = false;
         }
@@ -213,7 +202,6 @@ namespace WinForm_RobloxChromaMod
             if (_mMouseDown)
             {
                 _sMouseMoveEnd = new Point(e.X + _sMouseMoveOffset.X, e.Y + _sMouseMoveOffset.Y);
-                UpdateDebugLabels();
             }
         }
 

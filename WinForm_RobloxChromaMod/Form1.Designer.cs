@@ -32,9 +32,6 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this._mPictureBox = new System.Windows.Forms.PictureBox();
             this._mCaptureTimer = new System.Windows.Forms.Timer(this.components);
-            this._mDebugLabel1 = new System.Windows.Forms.Label();
-            this._mDebugLabel2 = new System.Windows.Forms.Label();
-            this._mDebugLabel3 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this._mButtonColor = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
@@ -53,7 +50,7 @@
             // _mPictureBox
             // 
             this._mPictureBox.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this._mPictureBox.Location = new System.Drawing.Point(108, 110);
+            this._mPictureBox.Location = new System.Drawing.Point(11, 12);
             this._mPictureBox.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this._mPictureBox.Name = "_mPictureBox";
             this._mPictureBox.Size = new System.Drawing.Size(100, 100);
@@ -70,40 +67,10 @@
             this._mCaptureTimer.Enabled = true;
             this._mCaptureTimer.Tick += new System.EventHandler(this._mCaptureTimer_Tick);
             // 
-            // _mDebugLabel1
-            // 
-            this._mDebugLabel1.AutoSize = true;
-            this._mDebugLabel1.Location = new System.Drawing.Point(330, 40);
-            this._mDebugLabel1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this._mDebugLabel1.Name = "_mDebugLabel1";
-            this._mDebugLabel1.Size = new System.Drawing.Size(44, 13);
-            this._mDebugLabel1.TabIndex = 1;
-            this._mDebugLabel1.Text = "Position";
-            // 
-            // _mDebugLabel2
-            // 
-            this._mDebugLabel2.AutoSize = true;
-            this._mDebugLabel2.Location = new System.Drawing.Point(330, 54);
-            this._mDebugLabel2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this._mDebugLabel2.Name = "_mDebugLabel2";
-            this._mDebugLabel2.Size = new System.Drawing.Size(29, 13);
-            this._mDebugLabel2.TabIndex = 2;
-            this._mDebugLabel2.Text = "Start";
-            // 
-            // _mDebugLabel3
-            // 
-            this._mDebugLabel3.AutoSize = true;
-            this._mDebugLabel3.Location = new System.Drawing.Point(330, 68);
-            this._mDebugLabel3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this._mDebugLabel3.Name = "_mDebugLabel3";
-            this._mDebugLabel3.Size = new System.Drawing.Size(26, 13);
-            this._mDebugLabel3.TabIndex = 3;
-            this._mDebugLabel3.Text = "End";
-            // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(330, 92);
+            this.label1.Location = new System.Drawing.Point(155, 45);
             this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(96, 13);
@@ -113,7 +80,7 @@
             // _mButtonColor
             // 
             this._mButtonColor.AutoSize = true;
-            this._mButtonColor.Location = new System.Drawing.Point(330, 106);
+            this._mButtonColor.Location = new System.Drawing.Point(155, 59);
             this._mButtonColor.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this._mButtonColor.Name = "_mButtonColor";
             this._mButtonColor.Size = new System.Drawing.Size(31, 13);
@@ -123,7 +90,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(330, 131);
+            this.label2.Location = new System.Drawing.Point(155, 84);
             this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(106, 13);
@@ -133,7 +100,7 @@
             // _mLabelButtonEffect
             // 
             this._mLabelButtonEffect.AutoSize = true;
-            this._mLabelButtonEffect.Location = new System.Drawing.Point(330, 145);
+            this._mLabelButtonEffect.Location = new System.Drawing.Point(155, 98);
             this._mLabelButtonEffect.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this._mLabelButtonEffect.Name = "_mLabelButtonEffect";
             this._mLabelButtonEffect.Size = new System.Drawing.Size(52, 13);
@@ -143,7 +110,7 @@
             // _mLblDebugSwimming
             // 
             this._mLblDebugSwimming.AutoSize = true;
-            this._mLblDebugSwimming.Location = new System.Drawing.Point(330, 218);
+            this._mLblDebugSwimming.Location = new System.Drawing.Point(155, 171);
             this._mLblDebugSwimming.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this._mLblDebugSwimming.Name = "_mLblDebugSwimming";
             this._mLblDebugSwimming.Size = new System.Drawing.Size(82, 13);
@@ -153,7 +120,7 @@
             // _mLblDebugDead
             // 
             this._mLblDebugDead.AutoSize = true;
-            this._mLblDebugDead.Location = new System.Drawing.Point(330, 175);
+            this._mLblDebugDead.Location = new System.Drawing.Point(155, 128);
             this._mLblDebugDead.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this._mLblDebugDead.Name = "_mLblDebugDead";
             this._mLblDebugDead.Size = new System.Drawing.Size(61, 13);
@@ -163,7 +130,7 @@
             // _mLblDebugClimbing
             // 
             this._mLblDebugClimbing.AutoSize = true;
-            this._mLblDebugClimbing.Location = new System.Drawing.Point(330, 197);
+            this._mLblDebugClimbing.Location = new System.Drawing.Point(155, 150);
             this._mLblDebugClimbing.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this._mLblDebugClimbing.Name = "_mLblDebugClimbing";
             this._mLblDebugClimbing.Size = new System.Drawing.Size(74, 13);
@@ -173,7 +140,7 @@
             // _mLblDebugSeated
             // 
             this._mLblDebugSeated.AutoSize = true;
-            this._mLblDebugSeated.Location = new System.Drawing.Point(330, 241);
+            this._mLblDebugSeated.Location = new System.Drawing.Point(155, 194);
             this._mLblDebugSeated.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this._mLblDebugSeated.Name = "_mLblDebugSeated";
             this._mLblDebugSeated.Size = new System.Drawing.Size(69, 13);
@@ -183,7 +150,7 @@
             // _mLblDebugFlying
             // 
             this._mLblDebugFlying.AutoSize = true;
-            this._mLblDebugFlying.Location = new System.Drawing.Point(330, 285);
+            this._mLblDebugFlying.Location = new System.Drawing.Point(155, 238);
             this._mLblDebugFlying.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this._mLblDebugFlying.Name = "_mLblDebugFlying";
             this._mLblDebugFlying.Size = new System.Drawing.Size(62, 13);
@@ -193,7 +160,7 @@
             // _mLblDebugJumping
             // 
             this._mLblDebugJumping.AutoSize = true;
-            this._mLblDebugJumping.Location = new System.Drawing.Point(330, 263);
+            this._mLblDebugJumping.Location = new System.Drawing.Point(155, 216);
             this._mLblDebugJumping.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this._mLblDebugJumping.Name = "_mLblDebugJumping";
             this._mLblDebugJumping.Size = new System.Drawing.Size(74, 13);
@@ -203,7 +170,7 @@
             // _mLblDebugRunning
             // 
             this._mLblDebugRunning.AutoSize = true;
-            this._mLblDebugRunning.Location = new System.Drawing.Point(330, 309);
+            this._mLblDebugRunning.Location = new System.Drawing.Point(155, 262);
             this._mLblDebugRunning.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this._mLblDebugRunning.Name = "_mLblDebugRunning";
             this._mLblDebugRunning.Size = new System.Drawing.Size(75, 13);
@@ -215,7 +182,7 @@
             this._mCboMonitors.FormattingEnabled = true;
             this._mCboMonitors.Items.AddRange(new object[] {
             "--SELECT MONITOR--"});
-            this._mCboMonitors.Location = new System.Drawing.Point(333, 10);
+            this._mCboMonitors.Location = new System.Drawing.Point(155, 11);
             this._mCboMonitors.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this._mCboMonitors.Name = "_mCboMonitors";
             this._mCboMonitors.Size = new System.Drawing.Size(164, 21);
@@ -225,7 +192,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(519, 342);
+            this.ClientSize = new System.Drawing.Size(330, 294);
             this.Controls.Add(this._mCboMonitors);
             this.Controls.Add(this._mLblDebugRunning);
             this.Controls.Add(this._mLblDebugJumping);
@@ -238,9 +205,6 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this._mButtonColor);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this._mDebugLabel3);
-            this.Controls.Add(this._mDebugLabel2);
-            this.Controls.Add(this._mDebugLabel1);
             this.Controls.Add(this._mPictureBox);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
@@ -259,9 +223,6 @@
 
         private System.Windows.Forms.PictureBox _mPictureBox;
         private System.Windows.Forms.Timer _mCaptureTimer;
-        private System.Windows.Forms.Label _mDebugLabel1;
-        private System.Windows.Forms.Label _mDebugLabel2;
-        private System.Windows.Forms.Label _mDebugLabel3;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label _mButtonColor;
         private System.Windows.Forms.Label label2;
