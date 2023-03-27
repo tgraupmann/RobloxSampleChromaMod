@@ -28,7 +28,7 @@ namespace WinForm_RobloxChromaMod
 
         FChromaSDKScene _mScene = null;
         Dictionary<string, int> _mEffectIndexes = new Dictionary<string, int>();
-        bool _mExtended = false;
+        bool _mExtended = true; // extended keyboars support
         int _mAmbientColor = 0;
 
         string _mPreviousEffect = string.Empty;
