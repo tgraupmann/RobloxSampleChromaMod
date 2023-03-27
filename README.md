@@ -2,9 +2,13 @@
 
 * Note: Visit the [Chroma Animation Guide](https://chroma.razer.com/ChromaGuide/) to find the latest supported plugin for Chroma RGB.
 
+---
+
 # Roblox Sample Chroma RGB Mod
 
 This mod uses a companion Chroma app with screen capture to sync game state and play Chroma RGB effects.
+
+---
 
 ## Table of Contents
 
@@ -18,15 +22,21 @@ This mod uses a companion Chroma app with screen capture to sync game state and 
 
 ## See Also
 
+---
+
 **Docs:**
 
 * [Chroma Animation Guide](http://chroma.razer.com/ChromaGuide/) - Visual examples of the Chroma Animation API methods
+
+---
 
 **Editors:**
 
 * [Web Chroma Editor](https://chroma.razer.com/ChromaEditor/) - Create Chroma RGB Animations
 
 * [Roblox Studio](https://www.roblox.com/create) - Create Roblox Mods
+
+---
 
 ## Quick Start
 
@@ -37,6 +47,8 @@ This mod uses a companion Chroma app with screen capture to sync game state and 
 3. or Play from the Web [https://www.roblox.com/games/12920629232/Chroma-RGB-in-Roblox](https://www.roblox.com/games/12920629232/Chroma-RGB-in-Roblox)
 
 4. Launch `Winform_RobloxChromaMod` which monitors the screen and plays `Chroma RGB` for the various game events.
+
+---
 
 ## Chroma Effects
 
@@ -88,7 +100,11 @@ This mod uses a companion Chroma app with screen capture to sync game state and 
 
 ![image_3](images/image_3.png)
 
+---
+
 ## Scripts
+
+---
 
 **TextButton Script**
 
@@ -111,6 +127,8 @@ script.Parent.MouseButton1Click:Connect(leftClick)
 script.Parent.MouseButton2Click:Connect(rightClick)
 
 ```
+
+---
 
 **ButtonEffectTextLabel Script**
 
@@ -197,6 +215,8 @@ while wait(0.033) do
  script.Parent.BackgroundColor3 = Color3.fromRGB(red, green, 0)
 end
 ```
+
+---
 
 **Starter Chracter Scripts**
 
@@ -326,6 +346,8 @@ end
 
 UserInputService.InputBegan:Connect(onInputBegan)
 ```
+
+---
 
 **RobloxChromaMod**
 
