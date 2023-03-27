@@ -60,9 +60,9 @@ This mod uses a companion Chroma app with screen capture to sync game state and 
 
 ## Videos
 
-**Chroma RGB in Roblox (Overview)**
+**Chroma RGB - Roblox Mod Overview**
 
-<a target="_blank" href="https://youtu.be/AI5I4I07aW8"><img src="https://img.youtube.com/vi/AI5I4I07aW8/0.jpg"></a>
+<a target="_blank" href="https://youtu.be/3y8tItBBluE"><img src="https://img.youtube.com/vi/3y8tItBBluE/0.jpg"></a>
 
 ## Screenshots
 
