@@ -33,6 +33,7 @@ namespace WinForm_RobloxChromaMod
 
         string _mPreviousEffect = string.Empty;
 
+        const string ANIMATION_IDLE = "Animations/Idle";
         const string ANIMATION_DEAD = "Animations/Dead";
         const string ANIMATION_CLIMBING = "Animations/Climbing";
         const string ANIMATION_FLYING = "Animations/Flying";
@@ -89,6 +90,16 @@ namespace WinForm_RobloxChromaMod
                 _mScene._mEffects.Add(effect);
                 _mEffectIndexes[effect._mAnimation] = (int)_mScene._mEffects.Count - 1;
             }
+
+            // idle
+            effect = new FChromaSDKSceneEffect();
+            effect._mAnimation = ANIMATION_IDLE;
+            effect._mSpeed = SPEED_MULTIPLIER;
+            effect._mBlend = EChromaSDKSceneBlend.SB_None;
+            effect._mState = false;
+            effect._mMode = EChromaSDKSceneMode.SM_Add;
+            _mScene._mEffects.Add(effect);
+            _mEffectIndexes[effect._mAnimation] = (int)_mScene._mEffects.Count - 1;
 
             // climbing
             effect = new FChromaSDKSceneEffect();
@@ -406,6 +417,7 @@ namespace WinForm_RobloxChromaMod
 
                 #endregion Button Effects
 
+                const byte MASK_IDLE = 0x0;
                 const byte MASK_DEAD = 0x1;
                 const byte MASK_CLIMBING = 0x1 << 1;
                 const byte MASK_JUMPING = 0x1 << 2;
@@ -433,7 +445,9 @@ namespace WinForm_RobloxChromaMod
                     MatchColorGeeenMask(color, MASK_SWIMMING);
 
                 _mScene._mEffects[_mEffectIndexes[ANIMATION_JUMPING]]._mState =
-                    MatchColorGeeenMask(color, MASK_JUMPING); 
+                    MatchColorGeeenMask(color, MASK_JUMPING);
+
+                _mScene._mEffects[_mEffectIndexes[ANIMATION_IDLE]]._mState = color.G == MASK_IDLE;
 
                 _mLblDebugDead.Text = string.Format("Dead: {0}", _mScene._mEffects[_mEffectIndexes[ANIMATION_DEAD]]._mState);
                 _mLblDebugClimbing.Text = string.Format("Climbing: {0}", _mScene._mEffects[_mEffectIndexes[ANIMATION_CLIMBING]]._mState);
